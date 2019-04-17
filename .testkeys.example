@@ -1,0 +1,6 @@
+# These keys are used for integration tests. Never share, upload or commit your API keys.
+# Leaving keys empty will skip the tests which require the missing key.
+# Copy this file to .testKeys in order to use it.
+
+TIMETABLES_API_KEY=
+ROUTEPLANNING_API_KEY=

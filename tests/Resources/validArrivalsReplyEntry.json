@@ -1,0 +1,21 @@
+{
+  "Product": {
+    "name": "Länstrafik -Tunnelbana 19",
+    "num": "19",
+    "catCode": "5",
+    "catOutS": "ULT",
+    "catOutL": "Länstrafik -Tunnelbana",
+    "operatorCode": "275",
+    "operator": "SL",
+    "operatorUrl": "http://www.sl.se"
+  },
+  "name": "Länstrafik -Tunnelbana 19",
+  "stop": "T-Centralen T-bana (Stockholm kn)",
+  "stopid": "740020749",
+  "stopExtId": "740020749",
+  "time": "15:09:00",
+  "date": "2019-04-16",
+  "origin": "Högdalen T-bana (Stockholm kn)",
+  "transportNumber": "19",
+  "transportCategory": "ULT"
+}

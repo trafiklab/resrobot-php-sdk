@@ -1,0 +1,22 @@
+{
+  "Product": {
+    "name": "Länstrafik -Tunnelbana 13",
+    "num": "13",
+    "catCode": "5",
+    "catOutS": "ULT",
+    "catOutL": "Länstrafik -Tunnelbana",
+    "operatorCode": "275",
+    "operator": "SL",
+    "operatorUrl": "http://www.sl.se"
+  },
+  "name": "Länstrafik -Tunnelbana 13",
+  "type": "S",
+  "stop": "T-Centralen T-bana (Stockholm kn)",
+  "stopid": "740020749",
+  "stopExtId": "740020749",
+  "time": "15:08:00",
+  "date": "2019-04-16",
+  "direction": "Alby T-bana (Botkyrka kn)",
+  "transportNumber": "13",
+  "transportCategory": "ULT"
+}

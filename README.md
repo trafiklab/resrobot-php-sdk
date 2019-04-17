@@ -1,2 +1,60 @@
-# ResRobot-php-sdk
-A PHP SDK to easily use the ResRobot APIs
+# ResRobot PHP SDK
+A PHP SDK to easily use the ResRobot APIs.
+
+**_Work in progress_**: _There is no 1.0.0 release available yet. If you want to get a sneak peak, 
+you can get it by adding this repository manually to your projects composer file. 
+However, keep in mind that breaking changes are still possible. A first release is estimated to arrive in one of the next months._
+
+## Installation
+Installing can be done by using Composer:
+
+`composer require trafiklab/resrobot-php-sdk`
+
+#### Versioning
+
+This package follows [Semantic versioning](https://semver.org/):
+> Given a version number MAJOR.MINOR.PATCH, we increment the:
+> - MAJOR version when we make incompatible API changes,
+> - MINOR version when we add functionality in a backwards-compatible manner, and
+> - PATCH version when we make backwards-compatible bug fixes.
+
+Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
+
+## Requirements
+The following software is required to use this SDK:
+
+- PHP 7.1 or higher
+- PHP Curl extension
+- PHP JSON extension
+
+## Usage
+
+In order to use the ResRobot Timetable and Routeplanning APIs, 
+you need to obtain an API key from [Trafiklab](https://trafiklab.se) first.
+
+### Getting Timetables (departures or arrivals from a stop)
+
+The following code example illustrates how you can retrieve a timetable for a certain stop.
+
+```
+  $departuresRequest = new TimeTableRequest();
+  $departuresRequest->setStopId("740000001");
+  $departuresRequest->setTimeTableType(TimeTableType::DEPARTURES);
+
+  $resRobotWrapper = ResRobotWrapper::getInstance();
+  $resRobotWrapper->registerUserAgent("<YOUR_USER_AGENT>");
+  $resRobotWrapper->registerTimeTablesApiKey("<YOUR_API_KEY>");
+  $response = $resRobotWrapper->getTimeTable($departuresRequest);
+```
+
+## Contributing
+
+We accept pull requests, but please create an issue first in order to discuss the addition or fix.
+If you would like to see a new feature added, you can also create a feature request by creating an issue.
+
+## Help
+
+If you're stuck with a question, feel free to ask help through the Issue tracker.
+- Need help with API keys? Please read [www.trafiklab.se/api-nycklar](https://www.trafiklab.se/api-nycklar) first.
+- Do you want to check the current systems status? Service disruptions
+ are published on the [Trafiklab homepage](https://www.trafiklab.se/)
