@@ -45,6 +45,10 @@ class TimeTableResponse
      */
     private function parseApiResponse(array $json): void
     {
+        if (key_exists('errorCode', $json)) {
+            throw new \Exception('ResRobot threw an error: ' . $json['errorText'], 500);
+        }
+
         if (key_exists('Departure', $json)) {
             $responseRoot = 'Departure';
             $this->_type = TimeTableType::DEPARTURES;

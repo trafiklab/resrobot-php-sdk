@@ -33,18 +33,8 @@
     "friendsofphp/php-cs-fixer": "^2.14"
   },
   "autoload": {
-    "psr-4": {
-      "Trafiklab\\": "src/Trafiklab/"
-    }
-  },
-  "autoload-dev": {
-    "autoload": {
-      "psr-4": {
-        "Trafiklab\\": [
-          "src/Trafiklab/",
-          "tests/Trafiklab/"
-        ]
-      }
+    "psr-0": {
+      "Trafiklab\\Resrobot": "src/"
     }
   }
 }

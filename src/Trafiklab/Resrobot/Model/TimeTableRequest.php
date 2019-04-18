@@ -2,54 +2,10 @@
 
 namespace Trafiklab\Resrobot\Model;
 
-use DateTime;
-use DateTimeZone;
-
-class TimeTableRequest
+class TimeTableRequest extends ResRobotBaseRequest
 {
     private $_timeTableType;
     private $_stopId;
-    private $_dateTime;
-    private $_productFilter = [];
-    private $_operatorFilter = [];
-
-    /**
-     * @return array
-     */
-    public function getOperatorFilter(): array
-    {
-        return $this->_operatorFilter;
-    }
-
-    /**
-     * @return int
-     */
-    public function getVehicleFilter(): int
-    {
-        return array_sum($this->_productFilter);
-    }
-
-    /**
-     * @return DateTime
-     */
-    public function getDateTime(): DateTime
-    {
-        if ($this->_dateTime == null){
-            return new DateTime('now', new DateTimeZone('Europe/Stockholm'));
-        }
-        return $this->_dateTime;
-    }
-
-    /**
-     * @param mixed $dateTime
-     *
-
-     */
-    public function setDateTime(DateTime $dateTime): void
-    {
-        $this->_dateTime = $dateTime;
-        $this->_dateTime->setTimezone(new DateTimeZone('Europe/Stockholm'));
-    }
 
     /**
      * @return mixed
@@ -61,8 +17,6 @@ class TimeTableRequest
 
     /**
      * @param mixed $stopId
-     *
-
      */
     public function setStopId(string $stopId): void
     {
@@ -79,32 +33,10 @@ class TimeTableRequest
 
     /**
      * @param mixed $timeTableType
-     *
-
      */
     public function setTimeTableType(int $timeTableType): void
     {
         $this->_timeTableType = $timeTableType;
-    }
-
-    /**
-     * @param int $productCode
-     *
-
-     */
-    public function addVehicleToFilter(int $productCode): void
-    {
-        $this->_productFilter[] = $productCode;
-
-    }
-
-    /**
-     * @param int $operatorCode
-     */
-    public function addOperatorToFilter(int $operatorCode): void
-    {
-        $this->_operatorFilter[] = $operatorCode;
-
     }
 
 

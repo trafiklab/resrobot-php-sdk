@@ -3,15 +3,19 @@
 
 namespace Trafiklab\Resrobot\Internal;
 
+use Trafiklab\ResRobot\Model\RoutePlanningRequest;
+use Trafiklab\ResRobot\Model\RoutePlanningResponse;
+use Trafiklab\Resrobot\Model\TimeTableRequest;
 use Trafiklab\Resrobot\Model\TimeTableResponse;
+use Trafiklab\Resrobot\Model\TimeTableType;
 
 class ResRobotClient
 {
 
-    private const DEPARTURES_ENDPOINT = "https://api.resrobot.se/v2/departureBoard";
-    private const ARRIVALS_ENDPOINT = "https://api.resrobot.se/v2/arrivalBoard";
-    private const TRIPS_ENDPOINT = "https://api.resrobot.se/v2/trip";
-    private const SDK_USER_AGENT = "Trafiklab/ResRobot-php-sdk";
+    public const DEPARTURES_ENDPOINT = "https://api.resrobot.se/v2/departureBoard";
+    public const ARRIVALS_ENDPOINT = "https://api.resrobot.se/v2/arrivalBoard";
+    public const TRIPS_ENDPOINT = "https://api.resrobot.se/v2/trip";
+    public const SDK_USER_AGENT = "Trafiklab/ResRobot-php-sdk";
     private $applicationUserAgent = "Unknown";
     /**
      * @var WebClient
@@ -28,43 +32,40 @@ class ResRobotClient
 
 
     /**
-     * @param string         $key
-     * @param string         $stopId
-     * @param \DateTime|null $dateTime
-     * @param int            $productFilter
-     * @param array|null     $operatorFilter
+     * @param string           $key
+     * @param TimeTableRequest $request
      *
      * @return TimeTableResponse
      * @throws \Exception
      */
-    public function getDepartures(string $key, string $stopId, \DateTime $dateTime = null,
-                                  int $productFilter = -1, array $operatorFilter = null): TimeTableResponse
+    public function getTimeTable(string $key, TimeTableRequest $request): TimeTableResponse
     {
-        if ($dateTime == null) {
-            $dateTime = new \DateTime();
-        }
-        return $this->getTimeTable(self::DEPARTURES_ENDPOINT, $key, $stopId, $dateTime,
-            $productFilter, $operatorFilter);
-    }
 
-    /**
-     * @param string         $key
-     * @param string         $stopId
-     * @param \DateTime|null $dateTime
-     * @param int            $productFilter
-     * @param array|null     $operatorFilter
-     *
-     * @return TimeTableResponse
-     * @throws \Exception
-     */
-    public function getArrivals(string $key, string $stopId, \DateTime $dateTime = null,
-                                int $productFilter = -1, array $operatorFilter = null): TimeTableResponse
-    {
-        if ($dateTime == null) {
-            $dateTime = new \DateTime();
+        $endpoint = self::DEPARTURES_ENDPOINT;
+        if ($request->getTimeTableType() == TimeTableType::ARRIVALS) {
+            $endpoint = self::ARRIVALS_ENDPOINT;
         }
-        return $this->getTimeTable(self::ARRIVALS_ENDPOINT, $key, $stopId, $dateTime,
-            $productFilter, $operatorFilter);
+
+        $parameters = [
+            "key" => $key,
+            "id" => $request->getStopId(),
+            "date" => $request->getDateTime()->format("Y-m-d"),
+            "time" => $request->getDateTime()->format("H:i"),
+            "format" => "json",
+            "passlist" => "0",
+        ];
+
+        if ($request->getVehicleFilter() > 0) {
+            $parameters['products'] = $request->getVehicleFilter();
+        }
+
+        if ($request->getOperatorFilter() != null) {
+            $parameters['operators'] = join(',', $request->getOperatorFilter());
+        }
+
+        $response = $this->_webClient->makeRequest($endpoint, $parameters);
+        $json = json_decode($response->getBody(), true);
+        return new TimeTableResponse($json);
     }
 
     /**
@@ -76,40 +77,41 @@ class ResRobotClient
     }
 
     /**
-     * @param string     $endpoint
-     * @param string     $key
-     * @param string     $stopId
-     * @param \DateTime  $dateTime
-     * @param int        $productFilter
-     * @param array|null $operatorFilter
+     * @param                      $key
+     * @param RoutePlanningRequest $request
      *
-     * @return TimeTableResponse
+     * @return RoutePlanningResponse
      * @throws \Exception
      */
-    private function getTimeTable(string $endpoint, string $key, string $stopId, \DateTime $dateTime,
-                                  int $productFilter = -1, array $operatorFilter = null): TimeTableResponse
+    public function getRoutePlanning($key, RoutePlanningRequest $request): RoutePlanningResponse
     {
-
         $parameters = [
             "key" => $key,
-            "id" => $stopId,
-            "date" => $dateTime->format("Y-m-d"),
-            "time" => $dateTime->format("H:i"),
+            "originId" => $request->getOriginId(),
+            "destId" => $request->getDestinationId(),
+            "date" => $request->getDateTime()->format("Y-m-d"),
+            "time" => $request->getDateTime()->format("H:i"),
+            "lang" => $request->getLang(),
             "format" => "json",
-            "passlist" => "0",
+            "passlist" => "1",
         ];
 
-        if ($productFilter > 0) {
-            $parameters['productFilter'] = $productFilter;
+
+        if ($request->getVehicleFilter() > 0) {
+            $parameters['products'] = $request->getVehicleFilter();
         }
 
-        if ($operatorFilter != null) {
-            $parameters['$operatorFilter'] = join(',', $operatorFilter);
+        if ($request->getOperatorFilter() != null) {
+            $parameters['operators'] = join(',', $request->getOperatorFilter());
         }
 
-        $response = $this->_webClient->makeRequest($endpoint, $parameters);
-        $json = json_decode($response, true);
-        return new TimeTableResponse($json);
+        if ($request->getViaId() != null) {
+            $parameters['viaId'] =  $request->getViaId();
+        }
+
+        $response = $this->_webClient->makeRequest(self::TRIPS_ENDPOINT, $parameters);
+        $json = json_decode($response->getBody(), true);
+        return new RoutePlanningResponse($json);
     }
 
 

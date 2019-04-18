@@ -85,7 +85,7 @@ class TimeTableEntry
 
     private function parseApiResponse(array $json): void
     {
-        $this->_stopId = $json['stopid'];
+        $this->_stopId = $json['stopExtId'];
         $this->_stopName = $json['stop'];
         $this->_lineName = $json['name'];
         $this->_lineNumber = $json['transportNumber'];

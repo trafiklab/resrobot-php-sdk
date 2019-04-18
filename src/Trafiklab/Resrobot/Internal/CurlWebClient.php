@@ -7,6 +7,7 @@ class CurlWebClient implements WebClient
 
     private $_userAgent;
     private $_cache;
+    private const CACHE_TTL = 15; // Cache validity in seconds
 
     public function __construct($userAgent)
     {
@@ -14,7 +15,7 @@ class CurlWebClient implements WebClient
         $this->_cache = new ResRobotCache();
     }
 
-    function makeRequest(string $endpoint, array $parameters)
+    function makeRequest(string $endpoint, array $parameters) : WebResponse
     {
         // url-encode parameters
         array_walk($parameters, function (&$value, $key) {
@@ -26,6 +27,7 @@ class CurlWebClient implements WebClient
         if ($this->_cache->contains($url)) {
             return $this->_cache->get($url);
         }
+        var_dump($url);
 
         // create curl resource
         $ch = curl_init();
@@ -36,16 +38,22 @@ class CurlWebClient implements WebClient
         //return the transfer as a string
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10); //timeout in seconds
+        curl_setopt($ch, CURLOPT_TIMEOUT, 400); //timeout in seconds
+
         // $output contains the output string
         $output = curl_exec($ch);
+
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        $response = new WebResponse($httpCode, $output);
 
         // close curl resource to free up system resources
         curl_close($ch);
 
-        // TODO: get TTL from HTTP headers
-        $this->_cache->put($url, $output, 15);
+        $this->_cache->put($url, $response, self::CACHE_TTL);
 
-        return $output;
+        return $response;
     }
 
 }

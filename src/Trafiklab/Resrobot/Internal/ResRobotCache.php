@@ -45,14 +45,14 @@ class ResRobotCache implements Cache
      *
      * @param String $key The key to search for.
      *
-     * @return bool|object The cached object if found. If not found, false.
+     * @return bool|mixed The cached object if found. If not found, false.
      */
     public function get(string $key)
     {
         $key = $this->getPrefixedAndHashedKey($key);
         $this->createCachePool();
         if ($this->cache->hasItem($key)) {
-            return $this->cache->getItem($key)->get();
+            return unserialize($this->cache->getItem($key)->get());
         } else {
             return false;
         }
@@ -71,7 +71,7 @@ class ResRobotCache implements Cache
         $this->createCachePool();
 
         $item = $this->cache->getItem($key);
-        $item->set($value);
+        $item->set(serialize($value));
         if ($ttl > 0) {
             $item->expiresAfter($ttl);
         }

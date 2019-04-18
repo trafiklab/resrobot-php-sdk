@@ -2,11 +2,14 @@
 
 namespace Trafiklab\ResRobot;
 
+use DateTime;
 use Exception;
 use PHPUnit_Framework_TestCase;
 use ResRobotWrapper;
+use Trafiklab\ResRobot\Model\RoutePlanningRequest;
 use Trafiklab\Resrobot\Model\TimeTableRequest;
 use Trafiklab\Resrobot\Model\TimeTableType;
+use Trafiklab\Resrobot\Model\TransportType;
 
 class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
 {
@@ -37,7 +40,22 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
         $response = $resRobotWrapper->getTimeTable($departuresRequest);
 
         self::assertEquals(TimeTableType::DEPARTURES, $response->getType());
-        self::assertEquals("SL", $response->getTimetable()[0]->getOperator());
+        self::assertFalse(empty($response->getTimetable()[0]->getOperator()));
+
+
+        $departuresRequest = new TimeTableRequest();
+        $departuresRequest->setStopId("740020671"); // Arlanda buss
+        $departuresRequest->setTimeTableType(TimeTableType::DEPARTURES);
+        $departuresRequest->addTransportTypeToFilter(TransportType::TRAIN_HIGH_SPEED); // Only trains
+
+        $resRobotWrapper = ResRobotWrapper::getInstance();
+        $resRobotWrapper->registerUserAgent("SDK Integration tests");
+        $resRobotWrapper->registerTimeTablesApiKey($this->_TIMETABLES_API_KEY);
+        $response = $resRobotWrapper->getTimeTable($departuresRequest);
+
+        // TODO: handle this failing test!
+        // Expect no results, as we asked trains from a bus stop.
+        self::assertEquals(0, count($response->getTimetable()));
     }
 
 
@@ -47,18 +65,99 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
             $this->markTestIncomplete();
         }
 
-        $departuresRequest = new TimeTableRequest();
-        $departuresRequest->setStopId("740000001");
-        $departuresRequest->setTimeTableType(TimeTableType::ARRIVALS);
+        $arrivalsRequest = new TimeTableRequest();
+        $arrivalsRequest->setStopId("740000001");
+        $arrivalsRequest->setTimeTableType(TimeTableType::ARRIVALS);
 
         $resRobotWrapper = ResRobotWrapper::getInstance();
         $resRobotWrapper->registerUserAgent("SDK Integration tests");
         $resRobotWrapper->registerTimeTablesApiKey($this->_TIMETABLES_API_KEY);
-        $response = $resRobotWrapper->getTimeTable($departuresRequest);
+        $response = $resRobotWrapper->getTimeTable($arrivalsRequest);
 
         self::assertEquals(TimeTableType::ARRIVALS, $response->getType());
-        self::assertEquals("SL", $response->getTimetable()[0]->getOperator());
+        self::assertFalse(empty($response->getTimetable()[0]->getOperator()));
+
+        $arrivalsRequest = new TimeTableRequest();
+        $arrivalsRequest->setStopId("740020671"); // Arlanda buss
+        $arrivalsRequest->setTimeTableType(TimeTableType::ARRIVALS);
+        $arrivalsRequest->addOperatorToFilter(277); // Flygbussarna
+
+        $resRobotWrapper = ResRobotWrapper::getInstance();
+        $resRobotWrapper->registerUserAgent("SDK Integration tests");
+        $resRobotWrapper->registerTimeTablesApiKey($this->_TIMETABLES_API_KEY);
+        $response = $resRobotWrapper->getTimeTable($arrivalsRequest);
+
+        foreach ($response->getTimetable() as $timeTableEntry) {
+            self::assertEquals("Flygbussarna", $timeTableEntry->getOperator());
+        }
     }
+
+
+    /**
+     * @throws Exception
+     */
+    public function testGetRoutePlanning()
+    {
+        if (empty($this->_TIMETABLES_API_KEY)) {
+            $this->markTestIncomplete();
+        }
+
+        $queryTime = new DateTime();
+        $queryTime->setTime(18, 0);
+
+        $routePlanningRequest = new RoutePlanningRequest();
+        $routePlanningRequest->setOriginId("740000001");
+        $routePlanningRequest->setDestinationId("740000002");
+        $routePlanningRequest->setDateTime($queryTime);
+
+        $resRobotWrapper = ResRobotWrapper::getInstance();
+        $resRobotWrapper->registerUserAgent("SDK Integration tests");
+        $resRobotWrapper->registerRoutePlanningApiKey($this->_ROUTEPLANNING_API_KEY);
+        $response = $resRobotWrapper->getRoutePlanning($routePlanningRequest);
+
+        self::assertTrue(count($response->getTrips()) > 0);
+        $firstTripLegs = $response->getTrips()[0]->getLegs();
+        self::assertEquals("740000001", $firstTripLegs[0]->getOrigin()->getStopId());
+        self::assertEquals("740000002", end($firstTripLegs)->getDestination()->getStopId());
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testGetRoutePlanningWithVia()
+    {
+        if (empty($this->_TIMETABLES_API_KEY)) {
+            $this->markTestIncomplete();
+        }
+
+        $queryTime = new DateTime();
+        $queryTime->setTime(18, 0);
+
+        $routePlanningRequest = new RoutePlanningRequest();
+        $routePlanningRequest->setOriginId("740000001");
+        $routePlanningRequest->setDestinationId("740000002");
+        $routePlanningRequest->setDateTime($queryTime);
+        $routePlanningRequest->setViaId("740000003");
+
+        $resRobotWrapper = ResRobotWrapper::getInstance();
+        $resRobotWrapper->registerUserAgent("SDK Integration tests");
+        $resRobotWrapper->registerRoutePlanningApiKey($this->_ROUTEPLANNING_API_KEY);
+        $response = $resRobotWrapper->getRoutePlanning($routePlanningRequest);
+
+        self::assertTrue(count($response->getTrips()) > 0);
+        $firstTripLegs = $response->getTrips()[0]->getLegs();
+        self::assertEquals("740000001", $firstTripLegs[0]->getOrigin()->getStopId());
+        self::assertEquals("740000002", end($firstTripLegs)->getDestination()->getStopId());
+
+        $foundViaStation = false;
+        foreach ($response->getTrips()[0]->getLegs() as $leg) {
+            if ($leg->getDestination()->getStopId() == "740000003") {
+                $foundViaStation = true;
+            }
+        }
+        self::assertTrue($foundViaStation);
+    }
+
 
     /**
      * Read test keys from a .testkeys file.
@@ -72,7 +171,7 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
             $testKeys = [];
             $testKeysFile = file_get_contents(".testkeys");
 
-            foreach (explode(PHP_EOL,$testKeysFile ) as $line) {
+            foreach (explode(PHP_EOL, $testKeysFile) as $line) {
                 if (empty($line) || strpos($line, '#') === 0 || strpos($line, '=') === false) {
                     continue;
                 }

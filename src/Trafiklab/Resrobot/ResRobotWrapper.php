@@ -5,7 +5,6 @@ use Trafiklab\ResRobot\Model\RoutePlanningRequest;
 use Trafiklab\ResRobot\Model\RoutePlanningResponse;
 use Trafiklab\Resrobot\Model\TimeTableRequest;
 use Trafiklab\Resrobot\Model\TimeTableResponse;
-use Trafiklab\Resrobot\Model\TimeTableType;
 
 class ResRobotWrapper
 {
@@ -58,18 +57,7 @@ class ResRobotWrapper
     public function getTimeTable(TimeTableRequest $request): TimeTableResponse
     {
         $this->requireValidTimeTablesKey();
-
-        if ($request->getTimeTableType() == TimeTableType::DEPARTURES) {
-            return $this->_resrobotClient->getDepartures($this->_key_stolptidstabeller, $request->getStopId(),
-                $request->getDateTime(), $request->getVehicleFilter(), $request->getOperatorFilter());
-        } else {
-            if ($request->getTimeTableType() == TimeTableType::ARRIVALS) {
-                return $this->_resrobotClient->getArrivals($this->_key_stolptidstabeller, $request->getStopId(),
-                    $request->getDateTime(), $request->getVehicleFilter(), $request->getOperatorFilter());
-            } else {
-                throw new Exception("Invalid request", 400);
-            }
-        }
+        return $this->_resrobotClient->getTimeTable($this->_key_stolptidstabeller, $request);
     }
 
     /**
@@ -81,8 +69,7 @@ class ResRobotWrapper
     public function getRoutePlanning(RoutePlanningRequest $request): RoutePlanningResponse
     {
         $this->requireValidRouteplannerKey();
-        $this->_resrobotClient->getRoutePlanning($request);
-        // TODO: implement
+        return $this->_resrobotClient->getRoutePlanning($this->_key_reseplanerare, $request);
     }
 
     /**

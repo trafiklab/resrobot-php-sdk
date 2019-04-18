@@ -39,10 +39,10 @@ class TimeTableRequestTest extends \PHPUnit_Framework_TestCase
     function testSetProductFilter()
     {
         $request = new TimeTableRequest();
-        $request->addVehicleToFilter(TransportType::TRAIN_LOCAL);
+        $request->addTransportTypeToFilter(TransportType::TRAIN_LOCAL);
         self::assertEquals(TransportType::TRAIN_LOCAL, $request->getVehicleFilter());
 
-        $request->addVehicleToFilter(TransportType::BUS_LOCAL);
+        $request->addTransportTypeToFilter(TransportType::BUS_LOCAL);
         self::assertEquals(TransportType::TRAIN_LOCAL + TransportType::BUS_LOCAL, $request->getVehicleFilter());
     }
 
