@@ -2,6 +2,13 @@
 
 namespace Trafiklab\Resrobot\Model;
 
+use DateTime;
+
+/**
+ * An entry in a timetable, describing a single departure or arrival of a vehicle at a stoplocation.
+ *
+ * @package Trafiklab\Resrobot\Model
+ */
 class TimeTableEntry
 {
     private $_stopId;
@@ -20,65 +27,78 @@ class TimeTableEntry
     }
 
     /**
-     * @return mixed
+     * The operator of the vehicle.
+     *
+     * @return string
      */
-    public function getOperator() : string
+    public function getOperator(): string
     {
         return $this->_operator;
     }
 
     /**
-     * @return mixed
+     * The Rikshållplats-ID for the stop location.
+     *
+     * @return string
      */
-    public function getStopId() : string
+    public function getStopId(): string
     {
         return $this->_stopId;
     }
 
     /**
-     * @return mixed
+     * The name of the stop at which the vehicle stops.
+     *
+     * @return string
      */
-    public function getStopName() : string
+    public function getStopName(): string
     {
         return $this->_stopName;
     }
 
     /**
-     * @return mixed
+     * The time at which the vehicle stops at the stop location, including possible delays.
+     *
+     * @return DateTime
      */
-    public function getStopTime() : \DateTime
+    public function getStopTime(): DateTime
     {
         return $this->_stopTime;
     }
 
     /**
-     * @return mixed
+     * The type of timetable in which this entry resides, either arrivals or departures.
+     * @return int
      */
-    public function getTimeTableType() : int
+    public function getTimeTableType(): int
     {
         return $this->_timeTableType;
     }
 
     /**
-     * @return mixed
+     * The direction of the vehicle stopping at this time at this stop location. In case of a vehicle departing, this
+     * is the destination of the vehicle. In case of a vehicle arriving, this is the origin of the vehicle.
+     * @return string
      */
-    public function getDirection() : String
+    public function getDirection(): string
     {
         return $this->_direction;
     }
 
     /**
-     * @return mixed
+     * The name of the line on which the vehicle is driving.
+     * @return string
      */
-    public function getLineName() : string
+    public function getLineName(): string
     {
         return $this->_lineName;
     }
 
     /**
-     * @return mixed
+     * The number of the line on which the vehicle is driving.
+     * @return int
      */
-    public function getLineNumber() : int
+    public function getLineNumber(): int
     {
         return $this->_lineNumber;
     }
@@ -96,7 +116,7 @@ class TimeTableEntry
         }
 
         $this->_stopTime =
-            \DateTime::createFromFormat("Y-m-d H:i:s",
+            DateTime::createFromFormat("Y-m-d H:i:s",
                 $json['date'] . ' ' . $json['time']);
         $this->_operator = $json['Product']['operator'];
     }

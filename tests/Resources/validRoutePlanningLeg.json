@@ -1,0 +1,225 @@
+{
+  "Origin": {
+    "name": "Stockholm Centralstation",
+    "type": "ST",
+    "id": "740000001",
+    "extId": "740000001",
+    "lon": 18.058151,
+    "lat": 59.330136,
+    "routeIdx": 0,
+    "time": "19:25:00",
+    "date": "2019-04-25"
+  },
+  "Destination": {
+    "name": "Malmö Centralstation",
+    "type": "ST",
+    "id": "740000003",
+    "extId": "740000003",
+    "lon": 13.00091,
+    "lat": 55.609456,
+    "routeIdx": 9,
+    "time": "23:54:00",
+    "date": "2019-04-25"
+  },
+  "Notes": {
+    "Note": [
+      {
+        "value": "X2000",
+        "key": "VX",
+        "type": "A",
+        "priority": 100,
+        "routeIdxFrom": 0,
+        "routeIdxTo": 9
+      },
+      {
+        "value": "Mat 1 klass",
+        "key": "A1",
+        "type": "A",
+        "priority": 100,
+        "routeIdxFrom": 0,
+        "routeIdxTo": 9
+      },
+      {
+        "value": "Bistrovagn",
+        "key": "AD",
+        "type": "A",
+        "priority": 100,
+        "routeIdxFrom": 0,
+        "routeIdxTo": 9
+      },
+      {
+        "value": "Obligatorisk platsbokning",
+        "key": "AF",
+        "type": "A",
+        "priority": 100,
+        "routeIdxFrom": 0,
+        "routeIdxTo": 9
+      },
+      {
+        "value": "Rullstolslyft",
+        "key": "AN",
+        "type": "A",
+        "priority": 100,
+        "routeIdxFrom": 0,
+        "routeIdxTo": 9
+      },
+      {
+        "value": "WiFi",
+        "key": "AW",
+        "type": "A",
+        "priority": 100,
+        "routeIdxFrom": 0,
+        "routeIdxTo": 9
+      },
+      {
+        "value": "Eluttag, bokas",
+        "key": "EL",
+        "type": "A",
+        "priority": 100,
+        "routeIdxFrom": 0,
+        "routeIdxTo": 9
+      },
+      {
+        "value": "Maträtt",
+        "key": "SM",
+        "type": "A",
+        "priority": 100,
+        "routeIdxFrom": 0,
+        "routeIdxTo": 9
+      }
+    ]
+  },
+  "Product": {
+    "name": "Snabbtåg 547",
+    "num": "547",
+    "catCode": "1",
+    "catOutS": "JST",
+    "catOutL": "Snabbtåg",
+    "operatorCode": "74",
+    "operator": "SJ",
+    "operatorUrl": "http://www.sj.se"
+  },
+  "Stops": {
+    "Stop": [
+      {
+        "name": "Stockholm Centralstation",
+        "id": "740000001",
+        "extId": "740000001",
+        "routeIdx": 0,
+        "lon": 18.058151,
+        "lat": 59.330136,
+        "depTime": "19:25:00",
+        "depDate": "2019-04-25"
+      },
+      {
+        "name": "Södertälje Syd station",
+        "id": "740000055",
+        "extId": "740000055",
+        "routeIdx": 1,
+        "lon": 17.645367,
+        "lat": 59.162415,
+        "depTime": "19:44:00",
+        "depDate": "2019-04-25"
+      },
+      {
+        "name": "Norrköping Centralstation",
+        "id": "740000007",
+        "extId": "740000007",
+        "routeIdx": 2,
+        "lon": 16.183343,
+        "lat": 58.596625,
+        "depTime": "20:41:00",
+        "depDate": "2019-04-25",
+        "arrTime": "20:40:00",
+        "arrDate": "2019-04-25"
+      },
+      {
+        "name": "Linköping Centralstation",
+        "id": "740000009",
+        "extId": "740000009",
+        "routeIdx": 3,
+        "lon": 15.62496,
+        "lat": 58.416634,
+        "depTime": "21:05:00",
+        "depDate": "2019-04-25",
+        "arrTime": "21:03:00",
+        "arrDate": "2019-04-25"
+      },
+      {
+        "name": "Nässjö Centralstation",
+        "id": "740000140",
+        "extId": "740000140",
+        "routeIdx": 4,
+        "lon": 14.693983,
+        "lat": 57.652443,
+        "depTime": "21:55:00",
+        "depDate": "2019-04-25",
+        "arrTime": "21:54:00",
+        "arrDate": "2019-04-25"
+      },
+      {
+        "name": "Alvesta station",
+        "id": "740000004",
+        "extId": "740000004",
+        "routeIdx": 5,
+        "lon": 14.556322,
+        "lat": 56.898778,
+        "depTime": "22:29:00",
+        "depDate": "2019-04-25",
+        "arrTime": "22:28:00",
+        "arrDate": "2019-04-25"
+      },
+      {
+        "name": "Älmhult station",
+        "id": "740000045",
+        "extId": "740000045",
+        "routeIdx": 6,
+        "lon": 14.136985,
+        "lat": 56.551426,
+        "depTime": "22:48:00",
+        "depDate": "2019-04-25",
+        "arrTime": "22:48:00",
+        "arrDate": "2019-04-25"
+      },
+      {
+        "name": "Hässleholm Centralstation",
+        "id": "740000006",
+        "extId": "740000006",
+        "routeIdx": 7,
+        "lon": 13.763141,
+        "lat": 56.157762,
+        "depTime": "23:10:00",
+        "depDate": "2019-04-25",
+        "arrTime": "23:10:00",
+        "arrDate": "2019-04-25"
+      },
+      {
+        "name": "Lund Centralstation",
+        "id": "740000120",
+        "extId": "740000120",
+        "routeIdx": 8,
+        "lon": 13.186897,
+        "lat": 55.708094,
+        "arrTime": "23:39:00",
+        "arrDate": "2019-04-25"
+      },
+      {
+        "name": "Malmö Centralstation",
+        "id": "740000003",
+        "extId": "740000003",
+        "routeIdx": 9,
+        "lon": 13.00091,
+        "lat": 55.609456,
+        "arrTime": "23:54:00",
+        "arrDate": "2019-04-25"
+      }
+    ]
+  },
+  "idx": "0",
+  "name": "Snabbtåg 547",
+  "transportNumber": "547",
+  "transportCategory": "JST",
+  "type": "JNY",
+  "reachable": true,
+  "direction": "Malmö Centralstation"
+}

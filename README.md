@@ -1,5 +1,10 @@
 # ResRobot PHP SDK
-A PHP SDK to easily use the ResRobot APIs.
+
+ResRobot offers realtime data about Sweden's public transport. Show all departures and arrivals for a stop, or easily plan a route from A to B.
+More information can be found at [Trafiklab - ResRobot routeplanner](https://www.trafiklab.se/api/resrobot-reseplanerare) and [Trafiklab - ResRobot departures](https://www.trafiklab.se/api/resrobot-reseplanerare).
+
+This repository contains a PHP SDK to easily use the ResRobot APIs. This way you don't need to worry about making requests, caching, 
+or parsing responses. All responses are parsed and returned as PHP classes.
 
 **_Work in progress_**: _There is no 1.0.0 release available yet. If you want to get a sneak peak, 
 you can get it by adding this repository manually to your projects composer file. 
@@ -34,6 +39,8 @@ you need to obtain an API key from [Trafiklab](https://trafiklab.se) first.
 
 ### Getting Timetables (departures or arrivals from a stop)
 
+#### Timetables
+##### Request
 The following code example illustrates how you can retrieve a timetable for a certain stop.
 
 ```
@@ -45,6 +52,48 @@ The following code example illustrates how you can retrieve a timetable for a ce
   $resRobotWrapper->registerUserAgent("<YOUR_USER_AGENT>");
   $resRobotWrapper->registerTimeTablesApiKey("<YOUR_API_KEY>");
   $response = $resRobotWrapper->getTimeTable($departuresRequest);
+```
+`<YOUR_API_KEY>` is obtained from [Trafiklab](https://trafiklab.se). `<YOUR_USER_AGENT>` is a string which identifies your application. 
+While this is not enforced in any way, it is good practice to use a clear user agent. 
+An example could be `MyDemoApp/1.0.0 (mail@example.com) `.
+If you don't want to send a user agent, you can just leave out this line.
+
+Detailed information about ResRobot request parameters can be found at the [ResRobot departures/arrivals API page](https://www.trafiklab.se/api/resrobot-reseplanerare).
+Only the most important/most used request parameters are implemented in the SDK, in order to reduce clutter, and to ensure that we can keep the SDK unchanged in case of changes to the API.
+If you believe we have missed an important field, please create an issue so we can review this.  
+##### Response
+
+In order to use the data returned by your request, you can simply call getTimeTable() on the response object. 
+This method returns an array of TimeTableEntry instances, each of which describes one departure or arrival. 
+You can look at the code and PHPDoc in order to get up-to-date information on which fields are available. 
+Detailed information about ResRobot responses can be found at the [ResRobot departures/arrivals API page](https://www.trafiklab.se/api/resrobot-reseplanerare).
+
+```
+   $response->getTimetable()
+```
+
+#### Routeplanning
+##### Request
+The following code example illustrates how you can plan a route from A to B
+
+```    
+    $queryTime = new DateTime();
+    $queryTime->setTime(18, 0);
+
+    $routePlanningRequest = new RoutePlanningRequest();
+    $routePlanningRequest->setOriginId("740000001");
+    $routePlanningRequest->setDestinationId("740000002");
+    $routePlanningRequest->setDateTime($queryTime);
+
+    $resRobotWrapper = ResRobotWrapper::getInstance();
+    $resRobotWrapper->registerUserAgent(("<YOUR_USER_AGENT>");
+    $resRobotWrapper->registerRoutePlanningApiKey("<YOUR_API_KEY>");
+    $response = $resRobotWrapper->getRoutePlanning($routePlanningRequest);
+```
+##### Response
+
+```
+   $response->getTrips()
 ```
 
 ## Contributing

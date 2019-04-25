@@ -21,7 +21,9 @@ class Stop
     }
 
     /**
-     * @return mixed
+     * The Rikshållplats-ID for this stoplocation.
+     *
+     * @return string
      */
     public function getStopId(): string
     {
@@ -29,7 +31,8 @@ class Stop
     }
 
     /**
-     * @return mixed
+     * The name of this stoplocation.
+     * @return string The name of this stoplocation.
      */
     public function getStopName(): string
     {
@@ -37,7 +40,8 @@ class Stop
     }
 
     /**
-     * @return mixed
+     * @return DateTime|null   The departure time at this stop. Null if there is no data about the departure time at
+     *                         this stop location.
      */
     public function getDepartureTime(): ?DateTime
     {
@@ -45,7 +49,9 @@ class Stop
     }
 
     /**
-     * @return mixed
+     * The arrival time at this stop.
+     * @return DateTime|null The arrival time at this stop. Null if there is no data about the arrival time at this
+     *                       stop location.
      */
     public function getArrivalTime(): ?DateTime
     {
@@ -53,7 +59,8 @@ class Stop
     }
 
     /**
-     * @return mixed
+     * The latitude component of this stoplocation's coordinates.
+     * @return float
      */
     public function getLatitude(): float
     {
@@ -61,7 +68,8 @@ class Stop
     }
 
     /**
-     * @return mixed
+     * The longitude component of this stoplocation's coordinates.
+     * @return float
      */
     public function getLongitude(): float
     {

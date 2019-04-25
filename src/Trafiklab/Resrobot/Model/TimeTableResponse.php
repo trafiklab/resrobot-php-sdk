@@ -31,7 +31,7 @@ class TimeTableResponse
     }
 
     /**
-     * @return TimeTableType The type of the stops in this timetable.
+     * @return int The type of the stops in this timetable.
      */
     public function getType(): int
     {
@@ -56,9 +56,11 @@ class TimeTableResponse
             $responseRoot = 'Arrival';
             $this->_type = TimeTableType::ARRIVALS;
         } else {
-            throw new \Exception('Invalid API response received!');
+            // When there are no results, ResRobot just returns "{ }" without any information.
+            $this->_timetable = [];
+            // No further parsing is required
+            return;
         }
-
 
         foreach ($json[$responseRoot] as $key => $entry) {
             $this->_timetable[] = new TimeTableEntry($entry, $this->getType());

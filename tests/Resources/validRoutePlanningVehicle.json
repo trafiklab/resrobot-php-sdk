@@ -1,0 +1,10 @@
+{
+  "name": "Regional Tåg 11154",
+  "num": "11154",
+  "catCode": "2",
+  "catOutS": "JRE",
+  "catOutL": "Regional Tåg",
+  "operatorCode": "300",
+  "operator": "Öresundståg",
+  "operatorUrl": "http://www.oresundstag.se/"
+}

@@ -4,8 +4,9 @@ namespace Trafiklab\Resrobot\Model;
 
 
 use DateTime;
+use PHPUnit_Framework_TestCase;
 
-class TimeTableRequestTest extends \PHPUnit_Framework_TestCase
+class TimeTableRequestTest extends PHPUnit_Framework_TestCase
 {
 
     function testSetType()

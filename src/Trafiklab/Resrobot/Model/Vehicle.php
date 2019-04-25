@@ -25,39 +25,43 @@ class Vehicle
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->_name;
     }
 
     /**
-     * @return mixed
+     * The number of the vehicle, uniquely identifying the trip it makes on a given day. Example: 547.
+     * @return int
      */
-    public function getNumber()
+    public function getNumber(): int
     {
         return $this->_number;
     }
 
     /**
-     * @return mixed
+     * The type of vehicle. Example: "Snabbtåg".
+     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->_type;
     }
 
     /**
-     * @return mixed
+     * The code for the operator who runs the vehicle. Example: 74.
+     * @return int
      */
-    public function getOperatorCode()
+    public function getOperatorCode(): int
     {
         return $this->_operatorCode;
     }
 
     /**
-     * @return mixed
+     * The URL for the operator whi runs the vehicle. Example: "http://www.sj.se"
+     * @return string
      */
     public function getOperatorUrl()
     {
@@ -65,9 +69,10 @@ class Vehicle
     }
 
     /**
-     * @return mixed
+     * The name for the operator whi runs the vehicle. Example: "SJ"
+     * @return string
      */
-    public function getOperatorName()
+    public function getOperatorName(): string
     {
         return $this->_operatorName;
     }
