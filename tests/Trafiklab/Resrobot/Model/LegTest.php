@@ -16,8 +16,8 @@ class LegTest extends PHPUnit_Framework_TestCase
 
         self::assertEquals("Stockholm Centralstation", $leg->getOrigin()->getStopName());
         self::assertEquals(740000001, $leg->getOrigin()->getStopId());
-        self::assertEquals(new DateTime("2019-04-25 19:25:00"), $leg->getOrigin()->getDepartureTime());
-        self::assertNull($leg->getOrigin()->getArrivalTime());
+        self::assertEquals(new DateTime("2019-04-25 19:25:00"), $leg->getOrigin()->getScheduledDepartureTime());
+        self::assertNull($leg->getOrigin()->getScheduledArrivalTime());
         self::assertEquals("Malmö Centralstation", $leg->getDestination()->getStopName());
         self::assertEquals("X2000", $leg->getNotes()[0]);
         self::assertEquals("Snabbtåg 547", $leg->getVehicle()->getName());

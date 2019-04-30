@@ -14,17 +14,13 @@
     "php",
     "sdk",
     "api",
-    "public transport"
+    "public transport",
+    "resrobot"
   ],
   "homepage": "https://trafiklab.se",
   "require": {
     "php": ">=7.1",
-    "ext-curl": "*",
     "ext-json": "*",
-    "ext-mbstring": "*",
-    "cache/apcu-adapter": "^1.0",
-    "cache/array-adapter": "^1.0",
-    "cache/filesystem-adapter": "^1.0",
     "trafiklab/php-sdk-base": "dev-master"
   },
   "require-dev": {
@@ -41,7 +37,7 @@
   ],
   "autoload": {
     "psr-0": {
-      "Trafiklab": "src/"
+      "Trafiklab\\Resrobot": "src/"
     }
   }
 }
