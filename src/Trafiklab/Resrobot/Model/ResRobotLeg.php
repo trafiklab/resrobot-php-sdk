@@ -3,12 +3,16 @@
 
 namespace Trafiklab\ResRobot\Model;
 
+use Trafiklab\Common\Model\Contract\RoutePlanningLeg;
+use Trafiklab\Common\Model\Contract\Stop;
+use Trafiklab\Common\Model\Contract\Vehicle;
+
 /**
  * A leg is one part of a journey, made with a single vehicle or on foot. A journey can consist of one or more legs. In
  * the case of multiple legs, a transfer is required between two legs.
  * @package Trafiklab\ResRobot\Model
  */
-class Leg
+class ResRobotLeg implements RoutePlanningLeg
 {
 
     private $_destination;
@@ -64,7 +68,7 @@ class Leg
 
     /**
      * Intermediary stops made by the vehicle on this leg.
-     * @return Stop[] Stops between the origin and destination, excluding the origin and destination.
+     * @return ResRobotStop[] Stops between the origin and destination, excluding the origin and destination.
      */
     public function getIntermediaryStops(): array
     {
@@ -102,11 +106,11 @@ class Leg
         $this->_type = $json['type'];
 
         if ($this->_type == "JNY") {
-            $this->_vehicle = new Vehicle($json['Product']);
+            $this->_vehicle = new ResRobotVehicle($json['Product']);
 
             $this->_intermediaryStops = [];
             foreach ($json['Stops']['Stop'] as $stop) {
-                $this->_intermediaryStops[] = new Stop($stop);
+                $this->_intermediaryStops[] = new ResRobotStop($stop);
             }
             // The stops array also includes the departure and arrival. Pop them of and use them instead of the
             // origin and destination data delivered by the API. This approach uses only one data type instead
@@ -118,8 +122,8 @@ class Leg
         } else {
             // Should Dist (distance) and Duration (time) be parsed in case of a walk?
 
-            $this->_origin = new Stop($json['Origin']);
-            $this->_destination = new Stop($json['Destination']);
+            $this->_origin = new ResRobotStop($json['Origin']);
+            $this->_destination = new ResRobotStop($json['Destination']);
         }
 
     }

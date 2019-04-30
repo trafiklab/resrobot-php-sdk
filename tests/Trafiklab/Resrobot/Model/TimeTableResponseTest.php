@@ -5,13 +5,15 @@
 namespace Trafiklab\ResRobot\Model;
 
 use PHPUnit_Framework_TestCase;
+use Trafiklab\Common\Model\Enum\TimeTableType;
+use Trafiklab\Resrobot\Contract\Model\ResRobotTimeTableResponse;
 
 class TimeTableResponseTest extends PHPUnit_Framework_TestCase
 {
     function testConstructor_validDepartureBoardJson_shouldReturnCorrectObjectRepresentation()
     {
-        $validDepartures = json_decode(file_get_contents("./tests/Resources/validDeparturesReply.json"), true);
-        $departureBoard = new TimeTableResponse($validDepartures);
+        $validDepartures = json_decode(file_get_contents("./tests/Resources/ResRobot/validDeparturesReply.json"), true);
+        $departureBoard = new ResRobotTimeTableResponse($validDepartures);
 
         self::assertNotNull($departureBoard->getTimetable());
         self::assertEquals(TimeTableType::DEPARTURES, $departureBoard->getType());
@@ -21,8 +23,8 @@ class TimeTableResponseTest extends PHPUnit_Framework_TestCase
 
     function testConstructor_validArrivalBoardJson_shouldReturnCorrectObjectRepresentation()
     {
-        $validDepartures = json_decode(file_get_contents("./tests/Resources/validArrivalsReply.json"), true);
-        $arrivalBoard = new TimeTableResponse($validDepartures);
+        $validDepartures = json_decode(file_get_contents("./tests/Resources/ResRobot/validArrivalsReply.json"), true);
+        $arrivalBoard = new ResRobotTimeTableResponse($validDepartures);
 
         self::assertNotNull($arrivalBoard->getTimetable());
         self::assertEquals(TimeTableType::ARRIVALS, $arrivalBoard->getType());

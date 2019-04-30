@@ -5,13 +5,15 @@ namespace Trafiklab\Resrobot\Model;
 
 use DateTime;
 use PHPUnit_Framework_TestCase;
+use Trafiklab\Common\Model\Enum\TimeTableType;
+use Trafiklab\Resrobot\Model\Enum\ResRobotTransportType;
 
 class TimeTableRequestTest extends PHPUnit_Framework_TestCase
 {
 
     function testSetType()
     {
-        $request = new TimeTableRequest();
+        $request = new ResRobotTimeTableRequest();
         $request->setTimeTableType(TimeTableType::DEPARTURES);
         self::assertEquals(TimeTableType::DEPARTURES, $request->getTimeTableType());
 
@@ -21,7 +23,7 @@ class TimeTableRequestTest extends PHPUnit_Framework_TestCase
 
     function testSetStopId()
     {
-        $request = new TimeTableRequest();
+        $request = new ResRobotTimeTableRequest();
         $request->setStopId("ABC012");
         self::assertEquals("ABC012", $request->getStopId());
 
@@ -31,7 +33,7 @@ class TimeTableRequestTest extends PHPUnit_Framework_TestCase
 
     function testSetDateTime()
     {
-        $request = new TimeTableRequest();
+        $request = new ResRobotTimeTableRequest();
         $now = new DateTime();
         $request->setDateTime($now);
         self::assertEquals($now, $request->getDateTime());
@@ -39,17 +41,18 @@ class TimeTableRequestTest extends PHPUnit_Framework_TestCase
 
     function testSetProductFilter()
     {
-        $request = new TimeTableRequest();
-        $request->addTransportTypeToFilter(TransportType::TRAIN_LOCAL);
-        self::assertEquals(TransportType::TRAIN_LOCAL, $request->getVehicleFilter());
+        $request = new ResRobotTimeTableRequest();
+        $request->addTransportTypeToFilter(ResRobotTransportType::TRAIN_LOCAL);
+        self::assertEquals(ResRobotTransportType::TRAIN_LOCAL, $request->getVehicleFilter());
 
-        $request->addTransportTypeToFilter(TransportType::BUS_LOCAL);
-        self::assertEquals(TransportType::TRAIN_LOCAL + TransportType::BUS_LOCAL, $request->getVehicleFilter());
+        $request->addTransportTypeToFilter(ResRobotTransportType::BUS_LOCAL);
+        self::assertEquals(ResRobotTransportType::TRAIN_LOCAL + ResRobotTransportType::BUS_LOCAL,
+            $request->getVehicleFilter());
     }
 
     function testSetOperatorFilter()
     {
-        $request = new TimeTableRequest();
+        $request = new ResRobotTimeTableRequest();
         $request->addOperatorToFilter(253);
         self::assertEquals([253], $request->getOperatorFilter());
 

@@ -4,7 +4,7 @@
 namespace Trafiklab\ResRobot\Model;
 
 
-class RoutePlanningRequest extends ResRobotBaseRequest
+class ResRobotRoutePlanningRequest extends ResRobotBaseRequest
 {
 
     private $_originId;

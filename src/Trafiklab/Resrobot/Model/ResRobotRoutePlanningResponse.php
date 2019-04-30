@@ -4,7 +4,9 @@
 namespace Trafiklab\ResRobot\Model;
 
 
-class RoutePlanningResponse
+use Trafiklab\Common\Model\Contract\RoutePlanningResponse;
+
+class ResRobotRoutePlanningResponse implements RoutePlanningResponse
 {
     private $_trips;
 
@@ -20,7 +22,7 @@ class RoutePlanningResponse
     }
 
     /**
-     * @return Trip[]
+     * @return ResRobotTrip[]
      */
     public function getTrips(): array
     {
@@ -39,7 +41,7 @@ class RoutePlanningResponse
         }
 
         foreach ($json['Trip'] as $key => $entry) {
-            $this->_trips[] = new Trip($entry);
+            $this->_trips[] = new ResRobotTrip($entry);
         }
     }
 

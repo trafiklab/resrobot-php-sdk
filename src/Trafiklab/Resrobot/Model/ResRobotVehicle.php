@@ -4,7 +4,9 @@
 namespace Trafiklab\ResRobot\Model;
 
 
-class Vehicle
+use Trafiklab\Common\Model\Contract\Vehicle;
+
+class ResRobotVehicle implements Vehicle
 {
 
     private $_name;

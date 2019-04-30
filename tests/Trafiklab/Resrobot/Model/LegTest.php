@@ -11,8 +11,8 @@ class LegTest extends PHPUnit_Framework_TestCase
 {
     function testConstructor_validDepartureBoardJson_shouldReturnCorrectObjectRepresentation()
     {
-        $jsonArray = json_decode(file_get_contents("./tests/Resources/validRoutePlanningLeg.json"), true);
-        $leg = new Leg($jsonArray);
+        $jsonArray = json_decode(file_get_contents("./tests/Resources/ResRobot/validRoutePlanningLeg.json"), true);
+        $leg = new ResRobotLeg($jsonArray);
 
         self::assertEquals("Stockholm Centralstation", $leg->getOrigin()->getStopName());
         self::assertEquals(740000001, $leg->getOrigin()->getStopId());

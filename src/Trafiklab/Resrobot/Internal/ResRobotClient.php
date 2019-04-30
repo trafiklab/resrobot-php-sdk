@@ -3,11 +3,16 @@
 
 namespace Trafiklab\Resrobot\Internal;
 
-use Trafiklab\ResRobot\Model\RoutePlanningRequest;
-use Trafiklab\ResRobot\Model\RoutePlanningResponse;
-use Trafiklab\Resrobot\Model\TimeTableRequest;
-use Trafiklab\Resrobot\Model\TimeTableResponse;
-use Trafiklab\Resrobot\Model\TimeTableType;
+use Trafiklab\Common\Internal\CurlWebClient;
+use Trafiklab\Common\Internal\WebClient;
+use Trafiklab\Common\Model\Contract\RoutePlanningResponse;
+use Trafiklab\Common\Model\Contract\TimeTableResponse;
+use Trafiklab\Common\Model\Enum\TimeTableType;
+use Trafiklab\Resrobot\Contract\Model\ResRobotTimeTableResponse;
+use Trafiklab\ResRobot\Model\ResRobotRoutePlanningRequest;
+use Trafiklab\ResRobot\Model\ResRobotRoutePlanningResponse;
+use Trafiklab\Resrobot\Model\ResRobotTimeTableRequest;
+
 
 class ResRobotClient
 {
@@ -32,13 +37,13 @@ class ResRobotClient
 
 
     /**
-     * @param string           $key
-     * @param TimeTableRequest $request
+     * @param string             $key
+     * @param ResRobotTimeTableRequest $request
      *
      * @return TimeTableResponse
      * @throws \Exception
      */
-    public function getTimeTable(string $key, TimeTableRequest $request): TimeTableResponse
+    public function getTimeTable(string $key, ResRobotTimeTableRequest $request): TimeTableResponse
     {
 
         $endpoint = self::DEPARTURES_ENDPOINT;
@@ -65,7 +70,7 @@ class ResRobotClient
 
         $response = $this->_webClient->makeRequest($endpoint, $parameters);
         $json = json_decode($response->getBody(), true);
-        return new TimeTableResponse($json);
+        return new ResRobotTimeTableResponse($json);
     }
 
     /**
@@ -78,12 +83,12 @@ class ResRobotClient
 
     /**
      * @param                      $key
-     * @param RoutePlanningRequest $request
+     * @param ResRobotRoutePlanningRequest $request
      *
-     * @return RoutePlanningResponse
+     * @return ResRobotRoutePlanningResponse
      * @throws \Exception
      */
-    public function getRoutePlanning($key, RoutePlanningRequest $request): RoutePlanningResponse
+    public function getRoutePlanning($key, ResRobotRoutePlanningRequest $request): ResRobotRoutePlanningResponse
     {
         $parameters = [
             "key" => $key,
@@ -111,7 +116,7 @@ class ResRobotClient
 
         $response = $this->_webClient->makeRequest(self::TRIPS_ENDPOINT, $parameters);
         $json = json_decode($response->getBody(), true);
-        return new RoutePlanningResponse($json);
+        return new ResRobotRoutePlanningResponse($json);
     }
 
 

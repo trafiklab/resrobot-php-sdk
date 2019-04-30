@@ -6,10 +6,10 @@ use DateTime;
 use Exception;
 use PHPUnit_Framework_TestCase;
 use ResRobotWrapper;
-use Trafiklab\ResRobot\Model\RoutePlanningRequest;
-use Trafiklab\Resrobot\Model\TimeTableRequest;
-use Trafiklab\Resrobot\Model\TimeTableType;
-use Trafiklab\Resrobot\Model\TransportType;
+use Trafiklab\Common\Model\Enum\TimeTableType;
+use Trafiklab\Resrobot\Model\Enum\ResRobotTransportType;
+use Trafiklab\ResRobot\Model\ResRobotRoutePlanningRequest;
+use Trafiklab\Resrobot\Model\ResRobotTimeTableRequest;
 
 class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
 {
@@ -30,7 +30,7 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
             $this->markTestIncomplete();
         }
 
-        $departuresRequest = new TimeTableRequest();
+        $departuresRequest = new ResRobotTimeTableRequest();
         $departuresRequest->setStopId("740000001");
         $departuresRequest->setTimeTableType(TimeTableType::DEPARTURES);
 
@@ -43,17 +43,16 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
         self::assertFalse(empty($response->getTimetable()[0]->getOperator()));
 
 
-        $departuresRequest = new TimeTableRequest();
+        $departuresRequest = new ResRobotTimeTableRequest();
         $departuresRequest->setStopId("740020671"); // Arlanda buss
         $departuresRequest->setTimeTableType(TimeTableType::DEPARTURES);
-        $departuresRequest->addTransportTypeToFilter(TransportType::TRAIN_HIGH_SPEED); // Only trains
+        $departuresRequest->addTransportTypeToFilter(ResRobotTransportType::TRAIN_HIGH_SPEED); // Only trains
 
         $resRobotWrapper = ResRobotWrapper::getInstance();
         $resRobotWrapper->registerUserAgent("SDK Integration tests");
         $resRobotWrapper->registerTimeTablesApiKey($this->_TIMETABLES_API_KEY);
         $response = $resRobotWrapper->getTimeTable($departuresRequest);
 
-        // TODO: handle this failing test!
         // Expect no results, as we asked trains from a bus stop.
         self::assertEquals(0, count($response->getTimetable()));
     }
@@ -65,7 +64,7 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
             $this->markTestIncomplete();
         }
 
-        $arrivalsRequest = new TimeTableRequest();
+        $arrivalsRequest = new ResRobotTimeTableRequest();
         $arrivalsRequest->setStopId("740000001");
         $arrivalsRequest->setTimeTableType(TimeTableType::ARRIVALS);
 
@@ -77,7 +76,7 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
         self::assertEquals(TimeTableType::ARRIVALS, $response->getType());
         self::assertFalse(empty($response->getTimetable()[0]->getOperator()));
 
-        $arrivalsRequest = new TimeTableRequest();
+        $arrivalsRequest = new ResRobotTimeTableRequest();
         $arrivalsRequest->setStopId("740020671"); // Arlanda buss
         $arrivalsRequest->setTimeTableType(TimeTableType::ARRIVALS);
         $arrivalsRequest->addOperatorToFilter(277); // Flygbussarna
@@ -105,7 +104,7 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
         $queryTime = new DateTime();
         $queryTime->setTime(18, 0);
 
-        $routePlanningRequest = new RoutePlanningRequest();
+        $routePlanningRequest = new ResRobotRoutePlanningRequest();
         $routePlanningRequest->setOriginId("740000001");
         $routePlanningRequest->setDestinationId("740000002");
         $routePlanningRequest->setDateTime($queryTime);
@@ -133,7 +132,7 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
         $queryTime = new DateTime();
         $queryTime->setTime(18, 0);
 
-        $routePlanningRequest = new RoutePlanningRequest();
+        $routePlanningRequest = new ResRobotRoutePlanningRequest();
         $routePlanningRequest->setOriginId("740000001");
         $routePlanningRequest->setDestinationId("740000002");
         $routePlanningRequest->setDateTime($queryTime);

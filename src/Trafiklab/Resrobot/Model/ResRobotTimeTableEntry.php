@@ -3,13 +3,15 @@
 namespace Trafiklab\Resrobot\Model;
 
 use DateTime;
+use Trafiklab\Common\Model\Contract\TimeTableEntry;
+use Trafiklab\Common\Model\Enum\TimeTableType;
 
 /**
  * An entry in a timetable, describing a single departure or arrival of a vehicle at a stoplocation.
  *
  * @package Trafiklab\Resrobot\Model
  */
-class TimeTableEntry
+class ResRobotTimeTableEntry implements TimeTableEntry
 {
     private $_stopId;
     private $_stopName;
@@ -19,6 +21,7 @@ class TimeTableEntry
     private $_stopTime;
     private $_timeTableType;
     private $_operator;
+    private $_transportType;
 
     public function __construct(array $json, int $type)
     {
@@ -54,16 +57,6 @@ class TimeTableEntry
     public function getStopName(): string
     {
         return $this->_stopName;
-    }
-
-    /**
-     * The time at which the vehicle stops at the stop location, including possible delays.
-     *
-     * @return DateTime
-     */
-    public function getStopTime(): DateTime
-    {
-        return $this->_stopTime;
     }
 
     /**
@@ -103,6 +96,41 @@ class TimeTableEntry
         return $this->_lineNumber;
     }
 
+    /**
+     * The time at which the vehicle will arrive at the stop area. This can be an interval (5 min) or a time (18:00)
+     * depending on the operator and data source.
+     * @return string
+     */
+    public function getDisplayTime(): string
+    {
+        return $this->_stopTime->format('H:i');
+    }
+
+    /**
+     * The time at which the vehicle stops at the stop location, including possible delays.
+     *
+     * @return DateTime
+     */
+    public function getScheduledStopTime(): DateTime
+    {
+        return $this->_stopTime;
+    }
+
+    /**
+     * Get the number of the vehicle.
+     *
+     * @return string
+     */
+    public function getTripNumber(): ?string
+    {
+        return null;
+    }
+
+    public function getTransportType(): string
+    {
+       return $this->_transportType;
+    }
+
     private function parseApiResponse(array $json): void
     {
         $this->_stopId = $json['stopExtId'];
@@ -118,8 +146,9 @@ class TimeTableEntry
         $this->_stopTime =
             DateTime::createFromFormat("Y-m-d H:i:s",
                 $json['date'] . ' ' . $json['time']);
+
         $this->_operator = $json['Product']['operator'];
+
+        // Todo: parse transport type;
     }
-
-
 }

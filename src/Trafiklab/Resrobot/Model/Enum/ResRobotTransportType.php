@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Trafiklab\Resrobot\Model;
+namespace Trafiklab\Resrobot\Model\Enum;
 
 
-abstract class TransportType
+abstract class ResRobotTransportType
 {
     public const TRAIN_HIGH_SPEED = 2;
     public const TRAIN_REGIONAL_INTERCITY = 4;

@@ -5,8 +5,9 @@ namespace Trafiklab\ResRobot\Model;
 
 
 use DateTime;
+use Trafiklab\Common\Model\Contract\Stop;
 
-class Stop
+class ResRobotStop implements Stop
 {
     private $_stopId;
     private $_stopName;
@@ -21,7 +22,7 @@ class Stop
     }
 
     /**
-     * The Rikshållplats-ID for this stoplocation.
+     * The Rikshållplats-ID for this stop area.
      *
      * @return string
      */
@@ -31,8 +32,8 @@ class Stop
     }
 
     /**
-     * The name of this stoplocation.
-     * @return string The name of this stoplocation.
+     * The name of this stop area.
+     * @return string The name of this stop area.
      */
     public function getStopName(): string
     {
@@ -43,7 +44,7 @@ class Stop
      * @return DateTime|null   The departure time at this stop. Null if there is no data about the departure time at
      *                         this stop location.
      */
-    public function getDepartureTime(): ?DateTime
+    public function getScheduledDepartureTime(): ?DateTime
     {
         return $this->_departureTime;
     }
@@ -53,13 +54,22 @@ class Stop
      * @return DateTime|null The arrival time at this stop. Null if there is no data about the arrival time at this
      *                       stop location.
      */
-    public function getArrivalTime(): ?DateTime
+    public function getScheduledArrivalTime(): ?DateTime
     {
         return $this->_arrivalTime;
     }
 
     /**
-     * The latitude component of this stoplocation's coordinates.
+     * The platform at which the vehicle will stop.
+     * @return null|string The platform at which the vehicle will stop. Null if no platform information is known.
+     */
+    public function getPlatform(): ?string
+    {
+        return null; // Not supported by ResRobot
+    }
+
+    /**
+     * The latitude component of this stop area's coordinates.
      * @return float
      */
     public function getLatitude(): float
@@ -68,7 +78,7 @@ class Stop
     }
 
     /**
-     * The longitude component of this stoplocation's coordinates.
+     * The longitude component of this stop area's coordinates.
      * @return float
      */
     public function getLongitude(): float

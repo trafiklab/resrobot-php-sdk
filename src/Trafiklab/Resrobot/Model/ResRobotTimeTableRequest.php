@@ -2,10 +2,12 @@
 
 namespace Trafiklab\Resrobot\Model;
 
-class TimeTableRequest extends ResRobotBaseRequest
+use Trafiklab\Common\Model\Enum\TimeTableType;
+
+class ResRobotTimeTableRequest extends ResRobotBaseRequest
 {
-    private $_timeTableType;
-    private $_stopId;
+    private $_timeTableType = TimeTableType::DEPARTURES;
+    private $_stopId = "";
 
     /**
      * @return mixed
@@ -24,7 +26,7 @@ class TimeTableRequest extends ResRobotBaseRequest
     }
 
     /**
-     * @return TimeTableType
+     * @return int
      */
     public function getTimeTableType(): int
     {

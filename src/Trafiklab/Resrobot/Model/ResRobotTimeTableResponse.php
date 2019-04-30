@@ -1,17 +1,21 @@
 <?php
 
 
-namespace Trafiklab\Resrobot\Model;
+namespace Trafiklab\Resrobot\Contract\Model;
 
 
-class TimeTableResponse
+use Trafiklab\Common\Model\Contract\TimeTableResponse;
+use Trafiklab\Common\Model\Enum\TimeTableType;
+use Trafiklab\Resrobot\Model\ResRobotTimeTableEntry;
+
+class ResRobotTimeTableResponse implements TimeTableResponse
 {
 
     private $_timetable = [];
     private $_type;
 
     /**
-     * Create a TimeTableResponse from ResRobots JSON response.
+     * Create a ResRobotTimeTableResponse from ResRobots JSON response.
      *
      * @param array $json The API output to parse.
      *
@@ -23,7 +27,7 @@ class TimeTableResponse
     }
 
     /**
-     * @return TimeTableEntry[] The requested timetable as an array of timetable entries.
+     * @return ResRobotTimeTableEntry[] The requested timetable as an array of timetable entries.
      */
     public function getTimetable(): array
     {
@@ -63,7 +67,7 @@ class TimeTableResponse
         }
 
         foreach ($json[$responseRoot] as $key => $entry) {
-            $this->_timetable[] = new TimeTableEntry($entry, $this->getType());
+            $this->_timetable[] = new ResRobotTimeTableEntry($entry, $this->getType());
         }
     }
 

@@ -17,7 +17,7 @@
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./src/Trafiklab/Resrobot</directory>
+            <directory suffix=".php">./src/Trafiklab/</directory>
         </whitelist>
     </filter>
 </phpunit>

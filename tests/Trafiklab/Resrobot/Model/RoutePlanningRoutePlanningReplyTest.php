@@ -11,8 +11,9 @@ class RoutePlanningReplyTest extends PHPUnit_Framework_TestCase
 {
     function testConstructor_validDepartureBoardJson_shouldReturnCorrectObjectRepresentation()
     {
-        $validRoutePlanning = json_decode(file_get_contents("./tests/Resources/validRoutePlanningReply.json"), true);
-        $routePlanningResponse = new RoutePlanningResponse($validRoutePlanning);
+        $validRoutePlanning = json_decode(
+            file_get_contents("./tests/Resources/ResRobot/validRoutePlanningReply.json"), true);
+        $routePlanningResponse = new ResRobotRoutePlanningResponse($validRoutePlanning);
 
         self::assertNotNull($routePlanningResponse->getTrips());
         self::assertEquals(6, count($routePlanningResponse->getTrips()));
