@@ -5,9 +5,15 @@ namespace Trafiklab\Resrobot\Internal;
 
 use Trafiklab\Common\Internal\CurlWebClient;
 use Trafiklab\Common\Internal\WebClient;
-use Trafiklab\Common\Model\Contract\RoutePlanningResponse;
+use Trafiklab\Common\Internal\WebResponse;
 use Trafiklab\Common\Model\Contract\TimeTableResponse;
 use Trafiklab\Common\Model\Enum\TimeTableType;
+use Trafiklab\Common\Model\Exceptions\DateTimeOutOfRangeException;
+use Trafiklab\Common\Model\Exceptions\InvalidKeyException;
+use Trafiklab\Common\Model\Exceptions\InvalidRequestException;
+use Trafiklab\Common\Model\Exceptions\InvalidStoplocationException;
+use Trafiklab\Common\Model\Exceptions\QuotaExceededException;
+use Trafiklab\Common\Model\Exceptions\RequestTimedOutException;
 use Trafiklab\Resrobot\Contract\Model\ResRobotTimeTableResponse;
 use Trafiklab\ResRobot\Model\ResRobotRoutePlanningRequest;
 use Trafiklab\ResRobot\Model\ResRobotRoutePlanningResponse;
@@ -21,6 +27,8 @@ class ResRobotClient
     public const ARRIVALS_ENDPOINT = "https://api.resrobot.se/v2/arrivalBoard";
     public const TRIPS_ENDPOINT = "https://api.resrobot.se/v2/trip";
     public const SDK_USER_AGENT = "Trafiklab/ResRobot-php-sdk";
+    const API_NAME_RESROBOT_ROUTEPLANNER = "ResRobot reseplanerare";
+    const API_NAME_RESROBOT_TIMETABLES = "ResRobot stolpetidstabeller";
     private $applicationUserAgent = "Unknown";
     /**
      * @var WebClient
@@ -37,11 +45,15 @@ class ResRobotClient
 
 
     /**
-     * @param string             $key
+     * @param string                   $key
      * @param ResRobotTimeTableRequest $request
      *
      * @return TimeTableResponse
-     * @throws \Exception
+     * @throws InvalidKeyException
+     * @throws InvalidRequestException
+     * @throws InvalidStoplocationException
+     * @throws QuotaExceededException
+     * @throws RequestTimedOutException
      */
     public function getTimeTable(string $key, ResRobotTimeTableRequest $request): TimeTableResponse
     {
@@ -70,6 +82,8 @@ class ResRobotClient
 
         $response = $this->_webClient->makeRequest($endpoint, $parameters);
         $json = json_decode($response->getBody(), true);
+
+        $this->validateResRobotResponse(self::API_NAME_RESROBOT_TIMETABLES, $response, $json);
         return new ResRobotTimeTableResponse($json);
     }
 
@@ -82,11 +96,15 @@ class ResRobotClient
     }
 
     /**
-     * @param                      $key
+     * @param                              $key
      * @param ResRobotRoutePlanningRequest $request
      *
      * @return ResRobotRoutePlanningResponse
-     * @throws \Exception
+     * @throws InvalidKeyException
+     * @throws InvalidRequestException
+     * @throws InvalidStoplocationException
+     * @throws QuotaExceededException
+     * @throws RequestTimedOutException
      */
     public function getRoutePlanning($key, ResRobotRoutePlanningRequest $request): ResRobotRoutePlanningResponse
     {
@@ -111,11 +129,13 @@ class ResRobotClient
         }
 
         if ($request->getViaId() != null) {
-            $parameters['viaId'] =  $request->getViaId();
+            $parameters['viaId'] = $request->getViaId();
         }
 
         $response = $this->_webClient->makeRequest(self::TRIPS_ENDPOINT, $parameters);
         $json = json_decode($response->getBody(), true);
+
+        $this->validateResRobotResponse(self::API_NAME_RESROBOT_ROUTEPLANNER, $response, $json);
         return new ResRobotRoutePlanningResponse($json);
     }
 
@@ -124,4 +144,44 @@ class ResRobotClient
     {
         return $this->applicationUserAgent . " VIA " . self::SDK_USER_AGENT;
     }
+
+    /**
+     * @param WebResponse $response The response from the server.
+     * @param array       $json     The json decoded response.
+     *
+     * @throws InvalidKeyException
+     * @throws InvalidRequestException
+     * @throws InvalidStoplocationException
+     * @throws QuotaExceededException
+     */
+    private function validateResRobotResponse(string $api, WebResponse $response, $json)
+    {
+        if (key_exists('errorCode', $json)) {
+            switch ($json['errorCode']) {
+                case 'API_AUTH':
+                    throw new InvalidKeyException($response->getRequestParameter('key'));
+                    break;
+                case 'API_QUOTA':
+                    throw new QuotaExceededException($api,
+                        $response->getRequestParameter('key'));
+                    break;
+                case 'API_PARAM':
+                    throw new InvalidRequestException("One or more parameters are invalid",
+                        $response->getRequestParameters());
+                    break;
+                case 'SVC_LOC_NEAR':
+                case 'SVC_LOC':
+                    throw new InvalidStoplocationException($response->getRequestParameters());
+                    break;
+                case 'SVC_DATATIME_PERIOD':
+                    throw new DateTimeOutOfRangeException($response->getRequestParameters(),
+                        $response->getRequestParameter('date'));
+                    break;
+                default:
+                    throw new InvalidRequestException($json['errorText'], $response->getRequestParameters());
+                    break;
+            }
+        }
+    }
+
 }

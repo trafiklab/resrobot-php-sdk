@@ -8,7 +8,7 @@ use PHPUnit_Framework_TestCase;
 use Trafiklab\Common\Model\Enum\TimeTableType;
 use Trafiklab\Resrobot\Contract\Model\ResRobotTimeTableResponse;
 
-class TimeTableResponseTest extends PHPUnit_Framework_TestCase
+class ResRobot extends PHPUnit_Framework_TestCase
 {
     function testConstructor_validDepartureBoardJson_shouldReturnCorrectObjectRepresentation()
     {

@@ -18,8 +18,6 @@ class ResRobotTimeTableResponse implements TimeTableResponse
      * Create a ResRobotTimeTableResponse from ResRobots JSON response.
      *
      * @param array $json The API output to parse.
-     *
-     * @throws \Exception
      */
     public function __construct(array $json)
     {
@@ -44,14 +42,9 @@ class ResRobotTimeTableResponse implements TimeTableResponse
 
     /**
      * @param array $json The API output to parse.
-     *
-     * @throws \Exception
      */
     private function parseApiResponse(array $json): void
     {
-        if (key_exists('errorCode', $json)) {
-            throw new \Exception('ResRobot threw an error: ' . $json['errorText'], 500);
-        }
 
         if (key_exists('Departure', $json)) {
             $responseRoot = 'Departure';

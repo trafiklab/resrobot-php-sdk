@@ -2,11 +2,15 @@
 
 use Trafiklab\Common\Model\Contract\RoutePlanningResponse;
 use Trafiklab\Common\Model\Contract\TimeTableResponse;
+use Trafiklab\Common\Model\Exceptions\InvalidKeyException;
+use Trafiklab\Common\Model\Exceptions\InvalidRequestException;
+use Trafiklab\Common\Model\Exceptions\InvalidStoplocationException;
+use Trafiklab\Common\Model\Exceptions\KeyRequiredException;
+use Trafiklab\Common\Model\Exceptions\QuotaExceededException;
+use Trafiklab\Common\Model\Exceptions\RequestTimedOutException;
 use Trafiklab\Resrobot\Internal\ResRobotClient;
 use Trafiklab\ResRobot\Model\ResRobotRoutePlanningRequest;
 use Trafiklab\Resrobot\Model\ResRobotTimeTableRequest;
-use Trafiklab\Resrobot\Model\SlTimeTableRequest;
-use Trafiklab\Resrobot\Model\Contract\ResRobotTimeTableResponse;
 
 class ResRobotWrapper
 {
@@ -54,7 +58,11 @@ class ResRobotWrapper
      * @param ResRobotTimeTableRequest $request
      *
      * @return TimeTableResponse
-     * @throws Exception
+     * @throws InvalidKeyException
+     * @throws InvalidRequestException
+     * @throws InvalidStoplocationException
+     * @throws QuotaExceededException
+     * @throws RequestTimedOutException
      */
     public function getTimeTable(ResRobotTimeTableRequest $request): TimeTableResponse
     {
@@ -66,7 +74,11 @@ class ResRobotWrapper
      * @param ResRobotRoutePlanningRequest $request
      *
      * @return RoutePlanningResponse
-     * @throws Exception
+     * @throws InvalidKeyException
+     * @throws InvalidRequestException
+     * @throws InvalidStoplocationException
+     * @throws QuotaExceededException
+     * @throws RequestTimedOutException
      */
     public function getRoutePlanning(ResRobotRoutePlanningRequest $request): RoutePlanningResponse
     {
@@ -75,24 +87,22 @@ class ResRobotWrapper
     }
 
     /**
-     * @throws Exception
+     * @throws KeyRequiredException
      */
     private function requireValidTimeTablesKey()
     {
         if ($this->_key_stolptidstabeller == null || empty($this->_key_stolptidstabeller)) {
-            throw new Exception(
-                "No Timetables API key configured. Obtain a free key at https://www.trafiklab.se/api", 403);
+            throw new KeyRequiredException("");
         }
     }
 
     /**
-     * @throws Exception
+     * @throws KeyRequiredException
      */
     private function requireValidRouteplannerKey()
     {
-        if ($this->_key_stolptidstabeller == null || empty($this->_key_stolptidstabeller)) {
-            throw new Exception(
-                "No Routeplanner API key configured. Obtain a free key at https://www.trafiklab.se/api", 403);
+        if ($this->_key_reseplanerare == null || empty($this->_key_reseplanerare)) {
+            throw new KeyRequiredException("");
         }
     }
 }

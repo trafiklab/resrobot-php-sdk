@@ -8,7 +8,7 @@ use PHPUnit_Framework_TestCase;
 use Trafiklab\Common\Model\Enum\TimeTableType;
 use Trafiklab\Resrobot\Model\Enum\ResRobotTransportType;
 
-class TimeTableRequestTest extends PHPUnit_Framework_TestCase
+class ResRobotTimeTableRequestTest extends PHPUnit_Framework_TestCase
 {
 
     function testSetType()

@@ -7,7 +7,7 @@ namespace Trafiklab\ResRobot\Model;
 use DateTime;
 use PHPUnit_Framework_TestCase;
 
-class LegTest extends PHPUnit_Framework_TestCase
+class ResRobotLegTest extends PHPUnit_Framework_TestCase
 {
     function testConstructor_validDepartureBoardJson_shouldReturnCorrectObjectRepresentation()
     {

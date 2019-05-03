@@ -5,7 +5,7 @@ namespace Trafiklab\ResRobot\Model;
 use PHPUnit_Framework_TestCase;
 use Trafiklab\Common\Model\Enum\TimeTableType;
 
-class TimeTableEntryTest extends PHPUnit_Framework_TestCase
+class ResRobotTimeTableEntryTest extends PHPUnit_Framework_TestCase
 {
     function testConstructor_validDepartureBoardEntryJson_shouldReturnCorrectObjectRepresentation()
     {
