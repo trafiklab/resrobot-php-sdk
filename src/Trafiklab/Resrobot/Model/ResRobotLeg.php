@@ -4,12 +4,13 @@
 namespace Trafiklab\ResRobot\Model;
 
 use Trafiklab\Common\Model\Contract\RoutePlanningLeg;
-use Trafiklab\Common\Model\Contract\Stop;
 use Trafiklab\Common\Model\Contract\Vehicle;
+use Trafiklab\Common\Model\Contract\VehicleStop;
 
 /**
  * A leg is one part of a journey, made with a single vehicle or on foot. A journey can consist of one or more legs. In
  * the case of multiple legs, a transfer is required between two legs.
+ *
  * @package Trafiklab\ResRobot\Model
  */
 class ResRobotLeg implements RoutePlanningLeg
@@ -23,6 +24,13 @@ class ResRobotLeg implements RoutePlanningLeg
     private $_type;
     private $_vehicle;
 
+    /**
+     * ResRobotLeg constructor.
+     *
+     * @param array $json
+     *
+     * @internal
+     */
     public function __construct(array $json)
     {
         $this->parseApiResponse($json);
@@ -30,18 +38,20 @@ class ResRobotLeg implements RoutePlanningLeg
 
     /**
      * The origin of this leg.
-     * @return Stop The stoplocation at which this leg starts.
+     *
+     * @return VehicleStop The stoplocation at which this leg starts.
      */
-    public function getOrigin(): Stop
+    public function getOrigin(): VehicleStop
     {
         return $this->_origin;
     }
 
     /**
      * The destination of this leg.
-     * @return Stop The stoplocation at which this leg ends.
+     *
+     * @return VehicleStop The stoplocation at which this leg ends.
      */
-    public function getDestination(): Stop
+    public function getDestination(): VehicleStop
     {
         return $this->_destination;
     }
@@ -49,6 +59,7 @@ class ResRobotLeg implements RoutePlanningLeg
     /**
      * Remarks about this leg, for example describing facilities on board of a train, or possible disturbances on the
      * route.
+     *
      * @return string[]
      */
     public function getNotes(): array
@@ -59,6 +70,7 @@ class ResRobotLeg implements RoutePlanningLeg
     /**
      * The vehicle which is used to travel from the origin to the destination of this leg, if any. Can be null in case
      * of a walk between two stop locations.
+     *
      * @return Vehicle|null The vehicle used on this leg, or null in case of a walking transfer.
      */
     public function getVehicle(): ?Vehicle
@@ -68,6 +80,7 @@ class ResRobotLeg implements RoutePlanningLeg
 
     /**
      * Intermediary stops made by the vehicle on this leg.
+     *
      * @return ResRobotStop[] Stops between the origin and destination, excluding the origin and destination.
      */
     public function getIntermediaryStops(): array
@@ -78,6 +91,7 @@ class ResRobotLeg implements RoutePlanningLeg
     /**
      * The direction of the vehicle on this leg. Can be null in case
      * of a walk between two stop locations.
+     *
      * @return string|null The direction of the vehicle used on this leg, or null in case of a walking transfer.
      */
     public function getDirection(): ?string
@@ -87,6 +101,7 @@ class ResRobotLeg implements RoutePlanningLeg
 
     /**
      * JNY: journey, WALK: walking.
+     *
      * @return string
      */
     public function getType(): string

@@ -5,9 +5,9 @@ namespace Trafiklab\ResRobot\Model;
 
 
 use DateTime;
-use Trafiklab\Common\Model\Contract\Stop;
+use Trafiklab\Common\Model\Contract\VehicleStop;
 
-class ResRobotStop implements Stop
+class ResRobotStop implements VehicleStop
 {
     private $_stopId;
     private $_stopName;
@@ -16,6 +16,13 @@ class ResRobotStop implements Stop
     private $_latitude;
     private $_longitude;
 
+    /**
+     * ResRobotStop constructor.
+     *
+     * @param array $json
+     *
+     * @internal
+     */
     public function __construct(array $json)
     {
         $this->parseApiResponse($json);
@@ -33,6 +40,7 @@ class ResRobotStop implements Stop
 
     /**
      * The name of this stop area.
+     *
      * @return string The name of this stop area.
      */
     public function getStopName(): string
@@ -51,6 +59,7 @@ class ResRobotStop implements Stop
 
     /**
      * The arrival time at this stop.
+     *
      * @return DateTime|null The arrival time at this stop. Null if there is no data about the arrival time at this
      *                       stop location.
      */
@@ -61,6 +70,7 @@ class ResRobotStop implements Stop
 
     /**
      * The platform at which the vehicle will stop.
+     *
      * @return null|string The platform at which the vehicle will stop. Null if no platform information is known.
      */
     public function getPlatform(): ?string
@@ -70,6 +80,7 @@ class ResRobotStop implements Stop
 
     /**
      * The latitude component of this stop area's coordinates.
+     *
      * @return float
      */
     public function getLatitude(): float
@@ -79,6 +90,7 @@ class ResRobotStop implements Stop
 
     /**
      * The longitude component of this stop area's coordinates.
+     *
      * @return float
      */
     public function getLongitude(): float

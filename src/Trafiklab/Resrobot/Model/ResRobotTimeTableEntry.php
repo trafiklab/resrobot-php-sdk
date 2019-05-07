@@ -23,6 +23,14 @@ class ResRobotTimeTableEntry implements TimeTableEntry
     private $_operator;
     private $_transportType;
 
+    /**
+     * ResRobotTimeTableEntry constructor.
+     *
+     * @param array $json
+     * @param int   $type
+     *
+     * @internal
+     */
     public function __construct(array $json, int $type)
     {
         $this->_timeTableType = $type;
@@ -61,6 +69,7 @@ class ResRobotTimeTableEntry implements TimeTableEntry
 
     /**
      * The type of timetable in which this entry resides, either arrivals or departures.
+     *
      * @return int
      */
     public function getTimeTableType(): int
@@ -71,6 +80,7 @@ class ResRobotTimeTableEntry implements TimeTableEntry
     /**
      * The direction of the vehicle stopping at this time at this stop location. In case of a vehicle departing, this
      * is the destination of the vehicle. In case of a vehicle arriving, this is the origin of the vehicle.
+     *
      * @return string
      */
     public function getDirection(): string
@@ -80,6 +90,7 @@ class ResRobotTimeTableEntry implements TimeTableEntry
 
     /**
      * The name of the line on which the vehicle is driving.
+     *
      * @return string
      */
     public function getLineName(): string
@@ -89,6 +100,7 @@ class ResRobotTimeTableEntry implements TimeTableEntry
 
     /**
      * The number of the line on which the vehicle is driving.
+     *
      * @return int
      */
     public function getLineNumber(): int
@@ -99,6 +111,7 @@ class ResRobotTimeTableEntry implements TimeTableEntry
     /**
      * The time at which the vehicle will arrive at the stop area. This can be an interval (5 min) or a time (18:00)
      * depending on the operator and data source.
+     *
      * @return string
      */
     public function getDisplayTime(): string
@@ -128,7 +141,7 @@ class ResRobotTimeTableEntry implements TimeTableEntry
 
     public function getTransportType(): string
     {
-       return $this->_transportType;
+        return $this->_transportType;
     }
 
     private function parseApiResponse(array $json): void

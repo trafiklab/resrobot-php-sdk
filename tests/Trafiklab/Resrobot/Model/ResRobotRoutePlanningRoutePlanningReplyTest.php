@@ -4,8 +4,8 @@
 
 namespace Trafiklab\ResRobot\Model;
 
-use DateTime;
 use PHPUnit_Framework_TestCase;
+use Trafiklab\Common\Model\Contract\WebResponse;
 
 class RoutePlanningReplyTest extends PHPUnit_Framework_TestCase
 {
@@ -13,7 +13,8 @@ class RoutePlanningReplyTest extends PHPUnit_Framework_TestCase
     {
         $validRoutePlanning = json_decode(
             file_get_contents("./tests/Resources/ResRobot/validRoutePlanningReply.json"), true);
-        $routePlanningResponse = new ResRobotRoutePlanningResponse($validRoutePlanning);
+        $dummyResponse = $this->createMock(WebResponse::class);
+        $routePlanningResponse = new ResRobotRoutePlanningResponse($dummyResponse, $validRoutePlanning);
 
         self::assertNotNull($routePlanningResponse->getTrips());
         self::assertEquals(6, count($routePlanningResponse->getTrips()));

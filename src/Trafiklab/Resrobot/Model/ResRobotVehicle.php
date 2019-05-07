@@ -20,6 +20,8 @@ class ResRobotVehicle implements Vehicle
      * Product constructor.
      *
      * @param array $json
+     *
+     * @internal
      */
     public function __construct(array $json)
     {
@@ -36,6 +38,7 @@ class ResRobotVehicle implements Vehicle
 
     /**
      * The number of the vehicle, uniquely identifying the trip it makes on a given day. Example: 547.
+     *
      * @return int
      */
     public function getNumber(): int
@@ -45,6 +48,7 @@ class ResRobotVehicle implements Vehicle
 
     /**
      * The type of vehicle. Example: "Snabbtåg".
+     *
      * @return string
      */
     public function getType(): string
@@ -54,6 +58,7 @@ class ResRobotVehicle implements Vehicle
 
     /**
      * The code for the operator who runs the vehicle. Example: 74.
+     *
      * @return int
      */
     public function getOperatorCode(): int
@@ -63,6 +68,7 @@ class ResRobotVehicle implements Vehicle
 
     /**
      * The URL for the operator whi runs the vehicle. Example: "http://www.sj.se"
+     *
      * @return string
      */
     public function getOperatorUrl()
@@ -72,6 +78,7 @@ class ResRobotVehicle implements Vehicle
 
     /**
      * The name for the operator whi runs the vehicle. Example: "SJ"
+     *
      * @return string
      */
     public function getOperatorName(): string

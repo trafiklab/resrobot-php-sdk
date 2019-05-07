@@ -5,8 +5,9 @@ namespace Trafiklab\Resrobot\Internal;
 
 use Trafiklab\Common\Internal\CurlWebClient;
 use Trafiklab\Common\Internal\WebClient;
-use Trafiklab\Common\Internal\WebResponse;
+use Trafiklab\Common\Internal\WebResponseImpl;
 use Trafiklab\Common\Model\Contract\TimeTableResponse;
+use Trafiklab\Common\Model\Contract\WebResponse;
 use Trafiklab\Common\Model\Enum\TimeTableType;
 use Trafiklab\Common\Model\Exceptions\DateTimeOutOfRangeException;
 use Trafiklab\Common\Model\Exceptions\InvalidKeyException;
@@ -19,7 +20,10 @@ use Trafiklab\ResRobot\Model\ResRobotRoutePlanningRequest;
 use Trafiklab\ResRobot\Model\ResRobotRoutePlanningResponse;
 use Trafiklab\Resrobot\Model\ResRobotTimeTableRequest;
 
-
+/**
+ * @internal Builds requests and gets data
+ * @package  Trafiklab\Resrobot\Internal
+ */
 class ResRobotClient
 {
 
@@ -81,10 +85,10 @@ class ResRobotClient
         }
 
         $response = $this->_webClient->makeRequest($endpoint, $parameters);
-        $json = json_decode($response->getBody(), true);
+        $json = json_decode($response->getResponseBody(), true);
 
         $this->validateResRobotResponse(self::API_NAME_RESROBOT_TIMETABLES, $response, $json);
-        return new ResRobotTimeTableResponse($json);
+        return new ResRobotTimeTableResponse($response,$json);
     }
 
     /**
@@ -133,10 +137,10 @@ class ResRobotClient
         }
 
         $response = $this->_webClient->makeRequest(self::TRIPS_ENDPOINT, $parameters);
-        $json = json_decode($response->getBody(), true);
+        $json = json_decode($response->getResponseBody(), true);
 
         $this->validateResRobotResponse(self::API_NAME_RESROBOT_ROUTEPLANNER, $response, $json);
-        return new ResRobotRoutePlanningResponse($json);
+        return new ResRobotRoutePlanningResponse($response, $json);
     }
 
 
@@ -146,15 +150,17 @@ class ResRobotClient
     }
 
     /**
-     * @param WebResponse $response The response from the server.
+     * @param string      $api
+     * @param WebResponseImpl $response The response from the server.
      * @param array       $json     The json decoded response.
      *
+     * @throws DateTimeOutOfRangeException
      * @throws InvalidKeyException
      * @throws InvalidRequestException
      * @throws InvalidStoplocationException
      * @throws QuotaExceededException
      */
-    private function validateResRobotResponse(string $api, WebResponse $response, $json)
+    private function validateResRobotResponse(string $api, WebResponseImpl $response, $json)
     {
         if (key_exists('errorCode', $json)) {
             switch ($json['errorCode']) {
