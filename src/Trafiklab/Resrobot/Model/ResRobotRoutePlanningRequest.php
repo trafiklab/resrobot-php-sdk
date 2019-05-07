@@ -4,18 +4,22 @@
 namespace Trafiklab\ResRobot\Model;
 
 
-class ResRobotRoutePlanningRequest extends ResRobotBaseRequest
+use Trafiklab\Common\Model\Contract\RoutePlanningRequest;
+use Trafiklab\Common\Model\Enum\RoutePlanningSearchType;
+
+class ResRobotRoutePlanningRequest extends ResRobotBaseRequest implements RoutePlanningRequest
 {
 
     private $_originId;
     private $_destinationId;
     private $_viaId;
     private $_lang = "sv";
+    private $_routePlanningType = RoutePlanningSearchType::DEPART_AT_SPECIFIED_TIME;
 
     /**
      * @return string
      */
-    public function getOriginId(): string
+    public function getOriginStopId(): string
     {
         return $this->_originId;
     }
@@ -23,7 +27,7 @@ class ResRobotRoutePlanningRequest extends ResRobotBaseRequest
     /**
      * @param string $originId
      */
-    public function setOriginId(string $originId): void
+    public function setOriginStopId(string $originId): void
     {
         $this->_originId = $originId;
     }
@@ -31,7 +35,7 @@ class ResRobotRoutePlanningRequest extends ResRobotBaseRequest
     /**
      * @return string
      */
-    public function getDestinationId(): string
+    public function getDestinationStopId(): string
     {
         return $this->_destinationId;
     }
@@ -39,7 +43,7 @@ class ResRobotRoutePlanningRequest extends ResRobotBaseRequest
     /**
      * @param string $destinationId
      */
-    public function setDestinationId(string $destinationId): void
+    public function setDestinationStopId(string $destinationId): void
     {
         $this->_destinationId = $destinationId;
     }
@@ -47,7 +51,7 @@ class ResRobotRoutePlanningRequest extends ResRobotBaseRequest
     /**
      * @return string
      */
-    public function getViaId(): ?string
+    public function getViaStopId(): ?string
     {
         return $this->_viaId;
     }
@@ -55,7 +59,7 @@ class ResRobotRoutePlanningRequest extends ResRobotBaseRequest
     /**
      * @param string $viaId
      */
-    public function setViaId(string $viaId): void
+    public function setViaStopId(?string $viaId): void
     {
         $this->_viaId = $viaId;
     }
@@ -76,5 +80,13 @@ class ResRobotRoutePlanningRequest extends ResRobotBaseRequest
         $this->_lang = $lang;
     }
 
+    public function getRoutePlanningSearchType(): int
+    {
+        return $this->_routePlanningType;
+    }
 
+    public function setRoutePlanningSearchType(int $timeTableType): void
+    {
+        $this->_routePlanningType = $timeTableType;
+    }
 }

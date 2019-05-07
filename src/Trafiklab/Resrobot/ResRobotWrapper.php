@@ -1,6 +1,9 @@
 <?php
 
+use Trafiklab\Common\Model\Contract\PublicTransportApiWrapper;
+use Trafiklab\Common\Model\Contract\RoutePlanningRequest;
 use Trafiklab\Common\Model\Contract\RoutePlanningResponse;
+use Trafiklab\Common\Model\Contract\TimeTableRequest;
 use Trafiklab\Common\Model\Contract\TimeTableResponse;
 use Trafiklab\Common\Model\Exceptions\InvalidKeyException;
 use Trafiklab\Common\Model\Exceptions\InvalidRequestException;
@@ -12,7 +15,7 @@ use Trafiklab\Resrobot\Internal\ResRobotClient;
 use Trafiklab\ResRobot\Model\ResRobotRoutePlanningRequest;
 use Trafiklab\Resrobot\Model\ResRobotTimeTableRequest;
 
-class ResRobotWrapper
+class ResRobotWrapper implements PublicTransportApiWrapper
 {
 
     private $_key_reseplanerare;
@@ -49,7 +52,7 @@ class ResRobotWrapper
      * @throws QuotaExceededException
      * @throws RequestTimedOutException
      */
-    public function getTimeTable(ResRobotTimeTableRequest $request): TimeTableResponse
+    public function getTimeTable(TimeTableRequest $request): TimeTableResponse
     {
         $this->requireValidTimeTablesKey();
         return $this->_resrobotClient->getTimeTable($this->_key_stolptidstabeller, $request);
@@ -65,7 +68,7 @@ class ResRobotWrapper
      * @throws QuotaExceededException
      * @throws RequestTimedOutException
      */
-    public function getRoutePlanning(ResRobotRoutePlanningRequest $request): RoutePlanningResponse
+    public function getRoutePlanning(RoutePlanningRequest $request): RoutePlanningResponse
     {
         $this->requireValidRouteplannerKey();
         return $this->_resrobotClient->getRoutePlanning($this->_key_reseplanerare, $request);

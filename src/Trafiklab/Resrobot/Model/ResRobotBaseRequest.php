@@ -43,10 +43,12 @@ abstract class ResRobotBaseRequest
     /**
      * @param mixed $dateTime
      */
-    public function setDateTime(DateTime $dateTime): void
+    public function setDateTime(?DateTime $dateTime): void
     {
         $this->_dateTime = $dateTime;
-        $this->_dateTime->setTimezone(new DateTimeZone('Europe/Stockholm'));
+        if ($this->_dateTime != null) {
+            $this->_dateTime->setTimezone(new DateTimeZone('Europe/Stockholm'));
+        }
     }
 
     /**
