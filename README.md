@@ -48,9 +48,9 @@ The following code example illustrates how you can retrieve a timetable for a ce
   $departuresRequest->setStopId("740000001");
   $departuresRequest->setTimeTableType(TimeTableType::DEPARTURES);
 
-  $resRobotWrapper = ResRobotWrapper::getInstance();
-  $resRobotWrapper->registerUserAgent("<YOUR_USER_AGENT>");
-  $resRobotWrapper->registerTimeTablesApiKey("<YOUR_API_KEY>");
+  $resRobotWrapper = new ResRobotWrapper();
+  $resRobotWrapper->setUserAgent("<YOUR_USER_AGENT>");
+  $resRobotWrapper->setTimeTablesApiKey("<YOUR_API_KEY>");
   $response = $resRobotWrapper->getTimeTable($departuresRequest);
 ```
 `<YOUR_API_KEY>` is obtained from [Trafiklab](https://trafiklab.se). `<YOUR_USER_AGENT>` is a string which identifies your application. 
@@ -85,9 +85,9 @@ The following code example illustrates how you can plan a route from A to B
     $routePlanningRequest->setDestinationId("740000002");
     $routePlanningRequest->setDateTime($queryTime);
 
-    $resRobotWrapper = ResRobotWrapper::getInstance();
-    $resRobotWrapper->registerUserAgent(("<YOUR_USER_AGENT>");
-    $resRobotWrapper->registerRoutePlanningApiKey("<YOUR_API_KEY>");
+    $resRobotWrapper = new ResRobotWrapper();
+    $resRobotWrapper->setUserAgent(("<YOUR_USER_AGENT>");
+    $resRobotWrapper->setRoutePlanningApiKey("<YOUR_API_KEY>");
     $response = $resRobotWrapper->getRoutePlanning($routePlanningRequest);
 ```
 ##### Response

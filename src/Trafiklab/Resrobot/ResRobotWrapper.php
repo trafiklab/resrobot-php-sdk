@@ -15,41 +15,26 @@ use Trafiklab\Resrobot\Model\ResRobotTimeTableRequest;
 class ResRobotWrapper
 {
 
-    private static $_instance;
-
     private $_key_reseplanerare;
     private $_key_stolptidstabeller;
     private $_resrobotClient;
 
-    private function __construct($_resrobotClient = null)
+    public function __construct()
     {
-        // Private constructor for Singleton pattern
-        $this->_resrobotClient = $_resrobotClient;
-        if ($this->_resrobotClient == null) {
-            $this->_resrobotClient = new ResRobotClient();
-        }
+        $this->_resrobotClient = new ResRobotClient();
     }
 
-    public static function getInstance(): ResRobotWrapper
-    {
-        if (self::$_instance == null) {
-            self::$_instance = new ResRobotWrapper();
-        }
-        return self::$_instance;
-    }
-
-    public function registerRoutePlanningApiKey(string $key): void
+    public function setRoutePlanningApiKey(string $key): void
     {
         $this->_key_reseplanerare = $key;
     }
 
-    public function registerTimeTablesApiKey(string $key): void
+    public function setTimeTablesApiKey(string $key): void
     {
         $this->_key_stolptidstabeller = $key;
     }
 
-
-    public function registerUserAgent(string $userAgent): void
+    public function setUserAgent(string $userAgent): void
     {
         $this->_resrobotClient->setApplicationUserAgent($userAgent);
     }
