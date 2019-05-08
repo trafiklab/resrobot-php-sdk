@@ -1,6 +1,6 @@
 {
   "name": "trafiklab/resrobot-php-sdk",
-  "description": "Use Swedish public transport data in your project with ResRobot and SL",
+  "description": "Use Swedish public transport data in your project with ResRobot",
   "type": "library",
   "license": "MPL-2.0",
   "authors": [
