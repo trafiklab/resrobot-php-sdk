@@ -7,7 +7,7 @@ use Trafiklab\Common\Internal\CurlWebClient;
 use Trafiklab\Common\Internal\WebClient;
 use Trafiklab\Common\Internal\WebResponseImpl;
 use Trafiklab\Common\Model\Contract\TimeTableResponse;
-use Trafiklab\Common\Model\Contract\WebResponse;
+use Trafiklab\Common\Model\Enum\RoutePlanningSearchType;
 use Trafiklab\Common\Model\Enum\TimeTableType;
 use Trafiklab\Common\Model\Exceptions\DateTimeOutOfRangeException;
 use Trafiklab\Common\Model\Exceptions\InvalidKeyException;
@@ -88,7 +88,7 @@ class ResRobotClient
         $json = json_decode($response->getResponseBody(), true);
 
         $this->validateResRobotResponse(self::API_NAME_RESROBOT_TIMETABLES, $response, $json);
-        return new ResRobotTimeTableResponse($response,$json);
+        return new ResRobotTimeTableResponse($response, $json);
     }
 
     /**
@@ -112,13 +112,19 @@ class ResRobotClient
      */
     public function getRoutePlanning($key, ResRobotRoutePlanningRequest $request): ResRobotRoutePlanningResponse
     {
+        $searchForArrival = "0";
+        if ($request->getRoutePlanningSearchType() == RoutePlanningSearchType::ARRIVE_AT_SPECIFIED_TIME) {
+            $searchForArrival = "1";
+        }
+
         $parameters = [
             "key" => $key,
-            "originId" => $request->getOriginId(),
-            "destId" => $request->getDestinationId(),
+            "originId" => $request->getOriginStopId(),
+            "destId" => $request->getDestinationStopId(),
             "date" => $request->getDateTime()->format("Y-m-d"),
             "time" => $request->getDateTime()->format("H:i"),
             "lang" => $request->getLang(),
+            "searchForArrival" => $searchForArrival,
             "format" => "json",
             "passlist" => "1",
         ];
@@ -132,8 +138,8 @@ class ResRobotClient
             $parameters['operators'] = join(',', $request->getOperatorFilter());
         }
 
-        if ($request->getViaId() != null) {
-            $parameters['viaId'] = $request->getViaId();
+        if ($request->getViaStopId() != null) {
+            $parameters['viaId'] = $request->getViaStopId();
         }
 
         $response = $this->_webClient->makeRequest(self::TRIPS_ENDPOINT, $parameters);
@@ -150,9 +156,9 @@ class ResRobotClient
     }
 
     /**
-     * @param string      $api
+     * @param string          $api
      * @param WebResponseImpl $response The response from the server.
-     * @param array       $json     The json decoded response.
+     * @param array           $json     The json decoded response.
      *
      * @throws DateTimeOutOfRangeException
      * @throws InvalidKeyException

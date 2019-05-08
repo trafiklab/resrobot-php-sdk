@@ -154,8 +154,8 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
         $queryTime->setTime(18, 0);
 
         $routePlanningRequest = new ResRobotRoutePlanningRequest();
-        $routePlanningRequest->setOriginId("740000001");
-        $routePlanningRequest->setDestinationId("740000002");
+        $routePlanningRequest->setOriginStopId("740000001");
+        $routePlanningRequest->setDestinationStopId("740000002");
         $routePlanningRequest->setDateTime($queryTime);
 
         $resRobotWrapper = new ResRobotWrapper();
@@ -182,10 +182,10 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
         $queryTime->setTime(18, 0);
 
         $routePlanningRequest = new ResRobotRoutePlanningRequest();
-        $routePlanningRequest->setOriginId("740000001");
-        $routePlanningRequest->setDestinationId("740000002");
+        $routePlanningRequest->setOriginStopId("740000001");
+        $routePlanningRequest->setDestinationStopId("740000002");
         $routePlanningRequest->setDateTime($queryTime);
-        $routePlanningRequest->setViaId("740000003");
+        $routePlanningRequest->setViaStopId("740000003");
 
         $resRobotWrapper = new ResRobotWrapper();
         $resRobotWrapper->setUserAgent("SDK Integration tests");
@@ -215,8 +215,8 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
         $this->expectException(InvalidStoplocationException::class);
 
         $routePlanningRequest = new ResRobotRoutePlanningRequest();
-        $routePlanningRequest->setOriginId("740000001");
-        $routePlanningRequest->setDestinationId("7400-02");
+        $routePlanningRequest->setOriginStopId("740000001");
+        $routePlanningRequest->setDestinationStopId("7400-02");
 
         $resRobotWrapper = new ResRobotWrapper();
         $resRobotWrapper->setUserAgent("SDK Integration tests");
@@ -229,8 +229,8 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
         $this->expectException(InvalidKeyException::class);
 
         $routePlanningRequest = new ResRobotRoutePlanningRequest();
-        $routePlanningRequest->setOriginId("740000001");
-        $routePlanningRequest->setDestinationId("740000002");
+        $routePlanningRequest->setOriginStopId("740000001");
+        $routePlanningRequest->setDestinationStopId("740000002");
 
         $resRobotWrapper = new ResRobotWrapper();
         $resRobotWrapper->setUserAgent("SDK Integration tests");
@@ -246,8 +246,8 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
         $queryTime->setTime(18, 0);
 
         $routePlanningRequest = new ResRobotRoutePlanningRequest();
-        $routePlanningRequest->setOriginId("740000001");
-        $routePlanningRequest->setDestinationId("740000002");
+        $routePlanningRequest->setOriginStopId("740000001");
+        $routePlanningRequest->setDestinationStopId("740000002");
 
         $resRobotWrapper = new ResRobotWrapper();
         $resRobotWrapper->setUserAgent("SDK Integration tests");
@@ -263,8 +263,8 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
         $queryTime->setDate(2100, 1, 1);
 
         $routePlanningRequest = new ResRobotRoutePlanningRequest();
-        $routePlanningRequest->setOriginId("740000001");
-        $routePlanningRequest->setDestinationId("740000002");
+        $routePlanningRequest->setOriginStopId("740000001");
+        $routePlanningRequest->setDestinationStopId("740000002");
         $routePlanningRequest->setLang("¯\_(ツ)_/¯");
         $routePlanningRequest->setDateTime($queryTime);
         $routePlanningRequest->addTransportTypeToFilter(99999);

@@ -55,6 +55,11 @@ class ResRobotWrapper implements PublicTransportApiWrapper
     public function getTimeTable(TimeTableRequest $request): TimeTableResponse
     {
         $this->requireValidTimeTablesKey();
+
+        if (!$request instanceof ResRobotTimeTableRequest) {
+            throw new InvalidArgumentException("ResRobot requires a ResRobotTimeTableRequest object");
+        }
+
         return $this->_resrobotClient->getTimeTable($this->_key_stolptidstabeller, $request);
     }
 
@@ -71,6 +76,11 @@ class ResRobotWrapper implements PublicTransportApiWrapper
     public function getRoutePlanning(RoutePlanningRequest $request): RoutePlanningResponse
     {
         $this->requireValidRouteplannerKey();
+
+        if (!$request instanceof ResRobotRoutePlanningRequest) {
+            throw new InvalidArgumentException("ResRobot requires a ResRobotRoutePlanningRequest object");
+        }
+
         return $this->_resrobotClient->getRoutePlanning($this->_key_reseplanerare, $request);
     }
 
