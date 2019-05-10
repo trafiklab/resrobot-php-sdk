@@ -15,7 +15,6 @@ use Trafiklab\Common\Model\Exceptions\DateTimeOutOfRangeException;
 use Trafiklab\Common\Model\Exceptions\InvalidKeyException;
 use Trafiklab\Common\Model\Exceptions\InvalidRequestException;
 use Trafiklab\Common\Model\Exceptions\InvalidStopLocationException;
-use Trafiklab\Common\Model\Exceptions\KeyRequiredException;
 use Trafiklab\Common\Model\Exceptions\QuotaExceededException;
 use Trafiklab\Common\Model\Exceptions\RequestTimedOutException;
 use Trafiklab\Common\Model\Exceptions\ServiceUnavailableException;

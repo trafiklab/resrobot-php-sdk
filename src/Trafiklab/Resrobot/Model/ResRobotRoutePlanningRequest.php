@@ -85,8 +85,8 @@ class ResRobotRoutePlanningRequest extends ResRobotBaseRequest implements RouteP
         return $this->_routePlanningType;
     }
 
-    public function setRoutePlanningSearchType(int $timeTableType): void
+    public function setRoutePlanningSearchType(int $routePlanningSearchType): void
     {
-        $this->_routePlanningType = $timeTableType;
+        $this->_routePlanningType = $routePlanningSearchType;
     }
 }
