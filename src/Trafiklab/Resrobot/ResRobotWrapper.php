@@ -1,18 +1,24 @@
 <?php
 
+use Trafiklab\Common\Model\Contract\FindStopLocationRequest;
+use Trafiklab\Common\Model\Contract\FindStopLocationResponse;
 use Trafiklab\Common\Model\Contract\PublicTransportApiWrapper;
 use Trafiklab\Common\Model\Contract\RoutePlanningRequest;
 use Trafiklab\Common\Model\Contract\RoutePlanningResponse;
+use Trafiklab\Common\Model\Contract\StopLocationLookupRequest;
+use Trafiklab\Common\Model\Contract\StopLocationLookupResponse;
 use Trafiklab\Common\Model\Contract\TimeTableRequest;
 use Trafiklab\Common\Model\Contract\TimeTableResponse;
 use Trafiklab\Common\Model\Exceptions\InvalidKeyException;
 use Trafiklab\Common\Model\Exceptions\InvalidRequestException;
-use Trafiklab\Common\Model\Exceptions\InvalidStoplocationException;
+use Trafiklab\Common\Model\Exceptions\InvalidStopLocationException;
 use Trafiklab\Common\Model\Exceptions\KeyRequiredException;
 use Trafiklab\Common\Model\Exceptions\QuotaExceededException;
 use Trafiklab\Common\Model\Exceptions\RequestTimedOutException;
+use Trafiklab\Common\Model\Exceptions\ServiceUnavailableException;
 use Trafiklab\Resrobot\Internal\ResRobotClient;
 use Trafiklab\ResRobot\Model\ResRobotRoutePlanningRequest;
+use Trafiklab\Resrobot\Model\ResRobotStopLocationLookupRequest;
 use Trafiklab\Resrobot\Model\ResRobotTimeTableRequest;
 
 class ResRobotWrapper implements PublicTransportApiWrapper
@@ -48,7 +54,7 @@ class ResRobotWrapper implements PublicTransportApiWrapper
      * @return TimeTableResponse
      * @throws InvalidKeyException
      * @throws InvalidRequestException
-     * @throws InvalidStoplocationException
+     * @throws InvalidStopLocationException
      * @throws QuotaExceededException
      * @throws RequestTimedOutException
      */
@@ -69,7 +75,7 @@ class ResRobotWrapper implements PublicTransportApiWrapper
      * @return RoutePlanningResponse
      * @throws InvalidKeyException
      * @throws InvalidRequestException
-     * @throws InvalidStoplocationException
+     * @throws InvalidStopLocationException
      * @throws QuotaExceededException
      * @throws RequestTimedOutException
      */
@@ -82,6 +88,42 @@ class ResRobotWrapper implements PublicTransportApiWrapper
         }
 
         return $this->_resrobotClient->getRoutePlanning($this->_key_reseplanerare, $request);
+    }
+
+    /**
+     * Set the API key used for looking up stop locations. For ResRobot this key is the same as the key used for
+     * route-planning.
+     *
+     * @param string $apiKey The API key to use.
+     */
+    public function setStopLocationLookupApiKey(string $apiKey): void
+    {
+        $this->_key_reseplanerare = $apiKey;
+    }
+
+    /**
+     * Get a route-planning between two points.
+     *
+     * @param StopLocationLookupRequest $request The request object containing the query parameters.
+     *
+     * @return StopLocationLookupResponse The response from the API.
+     * @throws InvalidKeyException
+     * @throws InvalidRequestException
+     * @throws InvalidStopLocationException
+     * @throws KeyRequiredException
+     * @throws QuotaExceededException
+     * @throws RequestTimedOutException
+     * @throws ServiceUnavailableException
+     */
+    public function lookupStopLocation(StopLocationLookupRequest $request): StopLocationLookupResponse
+    {
+        $this->requireValidRouteplannerKey();
+
+        if (!$request instanceof ResRobotStopLocationLookupRequest) {
+            throw new InvalidArgumentException("ResRobot requires a ResRobotStopLocationLookupRequest object");
+        }
+
+        return $this->_resrobotClient->lookupStopLocation($this->_key_reseplanerare, $request);
     }
 
     /**

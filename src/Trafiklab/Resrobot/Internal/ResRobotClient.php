@@ -6,19 +6,24 @@ namespace Trafiklab\Resrobot\Internal;
 use Trafiklab\Common\Internal\CurlWebClient;
 use Trafiklab\Common\Internal\WebClient;
 use Trafiklab\Common\Internal\WebResponseImpl;
+use Trafiklab\Common\Model\Contract\StopLocationLookupRequest;
+use Trafiklab\Common\Model\Contract\StopLocationLookupResponse;
 use Trafiklab\Common\Model\Contract\TimeTableResponse;
 use Trafiklab\Common\Model\Enum\RoutePlanningSearchType;
 use Trafiklab\Common\Model\Enum\TimeTableType;
 use Trafiklab\Common\Model\Exceptions\DateTimeOutOfRangeException;
 use Trafiklab\Common\Model\Exceptions\InvalidKeyException;
 use Trafiklab\Common\Model\Exceptions\InvalidRequestException;
-use Trafiklab\Common\Model\Exceptions\InvalidStoplocationException;
+use Trafiklab\Common\Model\Exceptions\InvalidStopLocationException;
+use Trafiklab\Common\Model\Exceptions\KeyRequiredException;
 use Trafiklab\Common\Model\Exceptions\QuotaExceededException;
 use Trafiklab\Common\Model\Exceptions\RequestTimedOutException;
+use Trafiklab\Common\Model\Exceptions\ServiceUnavailableException;
 use Trafiklab\Resrobot\Contract\Model\ResRobotTimeTableResponse;
 use Trafiklab\ResRobot\Model\ResRobotRoutePlanningRequest;
 use Trafiklab\ResRobot\Model\ResRobotRoutePlanningResponse;
 use Trafiklab\Resrobot\Model\ResRobotTimeTableRequest;
+use Trafiklab\Sl\Model\ResRobotStopLocationLookupResponse;
 
 /**
  * @internal Builds requests and gets data
@@ -31,9 +36,14 @@ class ResRobotClient
     public const ARRIVALS_ENDPOINT = "https://api.resrobot.se/v2/arrivalBoard";
     public const TRIPS_ENDPOINT = "https://api.resrobot.se/v2/trip";
     public const SDK_USER_AGENT = "Trafiklab/ResRobot-php-sdk";
+    public const PLATSUPPSLAG_ENDPOINT = "https://api.resrobot.se/v2/location.name";
+
     const API_NAME_RESROBOT_ROUTEPLANNER = "ResRobot reseplanerare";
     const API_NAME_RESROBOT_TIMETABLES = "ResRobot stolpetidstabeller";
+    const API_NAME_RESROBOT_FINDSTOPLOCATION = "ResRobot platsuppslag";
+
     private $applicationUserAgent = "Unknown";
+
     /**
      * @var WebClient
      */
@@ -55,7 +65,7 @@ class ResRobotClient
      * @return TimeTableResponse
      * @throws InvalidKeyException
      * @throws InvalidRequestException
-     * @throws InvalidStoplocationException
+     * @throws InvalidStopLocationException
      * @throws QuotaExceededException
      * @throws RequestTimedOutException
      */
@@ -100,17 +110,17 @@ class ResRobotClient
     }
 
     /**
-     * @param                              $key
+     * @param string                       $key
      * @param ResRobotRoutePlanningRequest $request
      *
      * @return ResRobotRoutePlanningResponse
      * @throws InvalidKeyException
      * @throws InvalidRequestException
-     * @throws InvalidStoplocationException
+     * @throws InvalidStopLocationException
      * @throws QuotaExceededException
      * @throws RequestTimedOutException
      */
-    public function getRoutePlanning($key, ResRobotRoutePlanningRequest $request): ResRobotRoutePlanningResponse
+    public function getRoutePlanning(string $key, ResRobotRoutePlanningRequest $request): ResRobotRoutePlanningResponse
     {
         $searchForArrival = "0";
         if ($request->getRoutePlanningSearchType() == RoutePlanningSearchType::ARRIVE_AT_SPECIFIED_TIME) {
@@ -149,6 +159,35 @@ class ResRobotClient
         return new ResRobotRoutePlanningResponse($response, $json);
     }
 
+    /**
+     * @param string                  $key
+     * @param StopLocationLookupRequest $request
+     *
+     * @return StopLocationLookupResponse
+     * @throws InvalidKeyException
+     * @throws InvalidRequestException
+     * @throws InvalidStopLocationException
+     * @throws QuotaExceededException
+     * @throws RequestTimedOutException
+     * @throws ServiceUnavailableException
+     */
+    public function lookupStopLocation(string $key, StopLocationLookupRequest $request): StopLocationLookupResponse
+    {
+        $parameters = [
+            "key" => $key,
+            "input" => $request->getSearchQuery() . '?',
+            "maxNo" => $request->getMaxNumberOfResults(),
+            "lang" => $request->getLanguage(),
+            "format" => "json",
+        ];
+
+        $response = $this->_webClient->makeRequest(self::PLATSUPPSLAG_ENDPOINT, $parameters);
+        $json = json_decode($response->getResponseBody(), true);
+
+        $this->validateResRobotResponse(self::API_NAME_RESROBOT_FINDSTOPLOCATION, $response, $json);
+        return new ResRobotStopLocationLookupResponse($response, $json);
+    }
+
 
     private function getUserAgent()
     {
@@ -163,7 +202,7 @@ class ResRobotClient
      * @throws DateTimeOutOfRangeException
      * @throws InvalidKeyException
      * @throws InvalidRequestException
-     * @throws InvalidStoplocationException
+     * @throws InvalidStopLocationException
      * @throws QuotaExceededException
      */
     private function validateResRobotResponse(string $api, WebResponseImpl $response, $json)
@@ -183,7 +222,7 @@ class ResRobotClient
                     break;
                 case 'SVC_LOC_NEAR':
                 case 'SVC_LOC':
-                    throw new InvalidStoplocationException($response->getRequestParameters());
+                    throw new InvalidStopLocationException($response->getRequestParameters());
                     break;
                 case 'SVC_DATATIME_PERIOD':
                     throw new DateTimeOutOfRangeException($response->getRequestParameters(),

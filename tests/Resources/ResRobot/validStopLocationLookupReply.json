@@ -1,0 +1,94 @@
+{
+  "StopLocation": [
+    {
+      "id": "740098000",
+      "extId": "740098000",
+      "name": "STOCKHOLM",
+      "lon": 18.058151,
+      "lat": 59.330136,
+      "weight": 32767,
+      "products": 254
+    },
+    {
+      "id": "740000001",
+      "extId": "740000001",
+      "name": "Stockholm Centralstation",
+      "lon": 18.058151,
+      "lat": 59.330136,
+      "weight": 4631,
+      "products": 6
+    },
+    {
+      "id": "740021661",
+      "extId": "740021661",
+      "name": "Stockholm Fridhemsplan T-bana",
+      "lon": 18.029188,
+      "lat": 59.332203,
+      "weight": 22921,
+      "products": 168
+    },
+    {
+      "id": "740021658",
+      "extId": "740021658",
+      "name": "Stockholm Hornstull T-bana",
+      "lon": 18.034024,
+      "lat": 59.315834,
+      "weight": 22921,
+      "products": 168
+    },
+    {
+      "id": "740021665",
+      "extId": "740021665",
+      "name": "Stockholm S:t Eriksplan T-bana",
+      "lon": 18.036991,
+      "lat": 59.339655,
+      "weight": 22921,
+      "products": 168
+    },
+    {
+      "id": "740021667",
+      "extId": "740021667",
+      "name": "Stockholm Hötorget T-bana",
+      "lon": 18.063536,
+      "lat": 59.335529,
+      "weight": 21195,
+      "products": 160
+    },
+    {
+      "id": "740021663",
+      "extId": "740021663",
+      "name": "Stockholm Kristineberg T-bana",
+      "lon": 18.003182,
+      "lat": 59.332815,
+      "weight": 21195,
+      "products": 160
+    },
+    {
+      "id": "740021654",
+      "extId": "740021654",
+      "name": "Stockholm Medborgarplatsen Tba",
+      "lon": 18.07355,
+      "lat": 59.314342,
+      "weight": 21195,
+      "products": 160
+    },
+    {
+      "id": "740021013",
+      "extId": "740021013",
+      "name": "Stockholm Odenplan T-bana",
+      "lon": 18.049701,
+      "lat": 59.342954,
+      "weight": 21195,
+      "products": 160
+    },
+    {
+      "id": "740021666",
+      "extId": "740021666",
+      "name": "Stockholm Rådmansgatan T-bana",
+      "lon": 18.058771,
+      "lat": 59.340572,
+      "weight": 21195,
+      "products": 160
+    }
+  ]
+}

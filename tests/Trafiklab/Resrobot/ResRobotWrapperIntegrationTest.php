@@ -9,10 +9,11 @@ use ResRobotWrapper;
 use Trafiklab\Common\Model\Enum\TimeTableType;
 use Trafiklab\Common\Model\Exceptions\DateTimeOutOfRangeException;
 use Trafiklab\Common\Model\Exceptions\InvalidKeyException;
-use Trafiklab\Common\Model\Exceptions\InvalidStoplocationException;
+use Trafiklab\Common\Model\Exceptions\InvalidStopLocationException;
 use Trafiklab\Common\Model\Exceptions\KeyRequiredException;
 use Trafiklab\Resrobot\Model\Enum\ResRobotTransportType;
 use Trafiklab\ResRobot\Model\ResRobotRoutePlanningRequest;
+use Trafiklab\Resrobot\Model\ResRobotStopLocationLookupRequest;
 use Trafiklab\Resrobot\Model\ResRobotTimeTableRequest;
 
 class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
@@ -67,7 +68,7 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
             $this->markTestIncomplete();
         }
 
-        $this->expectException(InvalidStoplocationException::class);
+        $this->expectException(InvalidStopLocationException::class);
 
         $departuresRequest = new ResRobotTimeTableRequest();
         $departuresRequest->setStopId("7400001");
@@ -212,7 +213,7 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
             $this->markTestIncomplete();
         }
 
-        $this->expectException(InvalidStoplocationException::class);
+        $this->expectException(InvalidStopLocationException::class);
 
         $routePlanningRequest = new ResRobotRoutePlanningRequest();
         $routePlanningRequest->setOriginStopId("740000001");
@@ -275,6 +276,21 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
         $resRobotWrapper->getRoutePlanning($routePlanningRequest);
     }
 
+    public function testLookupStopLocation_searchForTCentralen_shouldReturnMetroStation()
+    {
+
+
+        $routePlanningRequest = new ResRobotStopLocationLookupRequest();
+        $routePlanningRequest->setSearchQuery("t-centralen");
+
+        $resRobotWrapper = new ResRobotWrapper();
+        $resRobotWrapper->setUserAgent("SDK Integration tests");
+        $resRobotWrapper->setStopLocationLookupApiKey($this->_ROUTEPLANNING_API_KEY);
+        $response = $resRobotWrapper->lookupStopLocation($routePlanningRequest);
+
+        self::assertEquals("740020749", $response->getFoundStopLocations()[0]->getId());
+        self::assertEquals("T-Centralen T-bana (Stockholm kn)", $response->getFoundStopLocations()[0]->getName());
+    }
 
     /**
      * Read test keys from a .testkeys file.
