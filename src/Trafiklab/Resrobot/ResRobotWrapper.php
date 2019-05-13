@@ -1,7 +1,7 @@
 <?php
 
-use Trafiklab\Common\Model\Contract\FindStopLocationRequest;
-use Trafiklab\Common\Model\Contract\FindStopLocationResponse;
+namespace Trafiklab\ResRobot;
+
 use Trafiklab\Common\Model\Contract\PublicTransportApiWrapper;
 use Trafiklab\Common\Model\Contract\RoutePlanningRequest;
 use Trafiklab\Common\Model\Contract\RoutePlanningResponse;

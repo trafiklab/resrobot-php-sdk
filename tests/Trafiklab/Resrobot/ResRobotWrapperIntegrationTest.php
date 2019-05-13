@@ -5,7 +5,6 @@ namespace Trafiklab\ResRobot;
 use DateTime;
 use Exception;
 use PHPUnit_Framework_TestCase;
-use ResRobotWrapper;
 use Trafiklab\Common\Model\Enum\TimeTableType;
 use Trafiklab\Common\Model\Exceptions\DateTimeOutOfRangeException;
 use Trafiklab\Common\Model\Exceptions\InvalidKeyException;
