@@ -101,9 +101,9 @@ class ResRobotTimeTableEntry implements TimeTableEntry
     /**
      * The number of the line on which the vehicle is driving.
      *
-     * @return int
+     * @return string
      */
-    public function getLineNumber(): int
+    public function getLineNumber(): string
     {
         return $this->_lineNumber;
     }
