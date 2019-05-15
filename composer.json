@@ -21,7 +21,7 @@
   "require": {
     "php": ">=7.1",
     "ext-json": "*",
-    "trafiklab/php-sdk-commons": "~0.3.4"
+    "trafiklab/php-sdk-commons": "~0.4.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^5.5",
@@ -29,12 +29,6 @@
     "phpmd/phpmd": "^2.6.0",
     "friendsofphp/php-cs-fixer": "^2.14"
   },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/trafiklab/php-sdk-commons"
-    }
-  ],
   "autoload": {
     "psr-0": {
       "Trafiklab\\Resrobot": "src/"

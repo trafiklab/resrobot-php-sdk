@@ -126,6 +126,21 @@ class ResRobotWrapper implements PublicTransportApiWrapper
         return $this->_resrobotClient->lookupStopLocation($this->_key_reseplanerare, $request);
     }
 
+    public function createTimeTableRequestObject(): TimeTableRequest
+    {
+        return new ResRobotTimeTableRequest();
+    }
+
+    public function createRoutePlanningRequestObject(): RoutePlanningRequest
+    {
+        return new ResRobotRoutePlanningRequest();
+    }
+
+    public function createStopLocationLookupRequestObject(): StopLocationLookupRequest
+    {
+        return new ResRobotStopLocationLookupRequest();
+    }
+
     /**
      * @throws KeyRequiredException
      */

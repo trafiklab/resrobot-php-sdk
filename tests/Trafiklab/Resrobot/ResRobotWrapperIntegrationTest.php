@@ -11,9 +11,6 @@ use Trafiklab\Common\Model\Exceptions\InvalidKeyException;
 use Trafiklab\Common\Model\Exceptions\InvalidStopLocationException;
 use Trafiklab\Common\Model\Exceptions\KeyRequiredException;
 use Trafiklab\Resrobot\Model\Enum\ResRobotTransportType;
-use Trafiklab\ResRobot\Model\ResRobotRoutePlanningRequest;
-use Trafiklab\Resrobot\Model\ResRobotStopLocationLookupRequest;
-use Trafiklab\Resrobot\Model\ResRobotTimeTableRequest;
 
 class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
 {
@@ -34,11 +31,11 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
             $this->markTestIncomplete();
         }
 
-        $departuresRequest = new ResRobotTimeTableRequest();
+        $resRobotWrapper = new ResRobotWrapper();
+        $departuresRequest = $resRobotWrapper->createTimeTableRequestObject();
         $departuresRequest->setStopId("740000001");
         $departuresRequest->setTimeTableType(TimeTableType::DEPARTURES);
 
-        $resRobotWrapper = new ResRobotWrapper();
         $resRobotWrapper->setUserAgent("SDK Integration tests");
         $resRobotWrapper->setTimeTablesApiKey($this->_TIMETABLES_API_KEY);
         $response = $resRobotWrapper->getTimeTable($departuresRequest);
@@ -46,8 +43,7 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
         self::assertEquals(TimeTableType::DEPARTURES, $response->getType());
         self::assertFalse(empty($response->getTimetable()[0]->getOperator()));
 
-
-        $departuresRequest = new ResRobotTimeTableRequest();
+        $departuresRequest = $resRobotWrapper->createTimeTableRequestObject();
         $departuresRequest->setStopId("740020671"); // Arlanda buss
         $departuresRequest->setTimeTableType(TimeTableType::DEPARTURES);
         $departuresRequest->addTransportTypeToFilter(ResRobotTransportType::TRAIN_HIGH_SPEED); // Only trains
@@ -69,11 +65,11 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
 
         $this->expectException(InvalidStopLocationException::class);
 
-        $departuresRequest = new ResRobotTimeTableRequest();
+        $resRobotWrapper = new ResRobotWrapper();
+        $departuresRequest = $resRobotWrapper->createTimeTableRequestObject();
         $departuresRequest->setStopId("7400001");
         $departuresRequest->setTimeTableType(TimeTableType::DEPARTURES);
 
-        $resRobotWrapper = new ResRobotWrapper();
         $resRobotWrapper->setUserAgent("SDK Integration tests");
         $resRobotWrapper->setTimeTablesApiKey($this->_TIMETABLES_API_KEY);
         $resRobotWrapper->getTimeTable($departuresRequest);
@@ -83,11 +79,13 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
     public function testGetDepartures_invalidApiKey_shouldThrowException()
     {
         $this->expectException(InvalidKeyException::class);
-        $departuresRequest = new ResRobotTimeTableRequest();
+
+        $resRobotWrapper = new ResRobotWrapper();
+        $departuresRequest = $resRobotWrapper->createTimeTableRequestObject();
         $departuresRequest->setStopId("740000001");
         $departuresRequest->setTimeTableType(TimeTableType::DEPARTURES);
 
-        $resRobotWrapper = new ResRobotWrapper();
+
         $resRobotWrapper->setUserAgent("SDK Integration tests");
         $resRobotWrapper->setTimeTablesApiKey("ABC0123");
         $resRobotWrapper->getTimeTable($departuresRequest);
@@ -97,11 +95,11 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
     {
         $this->expectException(KeyRequiredException::class);
 
-        $departuresRequest = new ResRobotTimeTableRequest();
+        $resRobotWrapper = new ResRobotWrapper();
+        $departuresRequest = $resRobotWrapper->createTimeTableRequestObject();
         $departuresRequest->setStopId("740000001");
         $departuresRequest->setTimeTableType(TimeTableType::DEPARTURES);
 
-        $resRobotWrapper = new ResRobotWrapper();
         $resRobotWrapper->setUserAgent("SDK Integration tests");
         $resRobotWrapper->setTimeTablesApiKey("");
         $resRobotWrapper->getTimeTable($departuresRequest);
@@ -113,11 +111,11 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
             $this->markTestIncomplete();
         }
 
-        $arrivalsRequest = new ResRobotTimeTableRequest();
+        $resRobotWrapper = new ResRobotWrapper();
+        $arrivalsRequest = $resRobotWrapper->createTimeTableRequestObject();
         $arrivalsRequest->setStopId("740000001");
         $arrivalsRequest->setTimeTableType(TimeTableType::ARRIVALS);
 
-        $resRobotWrapper = new ResRobotWrapper();
         $resRobotWrapper->setUserAgent("SDK Integration tests");
         $resRobotWrapper->setTimeTablesApiKey($this->_TIMETABLES_API_KEY);
         $response = $resRobotWrapper->getTimeTable($arrivalsRequest);
@@ -125,7 +123,7 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
         self::assertEquals(TimeTableType::ARRIVALS, $response->getType());
         self::assertFalse(empty($response->getTimetable()[0]->getOperator()));
 
-        $arrivalsRequest = new ResRobotTimeTableRequest();
+        $arrivalsRequest = $resRobotWrapper->createTimeTableRequestObject();
         $arrivalsRequest->setStopId("740020671"); // Arlanda buss
         $arrivalsRequest->setTimeTableType(TimeTableType::ARRIVALS);
         $arrivalsRequest->addOperatorToFilter(277); // Flygbussarna
@@ -153,12 +151,12 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
         $queryTime = new DateTime();
         $queryTime->setTime(18, 0);
 
-        $routePlanningRequest = new ResRobotRoutePlanningRequest();
+        $resRobotWrapper = new ResRobotWrapper();
+        $routePlanningRequest = $resRobotWrapper->createRoutePlanningRequestObject();
         $routePlanningRequest->setOriginStopId("740000001");
         $routePlanningRequest->setDestinationStopId("740000002");
         $routePlanningRequest->setDateTime($queryTime);
 
-        $resRobotWrapper = new ResRobotWrapper();
         $resRobotWrapper->setUserAgent("SDK Integration tests");
         $resRobotWrapper->setRoutePlanningApiKey($this->_ROUTEPLANNING_API_KEY);
         $response = $resRobotWrapper->getRoutePlanning($routePlanningRequest);
@@ -181,13 +179,13 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
         $queryTime = new DateTime();
         $queryTime->setTime(18, 0);
 
-        $routePlanningRequest = new ResRobotRoutePlanningRequest();
+        $resRobotWrapper = new ResRobotWrapper();
+        $routePlanningRequest = $resRobotWrapper->createRoutePlanningRequestObject();
         $routePlanningRequest->setOriginStopId("740000001");
         $routePlanningRequest->setDestinationStopId("740000002");
         $routePlanningRequest->setDateTime($queryTime);
         $routePlanningRequest->setViaStopId("740000003");
 
-        $resRobotWrapper = new ResRobotWrapper();
         $resRobotWrapper->setUserAgent("SDK Integration tests");
         $resRobotWrapper->setRoutePlanningApiKey($this->_ROUTEPLANNING_API_KEY);
         $response = $resRobotWrapper->getRoutePlanning($routePlanningRequest);
@@ -214,11 +212,11 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
 
         $this->expectException(InvalidStopLocationException::class);
 
-        $routePlanningRequest = new ResRobotRoutePlanningRequest();
+        $resRobotWrapper = new ResRobotWrapper();
+        $routePlanningRequest = $resRobotWrapper->createRoutePlanningRequestObject();
         $routePlanningRequest->setOriginStopId("740000001");
         $routePlanningRequest->setDestinationStopId("7400-02");
 
-        $resRobotWrapper = new ResRobotWrapper();
         $resRobotWrapper->setUserAgent("SDK Integration tests");
         $resRobotWrapper->setRoutePlanningApiKey($this->_ROUTEPLANNING_API_KEY);
         $resRobotWrapper->getRoutePlanning($routePlanningRequest);
@@ -228,11 +226,11 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
     {
         $this->expectException(InvalidKeyException::class);
 
-        $routePlanningRequest = new ResRobotRoutePlanningRequest();
+        $resRobotWrapper = new ResRobotWrapper();
+        $routePlanningRequest = $resRobotWrapper->createRoutePlanningRequestObject();
         $routePlanningRequest->setOriginStopId("740000001");
         $routePlanningRequest->setDestinationStopId("740000002");
 
-        $resRobotWrapper = new ResRobotWrapper();
         $resRobotWrapper->setUserAgent("SDK Integration tests");
         $resRobotWrapper->setRoutePlanningApiKey("ABC-012");
         $resRobotWrapper->getRoutePlanning($routePlanningRequest);
@@ -245,11 +243,11 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
         $queryTime = new DateTime();
         $queryTime->setTime(18, 0);
 
-        $routePlanningRequest = new ResRobotRoutePlanningRequest();
+        $resRobotWrapper = new ResRobotWrapper();
+        $routePlanningRequest = $resRobotWrapper->createRoutePlanningRequestObject();
         $routePlanningRequest->setOriginStopId("740000001");
         $routePlanningRequest->setDestinationStopId("740000002");
 
-        $resRobotWrapper = new ResRobotWrapper();
         $resRobotWrapper->setUserAgent("SDK Integration tests");
         $resRobotWrapper->setRoutePlanningApiKey("");
         $resRobotWrapper->getRoutePlanning($routePlanningRequest);
@@ -262,14 +260,14 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
         $queryTime = new DateTime();
         $queryTime->setDate(2100, 1, 1);
 
-        $routePlanningRequest = new ResRobotRoutePlanningRequest();
+        $resRobotWrapper = new ResRobotWrapper();
+        $routePlanningRequest = $resRobotWrapper->createRoutePlanningRequestObject();
         $routePlanningRequest->setOriginStopId("740000001");
         $routePlanningRequest->setDestinationStopId("740000002");
         $routePlanningRequest->setLang("¯\_(ツ)_/¯");
         $routePlanningRequest->setDateTime($queryTime);
         $routePlanningRequest->addTransportTypeToFilter(99999);
 
-        $resRobotWrapper = new ResRobotWrapper();
         $resRobotWrapper->setUserAgent("SDK Integration tests");
         $resRobotWrapper->setRoutePlanningApiKey($this->_ROUTEPLANNING_API_KEY);
         $resRobotWrapper->getRoutePlanning($routePlanningRequest);
@@ -277,15 +275,13 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
 
     public function testLookupStopLocation_searchForTCentralen_shouldReturnMetroStation()
     {
-
-
-        $routePlanningRequest = new ResRobotStopLocationLookupRequest();
-        $routePlanningRequest->setSearchQuery("t-centralen");
-
         $resRobotWrapper = new ResRobotWrapper();
+        $lookupRequest = $resRobotWrapper->createStopLocationLookupRequestObject();
+        $lookupRequest->setSearchQuery("t-centralen");
+
         $resRobotWrapper->setUserAgent("SDK Integration tests");
         $resRobotWrapper->setStopLocationLookupApiKey($this->_ROUTEPLANNING_API_KEY);
-        $response = $resRobotWrapper->lookupStopLocation($routePlanningRequest);
+        $response = $resRobotWrapper->lookupStopLocation($lookupRequest);
 
         self::assertEquals("740020749", $response->getFoundStopLocations()[0]->getId());
         self::assertEquals("T-Centralen T-bana (Stockholm kn)", $response->getFoundStopLocations()[0]->getName());

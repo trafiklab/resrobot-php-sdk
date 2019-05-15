@@ -86,6 +86,16 @@ class ResRobotVehicle implements Vehicle
         return $this->_operatorName;
     }
 
+    /**
+     * The line number of the vehicle, identifying the line on which it runs. Example: 41X.
+     *
+     * @return string
+     */
+    public function getLineNumber(): string
+    {
+        return $this->_number;
+    }
+
     private function parseApiResponse(array $json)
     {
         $this->_name = $json['name'];
