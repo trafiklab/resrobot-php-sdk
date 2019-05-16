@@ -2,6 +2,7 @@
 
 namespace Trafiklab\ResRobot;
 
+use InvalidArgumentException;
 use Trafiklab\Common\Model\Contract\PublicTransportApiWrapper;
 use Trafiklab\Common\Model\Contract\RoutePlanningRequest;
 use Trafiklab\Common\Model\Contract\RoutePlanningResponse;
@@ -33,17 +34,28 @@ class ResRobotWrapper implements PublicTransportApiWrapper
         $this->_resrobotClient = new ResRobotClient();
     }
 
-    public function setRoutePlanningApiKey(string $key): void
+    public function setRoutePlanningApiKey(?string $key): void
     {
         $this->_key_reseplanerare = $key;
     }
 
-    public function setTimeTablesApiKey(string $key): void
+    public function setTimeTablesApiKey(?string $key): void
     {
         $this->_key_stolptidstabeller = $key;
     }
 
-    public function setUserAgent(string $userAgent): void
+    /**
+     * Set the API key used for looking up stop locations. For ResRobot this key is the same as the key used for
+     * route-planning.
+     *
+     * @param string $apiKey The API key to use.
+     */
+    public function setStopLocationLookupApiKey(?string $apiKey): void
+    {
+        $this->_key_reseplanerare = $apiKey;
+    }
+
+    public function setUserAgent(?string $userAgent): void
     {
         $this->_resrobotClient->setApplicationUserAgent($userAgent);
     }
@@ -88,17 +100,6 @@ class ResRobotWrapper implements PublicTransportApiWrapper
         }
 
         return $this->_resrobotClient->getRoutePlanning($this->_key_reseplanerare, $request);
-    }
-
-    /**
-     * Set the API key used for looking up stop locations. For ResRobot this key is the same as the key used for
-     * route-planning.
-     *
-     * @param string $apiKey The API key to use.
-     */
-    public function setStopLocationLookupApiKey(string $apiKey): void
-    {
-        $this->_key_reseplanerare = $apiKey;
     }
 
     /**
