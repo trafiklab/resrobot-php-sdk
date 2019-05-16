@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Trafiklab\Sl\Model;
+namespace Trafiklab\ResRobot\Model;
 
 use Trafiklab\Common\Model\Contract\StopLocationLookupResponse;
 use Trafiklab\Common\Model\Contract\WebResponse;

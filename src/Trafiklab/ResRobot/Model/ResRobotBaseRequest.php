@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Trafiklab\Resrobot\Model;
+namespace Trafiklab\ResRobot\Model;
 
 
 use DateTime;

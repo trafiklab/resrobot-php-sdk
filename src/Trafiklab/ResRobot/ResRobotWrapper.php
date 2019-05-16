@@ -16,10 +16,10 @@ use Trafiklab\Common\Model\Exceptions\KeyRequiredException;
 use Trafiklab\Common\Model\Exceptions\QuotaExceededException;
 use Trafiklab\Common\Model\Exceptions\RequestTimedOutException;
 use Trafiklab\Common\Model\Exceptions\ServiceUnavailableException;
-use Trafiklab\Resrobot\Internal\ResRobotClient;
+use Trafiklab\ResRobot\Internal\ResRobotClient;
 use Trafiklab\ResRobot\Model\ResRobotRoutePlanningRequest;
-use Trafiklab\Resrobot\Model\ResRobotStopLocationLookupRequest;
-use Trafiklab\Resrobot\Model\ResRobotTimeTableRequest;
+use Trafiklab\ResRobot\Model\ResRobotStopLocationLookupRequest;
+use Trafiklab\ResRobot\Model\ResRobotTimeTableRequest;
 
 class ResRobotWrapper implements PublicTransportApiWrapper
 {

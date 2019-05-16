@@ -2,11 +2,11 @@
 
 /** @noinspection PhpUnhandledExceptionInspection */
 
-namespace Trafiklab\Sl\Model;
+namespace Trafiklab\ResRobot\Model;
 
 use PHPUnit_Framework_TestCase;
 use Trafiklab\Common\Model\Contract\WebResponse;
-use Trafiklab\Resrobot\Model\ResRobotStopLocationLookupRequest;
+use Trafiklab\ResRobot\Model\ResRobotStopLocationLookupRequest;
 
 class ResRobotStopLocationLookupResponseTest extends PHPUnit_Framework_TestCase
 {

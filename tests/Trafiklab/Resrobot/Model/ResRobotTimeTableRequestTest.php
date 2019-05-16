@@ -1,12 +1,12 @@
 <?php
 
-namespace Trafiklab\Resrobot\Model;
+namespace Trafiklab\ResRobot\Model;
 
 
 use DateTime;
 use PHPUnit_Framework_TestCase;
 use Trafiklab\Common\Model\Enum\TimeTableType;
-use Trafiklab\Resrobot\Model\Enum\ResRobotTransportType;
+use Trafiklab\ResRobot\Model\Enum\ResRobotTransportType;
 
 class ResRobotTimeTableRequestTest extends PHPUnit_Framework_TestCase
 {

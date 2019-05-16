@@ -1,14 +1,14 @@
 <?php
 
 
-namespace Trafiklab\Resrobot\Contract\Model;
+namespace Trafiklab\ResRobot\Contract\Model;
 
 
 use Trafiklab\Common\Internal\WebResponseImpl;
 use Trafiklab\Common\Model\Contract\TimeTableResponse;
 use Trafiklab\Common\Model\Contract\WebResponse;
 use Trafiklab\Common\Model\Enum\TimeTableType;
-use Trafiklab\Resrobot\Model\ResRobotTimeTableEntry;
+use Trafiklab\ResRobot\Model\ResRobotTimeTableEntry;
 
 class ResRobotTimeTableResponse implements TimeTableResponse
 {

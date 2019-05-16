@@ -1,6 +1,6 @@
 <?php
 
-namespace Trafiklab\Resrobot\Model;
+namespace Trafiklab\ResRobot\Model;
 
 use DateTime;
 use Trafiklab\Common\Model\Contract\TimeTableEntry;
@@ -9,7 +9,7 @@ use Trafiklab\Common\Model\Enum\TimeTableType;
 /**
  * An entry in a timetable, describing a single departure or arrival of a vehicle at a stoplocation.
  *
- * @package Trafiklab\Resrobot\Model
+ * @package Trafiklab\ResRobot\Model
  */
 class ResRobotTimeTableEntry implements TimeTableEntry
 {

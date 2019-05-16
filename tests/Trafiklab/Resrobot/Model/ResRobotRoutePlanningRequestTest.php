@@ -1,12 +1,12 @@
 <?php
 
-namespace Trafiklab\Resrobot\Model;
+namespace Trafiklab\ResRobot\Model;
 
 
 use DateTime;
 use PHPUnit_Framework_TestCase;
 use Trafiklab\Common\Model\Enum\RoutePlanningSearchType;
-use Trafiklab\Resrobot\Model\Enum\ResRobotTransportType;
+use Trafiklab\ResRobot\Model\Enum\ResRobotTransportType;
 
 class ResRobotRoutePlanningRequestTest extends PHPUnit_Framework_TestCase
 {

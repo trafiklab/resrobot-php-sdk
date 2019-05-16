@@ -7,7 +7,7 @@ namespace Trafiklab\ResRobot\Model;
 use PHPUnit_Framework_TestCase;
 use Trafiklab\Common\Model\Contract\WebResponse;
 use Trafiklab\Common\Model\Enum\TimeTableType;
-use Trafiklab\Resrobot\Contract\Model\ResRobotTimeTableResponse;
+use Trafiklab\ResRobot\Contract\Model\ResRobotTimeTableResponse;
 
 class ResRobot extends PHPUnit_Framework_TestCase
 {

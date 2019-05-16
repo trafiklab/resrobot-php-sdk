@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Trafiklab\Resrobot\Internal;
+namespace Trafiklab\ResRobot\Internal;
 
 use Trafiklab\Common\Internal\CurlWebClient;
 use Trafiklab\Common\Internal\WebClient;
@@ -18,15 +18,15 @@ use Trafiklab\Common\Model\Exceptions\InvalidStopLocationException;
 use Trafiklab\Common\Model\Exceptions\QuotaExceededException;
 use Trafiklab\Common\Model\Exceptions\RequestTimedOutException;
 use Trafiklab\Common\Model\Exceptions\ServiceUnavailableException;
-use Trafiklab\Resrobot\Contract\Model\ResRobotTimeTableResponse;
+use Trafiklab\ResRobot\Contract\Model\ResRobotTimeTableResponse;
 use Trafiklab\ResRobot\Model\ResRobotRoutePlanningRequest;
 use Trafiklab\ResRobot\Model\ResRobotRoutePlanningResponse;
-use Trafiklab\Resrobot\Model\ResRobotTimeTableRequest;
-use Trafiklab\Sl\Model\ResRobotStopLocationLookupResponse;
+use Trafiklab\ResRobot\Model\ResRobotTimeTableRequest;
+use Trafiklab\ResRobot\Model\ResRobotStopLocationLookupResponse;
 
 /**
  * @internal Builds requests and gets data
- * @package  Trafiklab\Resrobot\Internal
+ * @package  Trafiklab\ResRobot\Internal
  */
 class ResRobotClient
 {

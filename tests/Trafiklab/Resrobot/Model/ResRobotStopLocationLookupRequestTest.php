@@ -5,8 +5,8 @@ namespace Trafiklab\ResRobot\Model;
 use PHPUnit_Framework_TestCase;
 use Trafiklab\Common\Model\Enum\TimeTableType;
 use Trafiklab\Common\Model\Enum\TransportType;
-use Trafiklab\Sl\Model\ResRobotStopLocationLookupEntry;
-use Trafiklab\Sl\Model\ResRobotStopLocationLookupResponse;
+use Trafiklab\ResRobot\Model\ResRobotStopLocationLookupEntry;
+use Trafiklab\ResRobot\Model\ResRobotStopLocationLookupResponse;
 
 class ResRobotStopLocationLookupRequestTest extends PHPUnit_Framework_TestCase
 {

@@ -10,7 +10,7 @@ use Trafiklab\Common\Model\Exceptions\DateTimeOutOfRangeException;
 use Trafiklab\Common\Model\Exceptions\InvalidKeyException;
 use Trafiklab\Common\Model\Exceptions\InvalidStopLocationException;
 use Trafiklab\Common\Model\Exceptions\KeyRequiredException;
-use Trafiklab\Resrobot\Model\Enum\ResRobotTransportType;
+use Trafiklab\ResRobot\Model\Enum\ResRobotTransportType;
 
 class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
 {

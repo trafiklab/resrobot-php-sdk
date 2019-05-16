@@ -1,6 +1,6 @@
 <?php
 
-namespace Trafiklab\Resrobot\Model;
+namespace Trafiklab\ResRobot\Model;
 
 use Trafiklab\Common\Model\Contract\TimeTableRequest;
 use Trafiklab\Common\Model\Enum\TimeTableType;

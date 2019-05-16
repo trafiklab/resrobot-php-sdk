@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Trafiklab\Resrobot\Model\Enum;
+namespace Trafiklab\ResRobot\Model\Enum;
 
 
 abstract class ResRobotTransportType

@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Trafiklab\Sl\Model;
+namespace Trafiklab\ResRobot\Model;
 
 
 use InvalidArgumentException;
 use Trafiklab\Common\Model\Contract\StopLocationLookupEntry;
 use Trafiklab\Common\Model\Enum\TransportType;
-use Trafiklab\Resrobot\Model\Enum\ResRobotTransportType;
+use Trafiklab\ResRobot\Model\Enum\ResRobotTransportType;
 
 class ResRobotStopLocationLookupEntry implements StopLocationLookupEntry
 {
