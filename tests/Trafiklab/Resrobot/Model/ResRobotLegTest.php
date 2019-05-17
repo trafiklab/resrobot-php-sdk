@@ -9,7 +9,7 @@ use PHPUnit_Framework_TestCase;
 
 class ResRobotLegTest extends PHPUnit_Framework_TestCase
 {
-    function testConstructor_validDepartureBoardJson_shouldReturnCorrectObjectRepresentation()
+    function testConstructor_validRoutePlanningLegJson_shouldReturnCorrectObjectRepresentation()
     {
         $jsonArray = json_decode(file_get_contents("./tests/Resources/ResRobot/validRoutePlanningLeg.json"), true);
         $leg = new ResRobotLeg($jsonArray);

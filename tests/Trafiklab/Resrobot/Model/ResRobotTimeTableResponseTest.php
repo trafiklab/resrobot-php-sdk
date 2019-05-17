@@ -9,7 +9,7 @@ use Trafiklab\Common\Model\Contract\WebResponse;
 use Trafiklab\Common\Model\Enum\TimeTableType;
 use Trafiklab\ResRobot\Contract\Model\ResRobotTimeTableResponse;
 
-class ResRobot extends PHPUnit_Framework_TestCase
+class ResRobotTimeTableResponseTest extends PHPUnit_Framework_TestCase
 {
     function testConstructor_validDepartureBoardJson_shouldReturnCorrectObjectRepresentation()
     {

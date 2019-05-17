@@ -9,7 +9,7 @@ use Trafiklab\Common\Model\Contract\WebResponse;
 
 class RoutePlanningReplyTest extends PHPUnit_Framework_TestCase
 {
-    function testConstructor_validDepartureBoardJson_shouldReturnCorrectObjectRepresentation()
+    function testConstructor_validRoutePlanningReplyJson_shouldReturnCorrectObjectRepresentation()
     {
         $validRoutePlanning = json_decode(
             file_get_contents("./tests/Resources/ResRobot/validRoutePlanningReply.json"), true);

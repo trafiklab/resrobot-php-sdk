@@ -10,7 +10,7 @@ use Trafiklab\Common\Model\Enum\TransportType;
 
 class ResRobotVehicleTest extends PHPUnit_Framework_TestCase
 {
-    function testConstructor_validDepartureBoardJson_shouldReturnCorrectObjectRepresentation()
+    function testConstructor_validVehicleJson_shouldReturnCorrectObjectRepresentation()
     {
         $jsonArray = json_decode(
             file_get_contents("./tests/Resources/ResRobot/validRoutePlanningVehicle.json"), true);
