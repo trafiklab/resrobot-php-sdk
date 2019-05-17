@@ -5,6 +5,7 @@ namespace Trafiklab\ResRobot\Model;
 
 
 use Trafiklab\Common\Model\Contract\Vehicle;
+use Trafiklab\Common\Model\Enum\TransportType;
 
 class ResRobotVehicle implements Vehicle
 {
@@ -100,7 +101,30 @@ class ResRobotVehicle implements Vehicle
     {
         $this->_name = $json['name'];
         $this->_number = $json['num'];
-        $this->_type = $json['catOutL'];
+
+        switch ($json['catCode']) {
+            case 1:
+            case 2:
+            case 4:
+                $this->_type = TransportType::TRAIN;
+                break;
+            case 3:
+                $this->_type = TransportType::BUS;
+                break;
+            case 5:
+                $this->_type = TransportType::METRO;
+                break;
+            case 6:
+                $this->_type = TransportType::TRAM;
+                break;
+            case 7:
+                $this->_type = TransportType::METRO;
+                break;
+            case 8:
+                $this->_type = TransportType::SHIP;
+                break;
+        };
+
         $this->_operatorCode = $json['operatorCode'];
         $this->_operatorName = $json['operator'];
         $this->_operatorUrl = $json['operatorUrl'];

@@ -6,6 +6,7 @@ namespace Trafiklab\ResRobot\Model;
 
 use DateTime;
 use PHPUnit_Framework_TestCase;
+use Trafiklab\Common\Model\Enum\TransportType;
 
 class ResRobotVehicleTest extends PHPUnit_Framework_TestCase
 {
@@ -16,7 +17,7 @@ class ResRobotVehicleTest extends PHPUnit_Framework_TestCase
         $vehicle = new ResRobotVehicle($jsonArray);
 
         self::assertEquals("Regional Tåg 11154", $vehicle->getName());
-        self::assertEquals("Regional Tåg", $vehicle->getType());
+        self::assertEquals(TransportType::TRAIN, $vehicle->getType());
         self::assertEquals(11154, $vehicle->getNumber());
         self::assertEquals(300, $vehicle->getOperatorCode());
         self::assertEquals("Öresundståg", $vehicle->getOperatorName());
