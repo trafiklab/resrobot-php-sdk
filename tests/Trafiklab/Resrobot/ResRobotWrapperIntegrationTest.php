@@ -20,9 +20,17 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
     public function __construct(?string $name = null, array $data = [], string $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
-        $keys = $this->getTestKeys();
-        $this->_TIMETABLES_API_KEY = $keys['TIMETABLES_API_KEY'];
-        $this->_ROUTEPLANNING_API_KEY = $keys['ROUTEPLANNING_API_KEY'];
+        $testKeysFromFile = $this->getTestKeysFromFile();
+        $this->_TIMETABLES_API_KEY = $testKeysFromFile['TIMETABLES_API_KEY'];
+        $this->_ROUTEPLANNING_API_KEY = $testKeysFromFile['ROUTEPLANNING_API_KEY'];
+
+        if (empty($this->_TIMETABLES_API_KEY)) {
+            $this->_TIMETABLES_API_KEY = getenv('TIMETABLES_API_KEY');
+        }
+
+        if (empty($this->_TIMETABLES_API_KEY)) {
+            $this->_TIMETABLES_API_KEY = getenv('ROUTEPLANNING_API_KEY');
+        }
     }
 
     public function testGetDepartures_validParameters_shouldReturnResponse()
@@ -255,6 +263,10 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
 
     public function testGetRoutePlanning_invalidDate_shouldThrowException()
     {
+        if (empty($this->_ROUTEPLANNING_API_KEY)) {
+            $this->markTestIncomplete();
+        }
+
         $this->expectException(DateTimeOutOfRangeException::class);
 
         $queryTime = new DateTime();
@@ -292,7 +304,7 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
      *
      * @return array
      */
-    private function getTestKeys(): array
+    private function getTestKeysFromFile(): array
     {
 
         try {
