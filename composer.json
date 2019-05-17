@@ -29,6 +29,9 @@
     "phpmd/phpmd": "^2.6.0",
     "friendsofphp/php-cs-fixer": "^2.14"
   },
+  "scripts": {
+    "test": "phpunit"
+  },
   "autoload": {
     "psr-0": {
       "Trafiklab\\ResRobot": "src/"
