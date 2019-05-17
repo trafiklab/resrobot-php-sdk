@@ -3,15 +3,16 @@
 [![Build status](https://travis-ci.com/trafiklab/resrobot-php-sdk.svg?branch=master)](https://travis-ci.com/trafiklab/resrobot-php-sdk)
 [![codecov](https://codecov.io/gh/trafiklab/resrobot-php-sdk/branch/master/graph/badge.svg)](https://codecov.io/gh/trafiklab/resrobot-php-sdk)
 [![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
+
 ResRobot offers realtime data about Sweden's public transport. Show all departures and arrivals for a stop, or easily plan a route from A to B.
 More information can be found at [Trafiklab - ResRobot routeplanner](https://www.trafiklab.se/api/resrobot-reseplanerare) and [Trafiklab - ResRobot departures](https://www.trafiklab.se/api/resrobot-reseplanerare).
 
 This repository contains a PHP SDK to easily use the ResRobot APIs. This way you don't need to worry about making requests, caching, 
 or parsing responses. All responses are parsed and returned as PHP classes.
 
-**_Work in progress_**: _There is no 1.0.0 release available yet. If you want to get a sneak peak, 
-you can get it by adding this repository manually to your projects composer file. 
-However, keep in mind that breaking changes are still possible. A first release is estimated to arrive in one of the next months._
+**_Work in progress_**: _There is no stable release available yet. If you want to get a sneak peak, 
+you can get it by trying out a 0.x version. However, keep in mind that breaking changes are still possible. 
+A first release is estimated to arrive in one of the next months._
 
 ## Installation
 Installing can be done by using Composer:
@@ -47,13 +48,14 @@ you need to obtain an API key from [Trafiklab](https://trafiklab.se) first.
 The following code example illustrates how you can retrieve a timetable for a certain stop.
 
 ```
-  $departuresRequest = new TimeTableRequest();
-  $departuresRequest->setStopId("740000001");
-  $departuresRequest->setTimeTableType(TimeTableType::DEPARTURES);
+  $wrapper = new ResRobotWrapper();
+  
+  $wrapper = $wrapper->createTimeTableRequestObject();
+  $wrapper->setStopId("740000001");
+  $wrapper->setTimeTableType(TimeTableType::DEPARTURES);
 
-  $resRobotWrapper = new ResRobotWrapper();
-  $resRobotWrapper->setUserAgent("<YOUR_USER_AGENT>");
-  $resRobotWrapper->setTimeTablesApiKey("<YOUR_API_KEY>");
+  $wrapper->setUserAgent("<YOUR_USER_AGENT>");
+  $wrapper->setTimeTablesApiKey("<YOUR_API_KEY>");
   $response = $resRobotWrapper->getTimeTable($departuresRequest);
 ```
 `<YOUR_API_KEY>` is obtained from [Trafiklab](https://trafiklab.se). `<YOUR_USER_AGENT>` is a string which identifies your application. 
@@ -71,6 +73,7 @@ This method returns an array of TimeTableEntry instances, each of which describe
 You can look at the code and PHPDoc in order to get up-to-date information on which fields are available. 
 Detailed information about ResRobot responses can be found at the [ResRobot departures/arrivals API page](https://www.trafiklab.se/api/resrobot-reseplanerare).
 
+_Work in progress_
 ```
    $response->getTimetable()
 ```
@@ -80,20 +83,23 @@ Detailed information about ResRobot responses can be found at the [ResRobot depa
 The following code example illustrates how you can plan a route from A to B
 
 ```    
-    $queryTime = new DateTime();
-    $queryTime->setTime(18, 0);
+  $queryTime = new DateTime();
+  $queryTime->setTime(18, 0);
 
-    $routePlanningRequest = new RoutePlanningRequest();
-    $routePlanningRequest->setOriginId("740000001");
-    $routePlanningRequest->setDestinationId("740000002");
-    $routePlanningRequest->setDateTime($queryTime);
+  $wrapper = new ResRobotWrapper();
+  
+  $wrapper = $wrapper->createRoutePlanningRequestObject();
+  $wrapper->setOriginId("740000001");
+  $wrapper->setDestinationId("740000002");
+  $wrapper->setDateTime($queryTime);
 
-    $resRobotWrapper = new ResRobotWrapper();
-    $resRobotWrapper->setUserAgent(("<YOUR_USER_AGENT>");
-    $resRobotWrapper->setRoutePlanningApiKey("<YOUR_API_KEY>");
-    $response = $resRobotWrapper->getRoutePlanning($routePlanningRequest);
+  $wrapper->setUserAgent(("<YOUR_USER_AGENT>");
+  $wrapper->setRoutePlanningApiKey("<YOUR_API_KEY>");
+  $response = $resRobotWrapper->getRoutePlanning($routePlanningRequest);
 ```
 ##### Response
+
+_Work in progress_
 
 ```
    $response->getTrips()
