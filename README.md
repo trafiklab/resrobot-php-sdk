@@ -1,5 +1,7 @@
 # ResRobot PHP SDK
 
+<img src="https://travis-ci.com/trafiklab/resrobot-php-sdk.svg?branch=master" alt="build status"></img>
+
 ResRobot offers realtime data about Sweden's public transport. Show all departures and arrivals for a stop, or easily plan a route from A to B.
 More information can be found at [Trafiklab - ResRobot routeplanner](https://www.trafiklab.se/api/resrobot-reseplanerare) and [Trafiklab - ResRobot departures](https://www.trafiklab.se/api/resrobot-reseplanerare).
 

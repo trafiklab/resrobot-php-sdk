@@ -21,8 +21,14 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
     {
         parent::__construct($name, $data, $dataName);
         $testKeysFromFile = $this->getTestKeysFromFile();
-        $this->_TIMETABLES_API_KEY = $testKeysFromFile['TIMETABLES_API_KEY'];
-        $this->_ROUTEPLANNING_API_KEY = $testKeysFromFile['ROUTEPLANNING_API_KEY'];
+
+        if ($testKeysFromFile != null && key_exists('TIMETABLES_API_KEY', $testKeysFromFile)) {
+            $this->_TIMETABLES_API_KEY = $testKeysFromFile['TIMETABLES_API_KEY'];
+        }
+
+        if ($testKeysFromFile != null && key_exists('ROUTEPLANNING_API_KEY', $testKeysFromFile)) {
+            $this->_ROUTEPLANNING_API_KEY = $testKeysFromFile['ROUTEPLANNING_API_KEY'];
+        }
 
         if (empty($this->_TIMETABLES_API_KEY)) {
             $this->_TIMETABLES_API_KEY = getenv('TIMETABLES_API_KEY');
@@ -287,6 +293,10 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
 
     public function testLookupStopLocation_searchForTCentralen_shouldReturnMetroStation()
     {
+        if (empty($this->_ROUTEPLANNING_API_KEY)) {
+            $this->markTestIncomplete();
+        }
+
         $resRobotWrapper = new ResRobotWrapper();
         $lookupRequest = $resRobotWrapper->createStopLocationLookupRequestObject();
         $lookupRequest->setSearchQuery("t-centralen");
@@ -306,6 +316,9 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
      */
     private function getTestKeysFromFile(): array
     {
+        if (!file_exists(".testkeys")) {
+            return [];
+        }
 
         try {
             $testKeys = [];
