@@ -18,11 +18,11 @@ use Trafiklab\Common\Model\Exceptions\InvalidStopLocationException;
 use Trafiklab\Common\Model\Exceptions\QuotaExceededException;
 use Trafiklab\Common\Model\Exceptions\RequestTimedOutException;
 use Trafiklab\Common\Model\Exceptions\ServiceUnavailableException;
-use Trafiklab\ResRobot\Contract\Model\ResRobotTimeTableResponse;
 use Trafiklab\ResRobot\Model\ResRobotRoutePlanningRequest;
 use Trafiklab\ResRobot\Model\ResRobotRoutePlanningResponse;
 use Trafiklab\ResRobot\Model\ResRobotTimeTableRequest;
 use Trafiklab\ResRobot\Model\ResRobotStopLocationLookupResponse;
+use Trafiklab\ResRobot\Model\ResRobotTimeTableResponse;
 
 /**
  * @internal Builds requests and gets data
