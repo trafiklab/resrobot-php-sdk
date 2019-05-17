@@ -9,5 +9,6 @@ env:
     # Timetables API key
     - secure: "PsYqvpOR0c6QTJlVS0iOyek1Nsu4u4p3eSQ+uT5QAlJYxFu/qx4X7XK/dQr4Ei/e8RLd7W2SdV8eRlles89HG8m/eCwgU0xuw5RAjgQLgqxJ+ZzHYeWsXi3ws/VZkzi5/nqyTNe8cygnlGKjKGtR9HJ48YjNwoJXzmMByohkEIDfssH41xg2qrAWXYnt3kGzy2QIipeY4VzqGXX/yNIlNDOS4bzsNblGub7uLFn5b4lYgPTiA+nrH9h+zTvGHjnjC5+01q/ZTIKtswDRJOVYgyOhSYSONJaO5a2qjG9WEEVWp6taG6XUvxvlbd0hlwmedKdPraTh89Y2N52/Y8AQsoA8Q+gDjXR4V8vUuCPBjdzJHylvPqRnjatpLalHzhxNvemLcq49pmQ1w9nwZvlOZgNnSeONtmtp9RzE/xTY55mczubZrhABdKttwNmT2kGjGBmfH9ZcY0jRq2zKQqZLmQdbokgbHy40an4l6qGONkeyTcFDLh4Q8fFdS9sWDGwA6VaHNKmdd6741pnSZ9Rug1L/T1JOyZLmed3wi+UaDU7Gz8v2qtEF/d/MSl+Zes7/stb5Dv18ZV2UJsSpp5zVnOczZTOdkHYTL6d2YieeSWQjtNL/Y5a4vc2ma2/q7ZGv9oAtg7J1B95pn4xlOxKboTR+9+JO0urdNERxm41Qc60="
 
+
 after_success:
-  - codecov
+- bash <(curl -s https://codecov.io/bash)
