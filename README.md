@@ -1,6 +1,7 @@
 # ResRobot PHP SDK
 
 [![Build status](https://travis-ci.com/trafiklab/resrobot-php-sdk.svg?branch=master)](https://travis-ci.com/trafiklab/resrobot-php-sdk)
+[![Latest Stable Version](https://poser.pugx.org/trafiklab/resrobot-php-sdk/v/stable)](https://packagist.org/packages/trafiklab/resrobot-php-sdk)
 [![codecov](https://codecov.io/gh/trafiklab/resrobot-php-sdk/branch/master/graph/badge.svg)](https://codecov.io/gh/trafiklab/resrobot-php-sdk)
 [![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
 
