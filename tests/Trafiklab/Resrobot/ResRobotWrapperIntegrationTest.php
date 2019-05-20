@@ -17,9 +17,9 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
     private $_TIMETABLES_API_KEY = "";
     private $_ROUTEPLANNING_API_KEY = "";
 
-    public function __construct(?string $name = null, array $data = [], string $dataName = '')
+    public function __construct()
     {
-        parent::__construct($name, $data, $dataName);
+        parent::__construct();
         $testKeysFromFile = $this->getTestKeysFromFile();
 
         if ($testKeysFromFile != null && key_exists('TIMETABLES_API_KEY', $testKeysFromFile)) {
@@ -35,7 +35,7 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
         }
 
         if (empty($this->_TIMETABLES_API_KEY)) {
-            $this->_TIMETABLES_API_KEY = getenv('ROUTEPLANNING_API_KEY');
+            $this->_ROUTEPLANNING_API_KEY = getenv('ROUTEPLANNING_API_KEY');
         }
     }
 
