@@ -34,7 +34,7 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
             $this->_TIMETABLES_API_KEY = getenv('TIMETABLES_API_KEY');
         }
 
-        if (empty($this->_TIMETABLES_API_KEY)) {
+        if (empty($this->_ROUTEPLANNING_API_KEY)) {
             $this->_ROUTEPLANNING_API_KEY = getenv('ROUTEPLANNING_API_KEY');
         }
     }
