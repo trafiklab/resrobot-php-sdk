@@ -97,6 +97,10 @@ class ResRobotVehicle implements Vehicle
         return $this->_number;
     }
 
+    /**
+     * Parse (a part of) an API response and store the result in this object.
+     * @param array $json
+     */
     private function parseApiResponse(array $json)
     {
         $this->_name = $json['name'];

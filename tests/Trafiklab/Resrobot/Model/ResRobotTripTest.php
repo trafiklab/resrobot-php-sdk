@@ -16,6 +16,9 @@ class ResRobotTripTest extends PHPUnit_Framework_TestCase
         $trip = new ResRobotTrip($jsonArray);
         self::assertNotNull($trip->getLegs());
         self::assertEquals(3, count($trip->getLegs()));
+        self::assertEquals(42000, $trip->getDuration());
+        self::assertEquals(740000001, $trip->getDeparture()->getStopId());
+        self::assertEquals(740000002, $trip->getArrival()->getStopId());
     }
 
 }

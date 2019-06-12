@@ -5,6 +5,7 @@ namespace Trafiklab\ResRobot\Model;
 
 use Trafiklab\Common\Model\Contract\RoutePlanningLeg;
 use Trafiklab\Common\Model\Contract\Trip;
+use Trafiklab\Common\Model\Contract\VehicleStop;
 
 /**
  * A Trip, often also called Journey, describes one possibility for travelling between two locations. A Trip can
@@ -41,6 +42,48 @@ class ResRobotTrip implements Trip
         return $this->_legs;
     }
 
+    /**
+     * Get the duration of this trip in seconds.
+     *
+     * @return int
+     */
+    public function getDuration(): int
+    {
+        return $this->getArrival()->getScheduledArrivalTime()->getTimestamp() -
+            $this->getDeparture()->getScheduledDepartureTime()->getTimestamp();
+    }
+
+    /**
+     * Get the departure for the first leg.
+     *
+     * @return VehicleStop
+     */
+    public function getDeparture(): VehicleStop
+    {
+        if (count($this->_legs) < 1) {
+            return null;
+        }
+        return $this->_legs[0]->getDeparture();
+    }
+
+    /**
+     * Get the arrival for the last leg.
+     *
+     * @return VehicleStop
+     */
+    public function getArrival(): VehicleStop
+    {
+        if (count($this->_legs) < 1) {
+            return null;
+        }
+        return end($this->_legs)->getArrival();
+    }
+
+    /**
+     * Parse (a part of) an API response and store the result in this object.
+     *
+     * @param array $json
+     */
     private function parseApiResponse(array $json)
     {
         $this->_legs = [];

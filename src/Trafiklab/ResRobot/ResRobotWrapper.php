@@ -34,14 +34,24 @@ class ResRobotWrapper implements PublicTransportApiWrapper
         $this->_resrobotClient = new ResRobotClient();
     }
 
-    public function setRoutePlanningApiKey(?string $key): void
+    /**
+     * Set the API key used for route-planning.
+     *
+     * @param string $apiKey The API key to use.
+     */
+    public function setRoutePlanningApiKey(?string $apiKey): void
     {
-        $this->_key_reseplanerare = $key;
+        $this->_key_reseplanerare = $apiKey;
     }
 
-    public function setTimeTablesApiKey(?string $key): void
+    /**
+     * Set the API key used for looking up timetables.
+     *
+     * @param string $apiKey The API key to use.
+     */
+    public function setTimeTablesApiKey(?string $apiKey): void
     {
-        $this->_key_stolptidstabeller = $key;
+        $this->_key_stolptidstabeller = $apiKey;
     }
 
     /**

@@ -120,6 +120,11 @@ class ResRobotStopLocationLookupEntry implements StopLocationLookupEntry
         }
     }
 
+    /**
+     * Parse an API response and store the result in this object.
+     *
+     * @param array $json
+     */
     private function parseApiResponse(array $json)
     {
         $this->_id = $json['extId'];

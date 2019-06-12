@@ -57,6 +57,7 @@ class ResRobotTimeTableResponse implements TimeTableResponse
     }
 
     /**
+     * Parse (a part of) an API response and store the result in this object.
      * @param array $json The API output to parse.
      */
     private function parseApiResponse(array $json): void

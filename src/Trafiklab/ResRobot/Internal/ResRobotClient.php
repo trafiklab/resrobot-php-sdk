@@ -20,12 +20,12 @@ use Trafiklab\Common\Model\Exceptions\RequestTimedOutException;
 use Trafiklab\Common\Model\Exceptions\ServiceUnavailableException;
 use Trafiklab\ResRobot\Model\ResRobotRoutePlanningRequest;
 use Trafiklab\ResRobot\Model\ResRobotRoutePlanningResponse;
-use Trafiklab\ResRobot\Model\ResRobotTimeTableRequest;
 use Trafiklab\ResRobot\Model\ResRobotStopLocationLookupResponse;
+use Trafiklab\ResRobot\Model\ResRobotTimeTableRequest;
 use Trafiklab\ResRobot\Model\ResRobotTimeTableResponse;
 
 /**
- * @internal Builds requests and gets data
+ * @internal Builds requests and gets data.
  * @package  Trafiklab\ResRobot\Internal
  */
 class ResRobotClient
@@ -58,8 +58,8 @@ class ResRobotClient
 
 
     /**
-     * @param string                   $key
-     * @param ResRobotTimeTableRequest $request
+     * @param string                   $key     The API key to use.
+     * @param ResRobotTimeTableRequest $request The request object holding all parameters.
      *
      * @return TimeTableResponse
      * @throws InvalidKeyException
@@ -101,16 +101,10 @@ class ResRobotClient
     }
 
     /**
-     * @param string $applicationUserAgent
-     */
-    public function setApplicationUserAgent(string $applicationUserAgent): void
-    {
-        $this->applicationUserAgent = $applicationUserAgent;
-    }
-
-    /**
-     * @param string                       $key
-     * @param ResRobotRoutePlanningRequest $request
+     * Get a route planning from A to B.
+     *
+     * @param string                       $key     The API key to use.
+     * @param ResRobotRoutePlanningRequest $request The request object holding all parameters.
      *
      * @return ResRobotRoutePlanningResponse
      * @throws InvalidKeyException
@@ -159,7 +153,7 @@ class ResRobotClient
     }
 
     /**
-     * @param string                  $key
+     * @param string                    $key
      * @param StopLocationLookupRequest $request
      *
      * @return StopLocationLookupResponse
@@ -187,6 +181,15 @@ class ResRobotClient
         return new ResRobotStopLocationLookupResponse($response, $json);
     }
 
+    /**
+     * Set the user agent of the application using the SDK.
+     *
+     * @param string $applicationUserAgent
+     */
+    public function setApplicationUserAgent(string $applicationUserAgent): void
+    {
+        $this->applicationUserAgent = $applicationUserAgent;
+    }
 
     private function getUserAgent()
     {

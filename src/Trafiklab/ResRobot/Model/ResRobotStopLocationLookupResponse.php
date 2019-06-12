@@ -43,6 +43,11 @@ class ResRobotStopLocationLookupResponse implements StopLocationLookupResponse
         return $this->_stopLocations;
     }
 
+    /**
+     * Parse (a part of) an API response and store the result in this object.
+     *
+     * @param array $json
+     */
     private function parseApiResponse(array $json)
     {
         $this->_stopLocations = [];

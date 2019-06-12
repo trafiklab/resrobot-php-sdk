@@ -20,6 +20,7 @@ class ResRobotTimeTableResponseTest extends PHPUnit_Framework_TestCase
         self::assertEquals(TimeTableType::DEPARTURES, $departureBoard->getType());
 
         self::assertEquals(25, count($departureBoard->getTimetable()));
+        self::assertEquals($dummyResponse, $departureBoard->getOriginalApiResponse());
     }
 
     function testConstructor_validArrivalBoardJson_shouldReturnCorrectObjectRepresentation()

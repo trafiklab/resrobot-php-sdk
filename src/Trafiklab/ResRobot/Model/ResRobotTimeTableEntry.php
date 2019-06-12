@@ -144,6 +144,11 @@ class ResRobotTimeTableEntry implements TimeTableEntry
         return $this->_transportType;
     }
 
+    /**
+     * Parse (a part of) an API response and store the result in this object.
+     *
+     * @param array $json
+     */
     private function parseApiResponse(array $json): void
     {
         $this->_stopId = $json['stopExtId'];

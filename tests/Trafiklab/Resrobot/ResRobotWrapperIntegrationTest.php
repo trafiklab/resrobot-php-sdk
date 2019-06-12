@@ -177,8 +177,8 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
 
         self::assertTrue(count($response->getTrips()) > 0);
         $firstTripLegs = $response->getTrips()[0]->getLegs();
-        self::assertEquals("740000001", $firstTripLegs[0]->getOrigin()->getStopId());
-        self::assertEquals("740000002", end($firstTripLegs)->getDestination()->getStopId());
+        self::assertEquals("740000001", $firstTripLegs[0]->getDeparture()->getStopId());
+        self::assertEquals("740000002", end($firstTripLegs)->getArrival()->getStopId());
     }
 
     /**
@@ -206,12 +206,12 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
 
         self::assertTrue(count($response->getTrips()) > 0);
         $firstTripLegs = $response->getTrips()[0]->getLegs();
-        self::assertEquals("740000001", $firstTripLegs[0]->getOrigin()->getStopId());
-        self::assertEquals("740000002", end($firstTripLegs)->getDestination()->getStopId());
+        self::assertEquals("740000001", $firstTripLegs[0]->getDeparture()->getStopId());
+        self::assertEquals("740000002", end($firstTripLegs)->getArrival()->getStopId());
 
         $foundViaStation = false;
         foreach ($response->getTrips()[0]->getLegs() as $leg) {
-            if ($leg->getDestination()->getStopId() == "740000003") {
+            if ($leg->getArrival()->getStopId() == "740000003") {
                 $foundViaStation = true;
             }
         }

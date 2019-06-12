@@ -18,6 +18,7 @@ class RoutePlanningReplyTest extends PHPUnit_Framework_TestCase
 
         self::assertNotNull($routePlanningResponse->getTrips());
         self::assertEquals(6, count($routePlanningResponse->getTrips()));
+        self::assertEquals($dummyResponse, $routePlanningResponse->getOriginalApiResponse());
     }
 
 }

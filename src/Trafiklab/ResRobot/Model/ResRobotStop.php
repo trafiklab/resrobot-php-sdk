@@ -98,6 +98,11 @@ class ResRobotStop implements VehicleStop
         return $this->_longitude;
     }
 
+    /**
+     * Parse an API response and store the result in this object.
+     *
+     * @param array $json
+     */
     private function parseApiResponse(array $json)
     {
         $this->_stopId = $json['extId'];

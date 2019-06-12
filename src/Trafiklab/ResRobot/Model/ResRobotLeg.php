@@ -41,7 +41,7 @@ class ResRobotLeg implements RoutePlanningLeg
      *
      * @return VehicleStop The stoplocation at which this leg starts.
      */
-    public function getOrigin(): VehicleStop
+    public function getDeparture(): VehicleStop
     {
         return $this->_origin;
     }
@@ -51,7 +51,7 @@ class ResRobotLeg implements RoutePlanningLeg
      *
      * @return VehicleStop The stoplocation at which this leg ends.
      */
-    public function getDestination(): VehicleStop
+    public function getArrival(): VehicleStop
     {
         return $this->_destination;
     }
@@ -81,11 +81,21 @@ class ResRobotLeg implements RoutePlanningLeg
     /**
      * Intermediary stops made by the vehicle on this leg.
      *
-     * @return ResRobotStop[] Stops between the origin and destination, excluding the origin and destination.
+     * @return VehicleStop[] Stops between the origin and destination, excluding the origin and destination.
      */
     public function getIntermediaryStops(): array
     {
         return $this->_intermediaryStops;
+    }
+
+    public function getDuration(): int
+    {
+        if ($this->getArrival()->getScheduledArrivalTime() == null
+            || $this->getDeparture()->getScheduledDepartureTime() == null) {
+            return 0;
+        }
+        return $this->getArrival()->getScheduledArrivalTime()->getTimestamp() -
+            $this->getDeparture()->getScheduledDepartureTime()->getTimestamp();
     }
 
     /**
@@ -109,6 +119,11 @@ class ResRobotLeg implements RoutePlanningLeg
         return $this->_type;
     }
 
+    /**
+     * Parse (a part of) an API response and store the result in this object.
+     *
+     * @param array $json
+     */
     private function parseApiResponse(array $json)
     {
         $this->_notes = [];
