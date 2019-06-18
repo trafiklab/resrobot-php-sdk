@@ -9,9 +9,13 @@ namespace Trafiklab\ResRobot\Model;
 
 use PHPUnit_Framework_TestCase;
 use Trafiklab\Common\Model\Enum\TimeTableType;
+use Trafiklab\Common\Model\Enum\TransportType;
 
 class ResRobotTimeTableEntryTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     * @throws \Trafiklab\Common\Model\Exceptions\TrafiklabSdkException
+     */
     function testConstructor_validDepartureBoardEntryJson_shouldReturnCorrectObjectRepresentation()
     {
         $validDepartures = json_decode(
@@ -27,8 +31,12 @@ class ResRobotTimeTableEntryTest extends PHPUnit_Framework_TestCase
             $departureBoardEntry->getScheduledStopTime());
         self::assertEquals("Alby T-bana (Botkyrka kn)", $departureBoardEntry->getDirection());
         self::assertEquals(TimeTableType::DEPARTURES, $departureBoardEntry->getTimeTableType());
+        self::assertEquals(TransportType::METRO, $departureBoardEntry->getTransportType());
     }
 
+    /**
+     * @throws \Trafiklab\Common\Model\Exceptions\TrafiklabSdkException
+     */
     function testConstructor_validArrivalBoardEntryJson_shouldReturnCorrectObjectRepresentation()
     {
         $validDepartures = json_decode(

@@ -10,6 +10,8 @@ namespace Trafiklab\ResRobot\Model;
 use DateTime;
 use Trafiklab\Common\Model\Contract\TimeTableEntry;
 use Trafiklab\Common\Model\Enum\TimeTableType;
+use Trafiklab\Common\Model\Enum\TransportType;
+use Trafiklab\Common\Model\Exceptions\TrafiklabSdkException;
 
 /**
  * An entry in a timetable, describing a single departure or arrival of a vehicle at a stoplocation.
@@ -35,6 +37,7 @@ class ResRobotTimeTableEntry implements TimeTableEntry
      * @param int   $type
      *
      * @internal
+     * @throws TrafiklabSdkException
      */
     public function __construct(array $json, int $type)
     {
@@ -153,9 +156,16 @@ class ResRobotTimeTableEntry implements TimeTableEntry
      * Parse (a part of) an API response and store the result in this object.
      *
      * @param array $json
+     *
+     * @throws TrafiklabSdkException
      */
     private function parseApiResponse(array $json): void
     {
+        if (!key_exists('stopExtId', $json)) {
+            throw new TrafiklabSdkException("The server responded with an invalid JSON response.
+             stopExtId is missing.", 500);
+        }
+
         $this->_stopId = $json['stopExtId'];
         $this->_stopName = $json['stop'];
         $this->_lineName = $json['name'];
@@ -171,7 +181,50 @@ class ResRobotTimeTableEntry implements TimeTableEntry
                 $json['date'] . ' ' . $json['time']);
 
         $this->_operator = $json['Product']['operator'];
+        $this->parseTransportType($json);
 
-        // Todo: parse transport type;
+    }
+
+    /**
+     * Parse the transport type for this entry.
+     *
+     * @param array $json
+     */
+    private function parseTransportType(array $json): void
+    {
+        /*
+                * Possible transport categories:
+                * 'BLT': Local bus
+                * 'BAX': Airport bus
+                * 'BXB': Express bus
+                * 'BRE': Regional bus
+                * 'SLT': Local tram
+                * 'JLT': Local train
+                * 'JRE': Regional train
+                * 'JAX': Airport train
+                * 'JIC': IC train
+                * 'JBL':
+                * 'JNT': Night train
+                * 'ULT': Local metro
+                * 'FLT': Local ferry
+                */
+
+        switch (substr($json['transportCategory'], 0, 1)) {
+            case 'B':
+                $this->_transportType = TransportType::BUS;
+                break;
+            case 'S':
+                $this->_transportType = TransportType::TRAM;
+                break;
+            case 'J':
+                $this->_transportType = TransportType::TRAIN;
+                break;
+            case 'U':
+                $this->_transportType = TransportType::METRO;
+                break;
+            case 'F':
+                $this->_transportType = TransportType::SHIP;
+                break;
+        }
     }
 }
