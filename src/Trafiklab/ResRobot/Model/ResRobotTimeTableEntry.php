@@ -29,6 +29,8 @@ class ResRobotTimeTableEntry implements TimeTableEntry
     private $_timeTableType;
     private $_operator;
     private $_transportType;
+    private $_platform;
+    private $_estimatedTime;
 
     /**
      * ResRobotTimeTableEntry constructor.
@@ -153,6 +155,36 @@ class ResRobotTimeTableEntry implements TimeTableEntry
     }
 
     /**
+     * The track or platform where the vehicle will halt.
+     *
+     * @return String
+     */
+    public function getPlatform(): ?string
+    {
+        return $this->_platform;
+    }
+
+    /**
+     * The estimated time at which the vehicle will arrive at the stop location.
+     *
+     * @return DateTime
+     */
+    public function getEstimatedStopTime(): ?DateTime
+    {
+        return $this->_estimatedTime;
+    }
+
+    /**
+     * Whether or not this vehicle's stop is cancelled.
+     *
+     * @return bool
+     */
+    public function isCancelled(): bool
+    {
+        return false; // TODO: try to implement this somehow
+    }
+
+    /**
      * Parse (a part of) an API response and store the result in this object.
      *
      * @param array $json
@@ -169,6 +201,16 @@ class ResRobotTimeTableEntry implements TimeTableEntry
         $this->_stopId = $json['stopExtId'];
         $this->_stopName = $json['stop'];
         $this->_lineName = $json['name'];
+
+        if (key_exists('rtDate', $json) && key_exists('rtTime', $json)) {
+            $this->_estimatedTime = DateTime::createFromFormat("Y-m-d H:i:s",
+                $json['rtDate'] . ' ' . $json['rtTime']);
+        }
+
+        if (key_exists('rtTrack', $json)) {
+            $this->_platform = $json['rtTrack'];
+        }
+
         $this->_lineNumber = $json['transportNumber'];
         if ($this->_timeTableType == TimeTableType::DEPARTURES) {
             $this->_direction = $json['direction'];

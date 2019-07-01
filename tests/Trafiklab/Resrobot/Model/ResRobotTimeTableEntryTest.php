@@ -27,8 +27,11 @@ class ResRobotTimeTableEntryTest extends PHPUnit_Framework_TestCase
         self::assertEquals(13, $departureBoardEntry->getLineNumber());
         self::assertEquals("T-Centralen T-bana (Stockholm kn)", $departureBoardEntry->getStopName());
         self::assertEquals("740020749", $departureBoardEntry->getStopId());
+        self::assertEquals("2", $departureBoardEntry->getPlatform());
         self::assertEquals(\DateTime::createFromFormat("Y-m-d H:i", "2019-04-16 15:08"),
             $departureBoardEntry->getScheduledStopTime());
+        self::assertEquals(\DateTime::createFromFormat("Y-m-d H:i", "2019-04-16 15:09"),
+            $departureBoardEntry->getEstimatedStopTime());
         self::assertEquals("Alby T-bana (Botkyrka kn)", $departureBoardEntry->getDirection());
         self::assertEquals(TimeTableType::DEPARTURES, $departureBoardEntry->getTimeTableType());
         self::assertEquals(TransportType::METRO, $departureBoardEntry->getTransportType());

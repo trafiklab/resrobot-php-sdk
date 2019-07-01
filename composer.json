@@ -21,7 +21,7 @@
   "require": {
     "php": ">=7.1",
     "ext-json": "*",
-    "trafiklab/php-sdk-commons": "1.0.*"
+    "trafiklab/php-sdk-commons": "~1.1.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^5.5",
