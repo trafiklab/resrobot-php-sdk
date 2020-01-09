@@ -56,7 +56,7 @@ class ResRobotClient
     {
         $this->_webClient = $webClient;
         if ($webClient == null) {
-            $this->_webClient = new CurlWebClient($this->getUserAgent());
+            $this->_webClient = new CurlWebClient(self::SDK_USER_AGENT);
         }
     }
 
@@ -193,6 +193,7 @@ class ResRobotClient
     public function setApplicationUserAgent(string $applicationUserAgent): void
     {
         $this->applicationUserAgent = $applicationUserAgent;
+        $this->_webClient->setUserAgent($this->getUserAgent());
     }
 
     private function getUserAgent()
