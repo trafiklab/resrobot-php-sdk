@@ -7,11 +7,11 @@
 
 namespace Trafiklab\ResRobot\Model;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Trafiklab\Common\Model\Enum\TimeTableType;
 use Trafiklab\Common\Model\Enum\TransportType;
 
-class ResRobotTimeTableEntryTest extends PHPUnit_Framework_TestCase
+class ResRobotTimeTableEntryTest extends TestCase
 {
     /**
      * @throws \Trafiklab\Common\Model\Exceptions\TrafiklabSdkException
@@ -23,16 +23,16 @@ class ResRobotTimeTableEntryTest extends PHPUnit_Framework_TestCase
         $departureBoardEntry = new ResRobotTimeTableEntry($validDepartures, TimeTableType::DEPARTURES);
 
         self::assertEquals("SL", $departureBoardEntry->getOperator());
-        self::assertEquals("Länstrafik -Tunnelbana 13", $departureBoardEntry->getLineName());
-        self::assertEquals(13, $departureBoardEntry->getLineNumber());
+        self::assertEquals("Länstrafik -Tunnelbana 10", $departureBoardEntry->getLineName());
+        self::assertEquals(10, $departureBoardEntry->getLineNumber());
         self::assertEquals("T-Centralen T-bana (Stockholm kn)", $departureBoardEntry->getStopName());
         self::assertEquals("740020749", $departureBoardEntry->getStopId());
-        self::assertEquals("2", $departureBoardEntry->getPlatform());
-        self::assertEquals(\DateTime::createFromFormat("Y-m-d H:i", "2019-04-16 15:08"),
+        self::assertEquals("6", $departureBoardEntry->getPlatform());
+        self::assertEquals(\DateTime::createFromFormat("Y-m-d H:i", "2021-09-23 16:49"),
             $departureBoardEntry->getScheduledStopTime());
-        self::assertEquals(\DateTime::createFromFormat("Y-m-d H:i", "2019-04-16 15:09"),
+        self::assertEquals(\DateTime::createFromFormat("Y-m-d H:i", "2021-09-24 16:50"),
             $departureBoardEntry->getEstimatedStopTime());
-        self::assertEquals("Alby T-bana (Botkyrka kn)", $departureBoardEntry->getDirection());
+        self::assertEquals("Kungsträdgården T-bana (Stockholm kn)", $departureBoardEntry->getDirection());
         self::assertEquals(TimeTableType::DEPARTURES, $departureBoardEntry->getTimeTableType());
         self::assertEquals(TransportType::METRO, $departureBoardEntry->getTransportType());
     }
@@ -51,9 +51,9 @@ class ResRobotTimeTableEntryTest extends PHPUnit_Framework_TestCase
         self::assertEquals(19, $arrivalBoardEntry->getLineNumber());
         self::assertEquals("T-Centralen T-bana (Stockholm kn)", $arrivalBoardEntry->getStopName());
         self::assertEquals("740020749", $arrivalBoardEntry->getStopId());
-        self::assertEquals(\DateTime::createFromFormat("Y-m-d H:i", "2019-04-16 15:09"),
+        self::assertEquals(\DateTime::createFromFormat("Y-m-d H:i", "2021-09-23 16:37"),
             $arrivalBoardEntry->getScheduledStopTime());
-        self::assertEquals("Högdalen T-bana (Stockholm kn)", $arrivalBoardEntry->getDirection());
+        self::assertEquals("Hagsätra T-bana (Stockholm kn)", $arrivalBoardEntry->getDirection());
         self::assertEquals(TimeTableType::ARRIVALS, $arrivalBoardEntry->getTimeTableType());
     }
 }

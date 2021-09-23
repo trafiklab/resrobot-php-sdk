@@ -1,94 +1,578 @@
 {
-  "StopLocation": [
+  "stopLocationOrCoordLocation": [
     {
-      "id": "740098000",
-      "extId": "740098000",
-      "name": "STOCKHOLM",
-      "lon": 18.058151,
-      "lat": 59.330136,
-      "weight": 32767,
-      "products": 254
+      "StopLocation": {
+        "productAtStop": [
+          {
+            "icon": {
+              "foregroundColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "hex": "#FFFFFF"
+              },
+              "backgroundColor": {
+                "r": 133,
+                "g": 168,
+                "b": 27,
+                "hex": "#85A81B"
+              },
+              "res": "prod_ice"
+            },
+            "name": "",
+            "cls": "2"
+          },
+          {
+            "icon": {
+              "foregroundColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "hex": "#FFFFFF"
+              },
+              "backgroundColor": {
+                "r": 183,
+                "g": 23,
+                "b": 102,
+                "hex": "#B71766"
+              },
+              "res": "prod_comm"
+            },
+            "name": "",
+            "cls": "16"
+          },
+          {
+            "icon": {
+              "foregroundColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "hex": "#FFFFFF"
+              },
+              "backgroundColor": {
+                "r": 46,
+                "g": 132,
+                "b": 211,
+                "hex": "#2E84D3"
+              },
+              "res": "prod_tram"
+            },
+            "name": "",
+            "cls": "64"
+          },
+          {
+            "icon": {
+              "foregroundColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "hex": "#FFFFFF"
+              },
+              "backgroundColor": {
+                "r": 231,
+                "g": 172,
+                "b": 0,
+                "hex": "#E7AC00"
+              },
+              "res": "prod_bus"
+            },
+            "name": "",
+            "cls": "128"
+          }
+        ],
+        "timezoneOffset": 120,
+        "id": "A=1@O=Solna station@X=18010041@Y=59365104@U=80@L=740000759@B=1@p=1632109347@",
+        "extId": "740000759",
+        "name": "Solna station",
+        "lon": 18.010041,
+        "lat": 59.365104,
+        "weight": 6748,
+        "products": 210
+      }
     },
     {
-      "id": "740000001",
-      "extId": "740000001",
-      "name": "Stockholm Centralstation",
-      "lon": 18.058151,
-      "lat": 59.330136,
-      "weight": 4631,
-      "products": 6
+      "StopLocation": {
+        "productAtStop": [
+          {
+            "icon": {
+              "foregroundColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "hex": "#FFFFFF"
+              },
+              "backgroundColor": {
+                "r": 46,
+                "g": 132,
+                "b": 211,
+                "hex": "#2E84D3"
+              },
+              "res": "prod_sub"
+            },
+            "name": "",
+            "cls": "32"
+          },
+          {
+            "icon": {
+              "foregroundColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "hex": "#FFFFFF"
+              },
+              "backgroundColor": {
+                "r": 46,
+                "g": 132,
+                "b": 211,
+                "hex": "#2E84D3"
+              },
+              "res": "prod_tram"
+            },
+            "name": "",
+            "cls": "64"
+          },
+          {
+            "icon": {
+              "foregroundColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "hex": "#FFFFFF"
+              },
+              "backgroundColor": {
+                "r": 231,
+                "g": 172,
+                "b": 0,
+                "hex": "#E7AC00"
+              },
+              "res": "prod_bus"
+            },
+            "name": "",
+            "cls": "128"
+          }
+        ],
+        "timezoneOffset": 120,
+        "id": "A=1@O=SOLNA CENTRUM@X=17998975@Y=59358856@U=80@L=740098534@B=1@p=1632109347@",
+        "extId": "740098534",
+        "name": "SOLNA CENTRUM",
+        "lon": 17.998975,
+        "lat": 59.358856,
+        "weight": 9667,
+        "products": 224,
+        "meta": true
+      }
     },
     {
-      "id": "740021661",
-      "extId": "740021661",
-      "name": "Stockholm Fridhemsplan T-bana",
-      "lon": 18.029188,
-      "lat": 59.332203,
-      "weight": 22921,
-      "products": 168
+      "StopLocation": {
+        "productAtStop": [
+          {
+            "icon": {
+              "foregroundColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "hex": "#FFFFFF"
+              },
+              "backgroundColor": {
+                "r": 46,
+                "g": 132,
+                "b": 211,
+                "hex": "#2E84D3"
+              },
+              "res": "prod_sub"
+            },
+            "name": "",
+            "cls": "32"
+          },
+          {
+            "icon": {
+              "foregroundColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "hex": "#FFFFFF"
+              },
+              "backgroundColor": {
+                "r": 46,
+                "g": 132,
+                "b": 211,
+                "hex": "#2E84D3"
+              },
+              "res": "prod_tram"
+            },
+            "name": "",
+            "cls": "64"
+          },
+          {
+            "icon": {
+              "foregroundColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "hex": "#FFFFFF"
+              },
+              "backgroundColor": {
+                "r": 231,
+                "g": 172,
+                "b": 0,
+                "hex": "#E7AC00"
+              },
+              "res": "prod_bus"
+            },
+            "name": "",
+            "cls": "128"
+          }
+        ],
+        "timezoneOffset": 120,
+        "id": "A=1@O=Solna centrum T-bana@X=17998975@Y=59358856@U=80@L=740021642@B=1@p=1632109347@",
+        "extId": "740021642",
+        "name": "Solna centrum T-bana",
+        "lon": 17.998975,
+        "lat": 59.358856,
+        "weight": 7982,
+        "products": 224
+      }
     },
     {
-      "id": "740021658",
-      "extId": "740021658",
-      "name": "Stockholm Hornstull T-bana",
-      "lon": 18.034024,
-      "lat": 59.315834,
-      "weight": 22921,
-      "products": 168
+      "StopLocation": {
+        "productAtStop": [
+          {
+            "icon": {
+              "foregroundColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "hex": "#FFFFFF"
+              },
+              "backgroundColor": {
+                "r": 46,
+                "g": 132,
+                "b": 211,
+                "hex": "#2E84D3"
+              },
+              "res": "prod_sub"
+            },
+            "name": "",
+            "cls": "32"
+          },
+          {
+            "icon": {
+              "foregroundColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "hex": "#FFFFFF"
+              },
+              "backgroundColor": {
+                "r": 231,
+                "g": 172,
+                "b": 0,
+                "hex": "#E7AC00"
+              },
+              "res": "prod_bus"
+            },
+            "name": "",
+            "cls": "128"
+          }
+        ],
+        "timezoneOffset": 120,
+        "id": "A=1@O=Solna strand T-bana@X=17973985@Y=59354191@U=80@L=740021671@B=1@p=1632109347@",
+        "extId": "740021671",
+        "name": "Solna strand T-bana",
+        "lon": 17.973985,
+        "lat": 59.354191,
+        "weight": 7982,
+        "products": 160
+      }
     },
     {
-      "id": "740021665",
-      "extId": "740021665",
-      "name": "Stockholm S:t Eriksplan T-bana",
-      "lon": 18.036991,
-      "lat": 59.339655,
-      "weight": 22921,
-      "products": 168
+      "StopLocation": {
+        "productAtStop": [
+          {
+            "icon": {
+              "foregroundColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "hex": "#FFFFFF"
+              },
+              "backgroundColor": {
+                "r": 46,
+                "g": 132,
+                "b": 211,
+                "hex": "#2E84D3"
+              },
+              "res": "prod_tram"
+            },
+            "name": "",
+            "cls": "64"
+          }
+        ],
+        "timezoneOffset": 120,
+        "id": "A=1@O=Solna business park Spårv@X=17978785@Y=59359755@U=80@L=740064052@B=1@p=1632109347@",
+        "extId": "740064052",
+        "name": "Solna business park Spårv",
+        "lon": 17.978785,
+        "lat": 59.359755,
+        "weight": 1685,
+        "products": 64
+      }
     },
     {
-      "id": "740021667",
-      "extId": "740021667",
-      "name": "Stockholm Hötorget T-bana",
-      "lon": 18.063536,
-      "lat": 59.335529,
-      "weight": 21195,
-      "products": 160
+      "StopLocation": {
+        "productAtStop": [
+          {
+            "icon": {
+              "foregroundColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "hex": "#FFFFFF"
+              },
+              "backgroundColor": {
+                "r": 46,
+                "g": 132,
+                "b": 211,
+                "hex": "#2E84D3"
+              },
+              "res": "prod_sub"
+            },
+            "name": "",
+            "cls": "32"
+          },
+          {
+            "icon": {
+              "foregroundColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "hex": "#FFFFFF"
+              },
+              "backgroundColor": {
+                "r": 46,
+                "g": 132,
+                "b": 211,
+                "hex": "#2E84D3"
+              },
+              "res": "prod_tram"
+            },
+            "name": "",
+            "cls": "64"
+          },
+          {
+            "icon": {
+              "foregroundColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "hex": "#FFFFFF"
+              },
+              "backgroundColor": {
+                "r": 231,
+                "g": 172,
+                "b": 0,
+                "hex": "#E7AC00"
+              },
+              "res": "prod_bus"
+            },
+            "name": "",
+            "cls": "128"
+          }
+        ],
+        "timezoneOffset": 120,
+        "id": "A=1@O=Solna centrum Spårv@X=17996269@Y=59361355@U=80@L=740064053@B=1@p=1632109347@",
+        "extId": "740064053",
+        "name": "Solna centrum Spårv",
+        "lon": 17.996269,
+        "lat": 59.361355,
+        "weight": 1685,
+        "products": 224
+      }
     },
     {
-      "id": "740021663",
-      "extId": "740021663",
-      "name": "Stockholm Kristineberg T-bana",
-      "lon": 18.003182,
-      "lat": 59.332815,
-      "weight": 21195,
-      "products": 160
+      "StopLocation": {
+        "productAtStop": [
+          {
+            "icon": {
+              "foregroundColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "hex": "#FFFFFF"
+              },
+              "backgroundColor": {
+                "r": 231,
+                "g": 172,
+                "b": 0,
+                "hex": "#E7AC00"
+              },
+              "res": "prod_bus"
+            },
+            "name": "",
+            "cls": "128"
+          }
+        ],
+        "timezoneOffset": 120,
+        "id": "A=1@O=Solna Business Park@X=17979720@Y=59359477@U=80@L=740059049@B=1@p=1632109347@",
+        "extId": "740059049",
+        "name": "Solna Business Park",
+        "lon": 17.97972,
+        "lat": 59.359477,
+        "weight": 479,
+        "products": 128
+      }
     },
     {
-      "id": "740021654",
-      "extId": "740021654",
-      "name": "Stockholm Medborgarplatsen Tba",
-      "lon": 18.07355,
-      "lat": 59.314342,
-      "weight": 21195,
-      "products": 160
+      "StopLocation": {
+        "productAtStop": [
+          {
+            "icon": {
+              "foregroundColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "hex": "#FFFFFF"
+              },
+              "backgroundColor": {
+                "r": 46,
+                "g": 132,
+                "b": 211,
+                "hex": "#2E84D3"
+              },
+              "res": "prod_sub"
+            },
+            "name": "",
+            "cls": "32"
+          },
+          {
+            "icon": {
+              "foregroundColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "hex": "#FFFFFF"
+              },
+              "backgroundColor": {
+                "r": 46,
+                "g": 132,
+                "b": 211,
+                "hex": "#2E84D3"
+              },
+              "res": "prod_tram"
+            },
+            "name": "",
+            "cls": "64"
+          },
+          {
+            "icon": {
+              "foregroundColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "hex": "#FFFFFF"
+              },
+              "backgroundColor": {
+                "r": 231,
+                "g": 172,
+                "b": 0,
+                "hex": "#E7AC00"
+              },
+              "res": "prod_bus"
+            },
+            "name": "",
+            "cls": "128"
+          }
+        ],
+        "timezoneOffset": 120,
+        "id": "A=1@O=Solna centrum norra@X=17997807@Y=59361436@U=80@L=740045585@B=1@p=1632109347@",
+        "extId": "740045585",
+        "name": "Solna centrum norra",
+        "lon": 17.997807,
+        "lat": 59.361436,
+        "weight": 479,
+        "products": 224
+      }
     },
     {
-      "id": "740021013",
-      "extId": "740021013",
-      "name": "Stockholm Odenplan T-bana",
-      "lon": 18.049701,
-      "lat": 59.342954,
-      "weight": 21195,
-      "products": 160
+      "StopLocation": {
+        "productAtStop": [
+          {
+            "icon": {
+              "foregroundColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "hex": "#FFFFFF"
+              },
+              "backgroundColor": {
+                "r": 231,
+                "g": 172,
+                "b": 0,
+                "hex": "#E7AC00"
+              },
+              "res": "prod_bus"
+            },
+            "name": "",
+            "cls": "128"
+          }
+        ],
+        "timezoneOffset": 120,
+        "id": "A=1@O=Solna kyrka@X=18024289@Y=59353822@U=80@L=740045587@B=1@p=1632109347@",
+        "extId": "740045587",
+        "name": "Solna kyrka",
+        "lon": 18.024289,
+        "lat": 59.353822,
+        "weight": 479,
+        "products": 128
+      }
     },
     {
-      "id": "740021666",
-      "extId": "740021666",
-      "name": "Stockholm Rådmansgatan T-bana",
-      "lon": 18.058771,
-      "lat": 59.340572,
-      "weight": 21195,
-      "products": 160
+      "StopLocation": {
+        "productAtStop": [
+          {
+            "icon": {
+              "foregroundColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "hex": "#FFFFFF"
+              },
+              "backgroundColor": {
+                "r": 231,
+                "g": 172,
+                "b": 0,
+                "hex": "#E7AC00"
+              },
+              "res": "prod_bus"
+            },
+            "name": "",
+            "cls": "128"
+          }
+        ],
+        "timezoneOffset": 120,
+        "id": "A=1@O=Solna stadshus@X=18004602@Y=59359162@U=80@L=740045586@B=1@p=1632109347@",
+        "extId": "740045586",
+        "name": "Solna stadshus",
+        "lon": 18.004602,
+        "lat": 59.359162,
+        "weight": 479,
+        "products": 128
+      }
     }
-  ]
+  ],
+  "TechnicalMessages": {
+    "TechnicalMessage": [
+      {
+        "value": "2021-09-23 17:05:16",
+        "key": "requestTime"
+      },
+      {
+        "value": "ttp=15235#15321 plancode0=9z1w1 planid=1632109347 planid0=1632109347 planid_adr=1479298166 plancode_adr=q0r10 srvv=5.45.SAMTRAFIKEN.10.0.0 (ef2245e) [Mar 11 2021] tlibv=TRFVER: (n/a) TRIVIAL_NO-OP_TARIFF jno=1",
+        "key": "backendInfo"
+      }
+    ]
+  },
+  "serverVersion": "2.16.1",
+  "dialectVersion": "2.16",
+  "requestId": "ubm6kiig4akkgw4k"
 }

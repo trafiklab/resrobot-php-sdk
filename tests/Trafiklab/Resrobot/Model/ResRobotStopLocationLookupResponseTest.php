@@ -9,11 +9,10 @@
 
 namespace Trafiklab\ResRobot\Model;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Trafiklab\Common\Model\Contract\WebResponse;
-use Trafiklab\ResRobot\Model\ResRobotStopLocationLookupRequest;
 
-class ResRobotStopLocationLookupResponseTest extends PHPUnit_Framework_TestCase
+class ResRobotStopLocationLookupResponseTest extends TestCase
 {
     function testConstructor_validStopLocationLookupJson_shouldReturnCorrectObjectRepresentation()
     {
@@ -24,7 +23,7 @@ class ResRobotStopLocationLookupResponseTest extends PHPUnit_Framework_TestCase
 
         self::assertEquals($webResponse, $response->getOriginalApiResponse());
         self::assertEquals(10, count($response->getFoundStopLocations()));
-        self::assertEquals("740098000", $response->getFoundStopLocations()[0]->getId());
+        self::assertEquals("740000759", $response->getFoundStopLocations()[0]->getId());
     }
 
 }

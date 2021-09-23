@@ -11,6 +11,9 @@ namespace Trafiklab\ResRobot\Model;
 use Trafiklab\Common\Model\Contract\Vehicle;
 use Trafiklab\Common\Model\Enum\TransportType;
 
+/**
+ * A vehicle, called "product" in ResRobot.
+ */
 class ResRobotVehicle implements Vehicle
 {
 
@@ -135,6 +138,6 @@ class ResRobotVehicle implements Vehicle
 
         $this->_operatorCode = $json['operatorCode'];
         $this->_operatorName = $json['operator'];
-        $this->_operatorUrl = $json['operatorUrl'];
+        $this->_operatorUrl = null;
     }
 }

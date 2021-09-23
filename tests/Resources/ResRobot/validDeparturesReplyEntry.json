@@ -1,25 +1,89 @@
 {
-  "Product": {
-    "name": "Länstrafik -Tunnelbana 13",
-    "num": "13",
+  "JourneyDetailRef": {
+    "ref": "1|54311|10|80|23092021"
+  },
+  "JourneyStatus": "P",
+  "ProductAtStop": {
+    "icon": {
+      "foregroundColor": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "hex": "#FFFFFF"
+      },
+      "backgroundColor": {
+        "r": 46,
+        "g": 132,
+        "b": 211,
+        "hex": "#2E84D3"
+      },
+      "res": "prod_sub"
+    },
+    "name": "Länstrafik -Tunnelbana 10",
+    "internalName": "Länstrafik -Tunnelbana 10",
+    "displayNumber": "10",
+    "num": "10",
+    "line": "10",
+    "lineId": "1275001000001",
+    "catOut": "ULT",
+    "catIn": "ULT",
     "catCode": "5",
+    "cls": "32",
     "catOutS": "ULT",
     "catOutL": "Länstrafik -Tunnelbana",
     "operatorCode": "275",
     "operator": "SL",
-    "operatorUrl": "http://www.sl.se"
+    "admin": "275___",
+    "matchId": "10;10;127987"
   },
-  "name": "Länstrafik -Tunnelbana 13",
-  "type": "S",
+  "Product": [
+    {
+      "icon": {
+        "foregroundColor": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "hex": "#FFFFFF"
+        },
+        "backgroundColor": {
+          "r": 46,
+          "g": 132,
+          "b": 211,
+          "hex": "#2E84D3"
+        },
+        "res": "prod_sub"
+      },
+      "name": "Länstrafik -Tunnelbana 10",
+      "internalName": "Länstrafik -Tunnelbana 10",
+      "displayNumber": "10",
+      "num": "10",
+      "line": "10",
+      "lineId": "1275001000001",
+      "catOut": "ULT",
+      "catIn": "ULT",
+      "catCode": "5",
+      "cls": "32",
+      "catOutS": "ULT",
+      "catOutL": "Länstrafik -Tunnelbana",
+      "operatorCode": "275",
+      "operator": "SL",
+      "admin": "275___",
+      "routeIdxFrom": 12,
+      "routeIdxTo": 13,
+      "matchId": "10;10;127987"
+    }
+  ],
+  "name": "Länstrafik -Tunnelbana 10",
+  "type": "ST",
   "stop": "T-Centralen T-bana (Stockholm kn)",
-  "stopid": "740020749",
+  "stopid": "A=1@O=T-Centralen T-bana (Stockholm kn)@X=18059266@Y=59330945@U=80@L=740020749@",
   "stopExtId": "740020749",
-  "time": "15:08:00",
-  "date": "2019-04-16",
-  "rtTime": "15:09:00",
-  "rtDate": "2019-04-16",
-  "rtTrack": "2",
-  "direction": "Alby T-bana (Botkyrka kn)",
-  "transportNumber": "13",
-  "transportCategory": "ULT"
+  "prognosisType": "PROGNOSED",
+  "time": "16:49:00",
+  "date": "2021-09-23",
+  "rtTime": "16:50:00",
+  "rtDate": "2021-09-24",
+  "rtTrack": "6",
+  "reachable": true,
+  "direction": "Kungsträdgården T-bana (Stockholm kn)"
 }

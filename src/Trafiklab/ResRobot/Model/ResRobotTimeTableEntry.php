@@ -211,7 +211,7 @@ class ResRobotTimeTableEntry implements TimeTableEntry
             $this->_platform = $json['rtTrack'];
         }
 
-        $this->_lineNumber = $json['transportNumber'];
+        $this->_lineNumber = $json['ProductAtStop']['line'];
         if ($this->_timeTableType == TimeTableType::DEPARTURES) {
             $this->_direction = $json['direction'];
         } else {
@@ -222,7 +222,7 @@ class ResRobotTimeTableEntry implements TimeTableEntry
             DateTime::createFromFormat("Y-m-d H:i:s",
                 $json['date'] . ' ' . $json['time']);
 
-        $this->_operator = $json['Product']['operator'];
+        $this->_operator = $json['ProductAtStop']['operator'];
         $this->parseTransportType($json);
 
     }
@@ -251,7 +251,7 @@ class ResRobotTimeTableEntry implements TimeTableEntry
                 * 'FLT': Local ferry
                 */
 
-        switch (substr($json['transportCategory'], 0, 1)) {
+        switch (substr($json['ProductAtStop']['catOutS'], 0, 1)) {
             case 'B':
                 $this->_transportType = TransportType::BUS;
                 break;

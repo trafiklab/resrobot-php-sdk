@@ -140,7 +140,7 @@ class ResRobotLeg implements RoutePlanningLeg
         $this->_type = $json['type'];
 
         if ($this->_type == "JNY") {
-            $this->_vehicle = new ResRobotVehicle($json['Product']);
+            $this->_vehicle = new ResRobotVehicle($json['Product'][0]);
 
             $this->_intermediaryStops = [];
             foreach ($json['Stops']['Stop'] as $stop) {

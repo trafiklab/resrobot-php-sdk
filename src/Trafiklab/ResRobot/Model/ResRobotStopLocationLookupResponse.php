@@ -55,7 +55,8 @@ class ResRobotStopLocationLookupResponse implements StopLocationLookupResponse
     private function parseApiResponse(array $json)
     {
         $this->_stopLocations = [];
-        foreach ($json['StopLocation'] as $stopLocationJson) {
+        foreach ($json['stopLocationOrCoordLocation'] as $result) {
+            $stopLocationJson = $result['StopLocation'];
             $this->_stopLocations[] = new ResRobotStopLocationLookupEntry($stopLocationJson);
         }
     }

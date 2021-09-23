@@ -9,11 +9,10 @@
 
 namespace Trafiklab\ResRobot\Model;
 
-use DateTime;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Trafiklab\Common\Model\Enum\TransportType;
 
-class ResRobotVehicleTest extends PHPUnit_Framework_TestCase
+class ResRobotVehicleTest extends TestCase
 {
     function testConstructor_validVehicleJson_shouldReturnCorrectObjectRepresentation()
     {
@@ -21,12 +20,12 @@ class ResRobotVehicleTest extends PHPUnit_Framework_TestCase
             file_get_contents("./tests/Resources/ResRobot/validRoutePlanningVehicle.json"), true);
         $vehicle = new ResRobotVehicle($jsonArray);
 
-        self::assertEquals("Regional Tåg 11154", $vehicle->getName());
+        self::assertEquals("Länstrafik - Tåg 41", $vehicle->getName());
         self::assertEquals(TransportType::TRAIN, $vehicle->getType());
-        self::assertEquals(11154, $vehicle->getNumber());
-        self::assertEquals(300, $vehicle->getOperatorCode());
-        self::assertEquals("Öresundståg", $vehicle->getOperatorName());
-        self::assertEquals("http://www.oresundstag.se/", $vehicle->getOperatorUrl());
+        self::assertEquals(41, $vehicle->getNumber());
+        self::assertEquals(275, $vehicle->getOperatorCode());
+        self::assertEquals("SL", $vehicle->getOperatorName());
+        self::assertNull($vehicle->getOperatorUrl());
     }
 
 }
