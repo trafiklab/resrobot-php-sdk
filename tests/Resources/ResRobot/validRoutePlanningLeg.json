@@ -1,225 +1,127 @@
 {
   "Origin": {
-    "name": "Stockholm Centralstation",
+    "name": "Solna station",
     "type": "ST",
-    "id": "740000001",
-    "extId": "740000001",
-    "lon": 18.058151,
-    "lat": 59.330136,
-    "routeIdx": 0,
-    "time": "19:25:00",
-    "date": "2019-04-25"
+    "id": "A=1@O=Solna station@X=18010041@Y=59365104@U=80@L=740000759@",
+    "extId": "740000759",
+    "lon": 18.010041,
+    "lat": 59.365104,
+    "routeIdx": 9,
+    "prognosisType": "PROGNOSED",
+    "time": "22:30:00",
+    "date": "2021-09-23"
   },
   "Destination": {
-    "name": "Malmö Centralstation",
+    "name": "Stockholm City station",
     "type": "ST",
-    "id": "740000003",
-    "extId": "740000003",
-    "lon": 13.00091,
-    "lat": 55.609456,
-    "routeIdx": 9,
-    "time": "23:54:00",
-    "date": "2019-04-25"
+    "id": "A=1@O=Stockholm City station@X=18059437@Y=59331143@U=80@L=740001617@",
+    "extId": "740001617",
+    "lon": 18.059437,
+    "lat": 59.331143,
+    "routeIdx": 11,
+    "prognosisType": "PROGNOSED",
+    "time": "22:37:00",
+    "date": "2021-09-23"
   },
   "Notes": {
     "Note": [
       {
-        "value": "X2000",
-        "key": "VX",
+        "value": "Endast 2 klass",
+        "key": "AA",
         "type": "A",
-        "priority": 100,
-        "routeIdxFrom": 0,
-        "routeIdxTo": 9
-      },
-      {
-        "value": "Mat 1 klass",
-        "key": "A1",
-        "type": "A",
-        "priority": 100,
-        "routeIdxFrom": 0,
-        "routeIdxTo": 9
-      },
-      {
-        "value": "Bistrovagn",
-        "key": "AD",
-        "type": "A",
-        "priority": 100,
-        "routeIdxFrom": 0,
-        "routeIdxTo": 9
-      },
-      {
-        "value": "Obligatorisk platsbokning",
-        "key": "AF",
-        "type": "A",
-        "priority": 100,
-        "routeIdxFrom": 0,
-        "routeIdxTo": 9
-      },
-      {
-        "value": "Rullstolslyft",
-        "key": "AN",
-        "type": "A",
-        "priority": 100,
-        "routeIdxFrom": 0,
-        "routeIdxTo": 9
-      },
-      {
-        "value": "WiFi",
-        "key": "AW",
-        "type": "A",
-        "priority": 100,
-        "routeIdxFrom": 0,
-        "routeIdxTo": 9
-      },
-      {
-        "value": "Eluttag, bokas",
-        "key": "EL",
-        "type": "A",
-        "priority": 100,
-        "routeIdxFrom": 0,
-        "routeIdxTo": 9
-      },
-      {
-        "value": "Maträtt",
-        "key": "SM",
-        "type": "A",
-        "priority": 100,
-        "routeIdxFrom": 0,
-        "routeIdxTo": 9
+        "routeIdxFrom": 9,
+        "routeIdxTo": 11,
+        "txtN": "Endast 2 klass"
       }
     ]
   },
-  "Product": {
-    "name": "Snabbtåg 547",
-    "num": "547",
-    "catCode": "1",
-    "catOutS": "JST",
-    "catOutL": "Snabbtåg",
-    "operatorCode": "74",
-    "operator": "SJ",
-    "operatorUrl": "http://www.sj.se"
+  "JourneyDetailRef": {
+    "ref": "1|65498|1|80|23092021"
   },
+  "JourneyStatus": "P",
+  "Product": [
+    {
+      "icon": {
+        "foregroundColor": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "hex": "#FFFFFF"
+        },
+        "backgroundColor": {
+          "r": 183,
+          "g": 23,
+          "b": 102,
+          "hex": "#B71766"
+        },
+        "res": "prod_comm"
+      },
+      "name": "Länstrafik - Tåg 41",
+      "internalName": "Länstrafik - Tåg 41",
+      "displayNumber": "41",
+      "num": "41",
+      "line": "41",
+      "lineId": "1275000000037",
+      "catOut": "JLT",
+      "catIn": "JLT",
+      "catCode": "4",
+      "cls": "16",
+      "catOutS": "JLT",
+      "catOutL": "Länstrafik - Tåg",
+      "operatorCode": "275",
+      "operator": "SL",
+      "admin": "275___",
+      "routeIdxFrom": 9,
+      "routeIdxTo": 11
+    }
+  ],
   "Stops": {
     "Stop": [
       {
-        "name": "Stockholm Centralstation",
-        "id": "740000001",
-        "extId": "740000001",
-        "routeIdx": 0,
-        "lon": 18.058151,
-        "lat": 59.330136,
-        "depTime": "19:25:00",
-        "depDate": "2019-04-25"
-      },
-      {
-        "name": "Södertälje Syd station",
-        "id": "740000055",
-        "extId": "740000055",
-        "routeIdx": 1,
-        "lon": 17.645367,
-        "lat": 59.162415,
-        "depTime": "19:44:00",
-        "depDate": "2019-04-25"
-      },
-      {
-        "name": "Norrköping Centralstation",
-        "id": "740000007",
-        "extId": "740000007",
-        "routeIdx": 2,
-        "lon": 16.183343,
-        "lat": 58.596625,
-        "depTime": "20:41:00",
-        "depDate": "2019-04-25",
-        "arrTime": "20:40:00",
-        "arrDate": "2019-04-25"
-      },
-      {
-        "name": "Linköping Centralstation",
-        "id": "740000009",
-        "extId": "740000009",
-        "routeIdx": 3,
-        "lon": 15.62496,
-        "lat": 58.416634,
-        "depTime": "21:05:00",
-        "depDate": "2019-04-25",
-        "arrTime": "21:03:00",
-        "arrDate": "2019-04-25"
-      },
-      {
-        "name": "Nässjö Centralstation",
-        "id": "740000140",
-        "extId": "740000140",
-        "routeIdx": 4,
-        "lon": 14.693983,
-        "lat": 57.652443,
-        "depTime": "21:55:00",
-        "depDate": "2019-04-25",
-        "arrTime": "21:54:00",
-        "arrDate": "2019-04-25"
-      },
-      {
-        "name": "Alvesta station",
-        "id": "740000004",
-        "extId": "740000004",
-        "routeIdx": 5,
-        "lon": 14.556322,
-        "lat": 56.898778,
-        "depTime": "22:29:00",
-        "depDate": "2019-04-25",
-        "arrTime": "22:28:00",
-        "arrDate": "2019-04-25"
-      },
-      {
-        "name": "Älmhult station",
-        "id": "740000045",
-        "extId": "740000045",
-        "routeIdx": 6,
-        "lon": 14.136985,
-        "lat": 56.551426,
-        "depTime": "22:48:00",
-        "depDate": "2019-04-25",
-        "arrTime": "22:48:00",
-        "arrDate": "2019-04-25"
-      },
-      {
-        "name": "Hässleholm Centralstation",
-        "id": "740000006",
-        "extId": "740000006",
-        "routeIdx": 7,
-        "lon": 13.763141,
-        "lat": 56.157762,
-        "depTime": "23:10:00",
-        "depDate": "2019-04-25",
-        "arrTime": "23:10:00",
-        "arrDate": "2019-04-25"
-      },
-      {
-        "name": "Lund Centralstation",
-        "id": "740000120",
-        "extId": "740000120",
-        "routeIdx": 8,
-        "lon": 13.186897,
-        "lat": 55.708094,
-        "arrTime": "23:39:00",
-        "arrDate": "2019-04-25"
-      },
-      {
-        "name": "Malmö Centralstation",
-        "id": "740000003",
-        "extId": "740000003",
+        "name": "Solna station",
+        "id": "A=1@O=Solna station@X=18010041@Y=59365104@U=80@L=740000759@",
+        "extId": "740000759",
         "routeIdx": 9,
-        "lon": 13.00091,
-        "lat": 55.609456,
-        "arrTime": "23:54:00",
-        "arrDate": "2019-04-25"
+        "lon": 18.010041,
+        "lat": 59.365104,
+        "depTime": "22:30:00",
+        "depDate": "2021-09-23",
+        "depDir": "Södertälje centrum station"
+      },
+      {
+        "name": "Stockholm Odenplan station",
+        "id": "A=1@O=Stockholm Odenplan station@X=18049998@Y=59342892@U=80@L=740001618@",
+        "extId": "740001618",
+        "routeIdx": 10,
+        "lon": 18.049998,
+        "lat": 59.342892,
+        "depTime": "22:34:00",
+        "depDate": "2021-09-23",
+        "arrTime": "22:34:00",
+        "arrDate": "2021-09-23"
+      },
+      {
+        "name": "Stockholm City station",
+        "id": "A=1@O=Stockholm City station@X=18059437@Y=59331143@U=80@L=740001617@",
+        "extId": "740001617",
+        "routeIdx": 11,
+        "lon": 18.059437,
+        "lat": 59.331143,
+        "arrTime": "22:37:00",
+        "arrDate": "2021-09-23"
       }
     ]
   },
-  "idx": "0",
-  "name": "Snabbtåg 547",
-  "transportNumber": "547",
-  "transportCategory": "JST",
+  "JourneyDetail": {
+    "ref": "1|65498|1|80|23092021",
+    "dayOfOperation": "2021-09-23"
+  },
+  "idx": 0,
+  "name": "Länstrafik - Tåg 41",
+  "number": "41",
+  "category": "JLT",
   "type": "JNY",
   "reachable": true,
-  "direction": "Malmö Centralstation"
+  "direction": "Södertälje centrum station",
+  "duration": "PT7M"
 }

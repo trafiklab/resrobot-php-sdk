@@ -1,21 +1,48 @@
 {
-  "Product": {
+  "JourneyDetailRef": {
+    "ref": "1|67544|1|80|23092021"
+  },
+  "JourneyStatus": "P",
+  "ProductAtStop": {
+    "icon": {
+      "foregroundColor": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "hex": "#FFFFFF"
+      },
+      "backgroundColor": {
+        "r": 46,
+        "g": 132,
+        "b": 211,
+        "hex": "#2E84D3"
+      },
+      "res": "prod_sub"
+    },
     "name": "Länstrafik -Tunnelbana 19",
+    "internalName": "Länstrafik -Tunnelbana 19",
+    "displayNumber": "19",
     "num": "19",
+    "line": "19",
+    "lineId": "1275001900001",
+    "catOut": "ULT",
+    "catIn": "ULT",
     "catCode": "5",
+    "cls": "32",
     "catOutS": "ULT",
     "catOutL": "Länstrafik -Tunnelbana",
     "operatorCode": "275",
     "operator": "SL",
-    "operatorUrl": "http://www.sl.se"
+    "admin": "275___",
+    "matchId": "19;19;2286"
   },
   "name": "Länstrafik -Tunnelbana 19",
+  "type": "ST",
   "stop": "T-Centralen T-bana (Stockholm kn)",
-  "stopid": "740020749",
+  "stopid": "A=1@O=T-Centralen T-bana (Stockholm kn)@X=18059266@Y=59330945@U=80@L=740020749@",
   "stopExtId": "740020749",
-  "time": "15:09:00",
-  "date": "2019-04-16",
-  "origin": "Högdalen T-bana (Stockholm kn)",
-  "transportNumber": "19",
-  "transportCategory": "ULT"
+  "time": "16:37:00",
+  "date": "2021-09-23",
+  "reachable": true,
+  "origin": "Hagsätra T-bana (Stockholm kn)"
 }

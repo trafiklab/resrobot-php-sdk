@@ -35,14 +35,15 @@ use Trafiklab\ResRobot\Model\ResRobotTimeTableResponse;
 class ResRobotClient
 {
 
-    public const DEPARTURES_ENDPOINT = "https://api.resrobot.se/v2/departureBoard";
-    public const ARRIVALS_ENDPOINT = "https://api.resrobot.se/v2/arrivalBoard";
-    public const TRIPS_ENDPOINT = "https://api.resrobot.se/v2/trip";
+    public const ROOT = "https://api.resrobot.se/v2.1";
+    public const DEPARTURES_ENDPOINT = self::ROOT . "/departureBoard";
+    public const ARRIVALS_ENDPOINT = self::ROOT . "/arrivalBoard";
+    public const TRIPS_ENDPOINT = self::ROOT . "/trip";
+    public const PLATSUPPSLAG_ENDPOINT = self::ROOT . "/location.name";
     public const SDK_USER_AGENT = "Trafiklab/ResRobot-php-sdk";
-    public const PLATSUPPSLAG_ENDPOINT = "https://api.resrobot.se/v2/location.name";
 
     const API_NAME_RESROBOT_ROUTEPLANNER = "ResRobot reseplanerare";
-    const API_NAME_RESROBOT_TIMETABLES = "ResRobot stolpetidstabeller";
+    const API_NAME_RESROBOT_TIMETABLES = "ResRobot stolptidtabeller";
     const API_NAME_RESROBOT_FINDSTOPLOCATION = "ResRobot platsuppslag";
 
     private $applicationUserAgent = "Unknown";
@@ -81,11 +82,11 @@ class ResRobotClient
         }
 
         $parameters = [
-            "key" => $key,
-            "id" => $request->getStopId(),
-            "date" => $request->getDateTime()->format("Y-m-d"),
-            "time" => $request->getDateTime()->format("H:i"),
-            "format" => "json",
+            "accessId" => $key,
+            "id"       => $request->getStopId(),
+            "date"     => $request->getDateTime()->format("Y-m-d"),
+            "time"     => $request->getDateTime()->format("H:i"),
+            "format"   => "json",
             "passlist" => "0",
         ];
 
@@ -125,15 +126,15 @@ class ResRobotClient
         }
 
         $parameters = [
-            "key" => $key,
-            "originId" => $request->getOriginStopId(),
-            "destId" => $request->getDestinationStopId(),
-            "date" => $request->getDateTime()->format("Y-m-d"),
-            "time" => $request->getDateTime()->format("H:i"),
-            "lang" => $request->getLang(),
+            "accessId"         => $key,
+            "originId"         => $request->getOriginStopId(),
+            "destId"           => $request->getDestinationStopId(),
+            "date"             => $request->getDateTime()->format("Y-m-d"),
+            "time"             => $request->getDateTime()->format("H:i"),
+            "lang"             => $request->getLang(),
             "searchForArrival" => $searchForArrival,
-            "format" => "json",
-            "passlist" => "1",
+            "format"           => "json",
+            "passlist"         => "1",
         ];
 
 
@@ -171,11 +172,11 @@ class ResRobotClient
     public function lookupStopLocation(string $key, StopLocationLookupRequest $request): StopLocationLookupResponse
     {
         $parameters = [
-            "key" => $key,
-            "input" => $request->getSearchQuery() . '?',
-            "maxNo" => $request->getMaxNumberOfResults(),
-            "lang" => $request->getLanguage(),
-            "format" => "json",
+            "accessId" => $key,
+            "input"    => $request->getSearchQuery() . '?',
+            "maxNo"    => $request->getMaxNumberOfResults(),
+            "lang"     => $request->getLanguage(),
+            "format"   => "json",
         ];
 
         $response = $this->_webClient->makeRequest(self::PLATSUPPSLAG_ENDPOINT, $parameters);
@@ -217,11 +218,11 @@ class ResRobotClient
         if (key_exists('errorCode', $json)) {
             switch ($json['errorCode']) {
                 case 'API_AUTH':
-                    throw new InvalidKeyException($response->getRequestParameter('key'));
+                    throw new InvalidKeyException($response->getRequestParameter('accessId'));
                     break;
                 case 'API_QUOTA':
                     throw new QuotaExceededException($api,
-                        $response->getRequestParameter('key'));
+                        $response->getRequestParameter('accessId'));
                     break;
                 case 'API_PARAM':
                     throw new InvalidRequestException("One or more parameters are invalid",

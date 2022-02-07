@@ -9,10 +9,10 @@
 
 namespace Trafiklab\ResRobot\Model;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Trafiklab\Common\Model\Contract\WebResponse;
 
-class RoutePlanningReplyTest extends PHPUnit_Framework_TestCase
+class RoutePlanningReplyTest extends TestCase
 {
     function testConstructor_validRoutePlanningReplyJson_shouldReturnCorrectObjectRepresentation()
     {

@@ -9,7 +9,7 @@ namespace Trafiklab\ResRobot;
 
 use DateTime;
 use Exception;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Trafiklab\Common\Model\Enum\TimeTableType;
 use Trafiklab\Common\Model\Exceptions\DateTimeOutOfRangeException;
 use Trafiklab\Common\Model\Exceptions\InvalidKeyException;
@@ -17,7 +17,7 @@ use Trafiklab\Common\Model\Exceptions\InvalidStopLocationException;
 use Trafiklab\Common\Model\Exceptions\KeyRequiredException;
 use Trafiklab\ResRobot\Model\Enum\ResRobotTransportType;
 
-class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
+class ResRobotWrapperIntegrationTest extends TestCase
 {
     private $_TIMETABLES_API_KEY = "";
     private $_ROUTEPLANNING_API_KEY = "";
@@ -49,7 +49,7 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
         if (empty($this->_TIMETABLES_API_KEY)) {
             $this->markTestIncomplete();
         }
-
+        sleep(1);
         $resRobotWrapper = new ResRobotWrapper();
         $departuresRequest = $resRobotWrapper->createTimeTableRequestObject();
         $departuresRequest->setStopId("740000001");
@@ -81,7 +81,7 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
         if (empty($this->_TIMETABLES_API_KEY)) {
             $this->markTestIncomplete();
         }
-
+        sleep(1);
         $this->expectException(InvalidStopLocationException::class);
 
         $resRobotWrapper = new ResRobotWrapper();
@@ -112,6 +112,7 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
 
     public function testGetDepartures_missingApiKey_shouldThrowException()
     {
+        sleep(1);
         $this->expectException(KeyRequiredException::class);
 
         $resRobotWrapper = new ResRobotWrapper();
@@ -126,6 +127,7 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
 
     public function testGetArrivals_validParameters_shouldReturnResponse()
     {
+        sleep(1);
         if (empty($this->_TIMETABLES_API_KEY)) {
             $this->markTestIncomplete();
         }
@@ -281,15 +283,13 @@ class ResRobotWrapperIntegrationTest extends PHPUnit_Framework_TestCase
         $this->expectException(DateTimeOutOfRangeException::class);
 
         $queryTime = new DateTime();
-        $queryTime->setDate(2100, 1, 1);
+        $queryTime->setDate(2099, 1, 1);
 
         $resRobotWrapper = new ResRobotWrapper();
         $routePlanningRequest = $resRobotWrapper->createRoutePlanningRequestObject();
         $routePlanningRequest->setOriginStopId("740000001");
         $routePlanningRequest->setDestinationStopId("740000002");
-        $routePlanningRequest->setLang("¯\_(ツ)_/¯");
         $routePlanningRequest->setDateTime($queryTime);
-        $routePlanningRequest->addTransportTypeToFilter(99999);
 
         $resRobotWrapper->setUserAgent("SDK Integration tests");
         $resRobotWrapper->setRoutePlanningApiKey($this->_ROUTEPLANNING_API_KEY);

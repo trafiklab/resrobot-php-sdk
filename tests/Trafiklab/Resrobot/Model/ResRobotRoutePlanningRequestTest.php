@@ -9,11 +9,11 @@ namespace Trafiklab\ResRobot\Model;
 
 
 use DateTime;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Trafiklab\Common\Model\Enum\RoutePlanningSearchType;
 use Trafiklab\ResRobot\Model\Enum\ResRobotTransportType;
 
-class ResRobotRoutePlanningRequestTest extends PHPUnit_Framework_TestCase
+class ResRobotRoutePlanningRequestTest extends TestCase
 {
 
     function testGetOriginStopId()

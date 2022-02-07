@@ -1,529 +1,644 @@
 {
   "Arrival": [
     {
-      "Product": {
+      "JourneyDetailRef": {
+        "ref": "1|2598|1|80|23092021"
+      },
+      "JourneyStatus": "P",
+      "ProductAtStop": {
+        "icon": {
+          "foregroundColor": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "hex": "#FFFFFF"
+          },
+          "backgroundColor": {
+            "r": 231,
+            "g": 172,
+            "b": 0,
+            "hex": "#E7AC00"
+          },
+          "res": "prod_bus"
+        },
+        "name": "Länstrafik - Buss 69",
+        "internalName": "Länstrafik - Buss 69",
+        "displayNumber": "69",
+        "num": "69",
+        "line": "69",
+        "lineId": "1275006900001",
+        "catOut": "BLT",
+        "catIn": "BLT",
+        "catCode": "7",
+        "cls": "128",
+        "catOutS": "BLT",
+        "catOutL": "Länstrafik - Buss",
+        "operatorCode": "275",
+        "operator": "SL",
+        "admin": "275___",
+        "matchId": "69;69;122187"
+      },
+      "Product": [
+        {
+          "icon": {
+            "foregroundColor": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "hex": "#FFFFFF"
+            },
+            "backgroundColor": {
+              "r": 231,
+              "g": 172,
+              "b": 0,
+              "hex": "#E7AC00"
+            },
+            "res": "prod_bus"
+          },
+          "name": "Länstrafik - Buss 69",
+          "internalName": "Länstrafik - Buss 69",
+          "displayNumber": "69",
+          "num": "69",
+          "line": "69",
+          "lineId": "1275006900001",
+          "catOut": "BLT",
+          "catIn": "BLT",
+          "catCode": "7",
+          "cls": "128",
+          "catOutS": "BLT",
+          "catOutL": "Länstrafik - Buss",
+          "operatorCode": "275",
+          "operator": "SL",
+          "admin": "275___",
+          "routeIdxFrom": 0,
+          "routeIdxTo": 1,
+          "matchId": "69;69;122187"
+        }
+      ],
+      "name": "Länstrafik - Buss 69",
+      "type": "ST",
+      "stop": "T-Centralen Spårv (Stockholm kn)",
+      "stopid": "A=1@O=T-Centralen Spårv (Stockholm kn)@X=18062133@Y=59332131@U=80@L=740035997@",
+      "stopExtId": "740035997",
+      "time": "16:37:00",
+      "date": "2021-09-23",
+      "reachable": true,
+      "origin": "Stockholm C Klarabergsviadukte"
+    },
+    {
+      "JourneyDetailRef": {
+        "ref": "1|65504|15|80|23092021"
+      },
+      "JourneyStatus": "P",
+      "ProductAtStop": {
+        "icon": {
+          "foregroundColor": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "hex": "#FFFFFF"
+          },
+          "backgroundColor": {
+            "r": 183,
+            "g": 23,
+            "b": 102,
+            "hex": "#B71766"
+          },
+          "res": "prod_comm"
+        },
+        "name": "Länstrafik - Tåg 41",
+        "internalName": "Länstrafik - Tåg 41",
+        "displayNumber": "41",
+        "num": "41",
+        "line": "41",
+        "lineId": "1275000000037",
+        "catOut": "JLT",
+        "catIn": "JLT",
+        "catCode": "4",
+        "cls": "16",
+        "catOutS": "JLT",
+        "catOutL": "Länstrafik - Tåg",
+        "operatorCode": "275",
+        "operator": "SL",
+        "admin": "275___"
+      },
+      "Notes": {
+        "Note": [
+          {
+            "value": "Endast 2 klass",
+            "key": "AA",
+            "type": "A",
+            "routeIdxFrom": 0,
+            "routeIdxTo": 9,
+            "txtN": "Endast 2 klass"
+          }
+        ]
+      },
+      "name": "Länstrafik - Tåg 41",
+      "type": "ST",
+      "stop": "Stockholm City station",
+      "stopid": "A=1@O=Stockholm City station@X=18059437@Y=59331143@U=80@L=740001617@",
+      "stopExtId": "740001617",
+      "time": "16:37:00",
+      "date": "2021-09-23",
+      "reachable": true,
+      "origin": "Upplands Väsby station"
+    },
+    {
+      "JourneyDetailRef": {
+        "ref": "1|67544|1|80|23092021"
+      },
+      "JourneyStatus": "P",
+      "ProductAtStop": {
+        "icon": {
+          "foregroundColor": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "hex": "#FFFFFF"
+          },
+          "backgroundColor": {
+            "r": 46,
+            "g": 132,
+            "b": 211,
+            "hex": "#2E84D3"
+          },
+          "res": "prod_sub"
+        },
         "name": "Länstrafik -Tunnelbana 19",
+        "internalName": "Länstrafik -Tunnelbana 19",
+        "displayNumber": "19",
         "num": "19",
+        "line": "19",
+        "lineId": "1275001900001",
+        "catOut": "ULT",
+        "catIn": "ULT",
         "catCode": "5",
+        "cls": "32",
         "catOutS": "ULT",
         "catOutL": "Länstrafik -Tunnelbana",
         "operatorCode": "275",
         "operator": "SL",
-        "operatorUrl": "http://www.sl.se"
+        "admin": "275___",
+        "matchId": "19;19;2286"
       },
       "name": "Länstrafik -Tunnelbana 19",
+      "type": "ST",
       "stop": "T-Centralen T-bana (Stockholm kn)",
-      "stopid": "740020749",
+      "stopid": "A=1@O=T-Centralen T-bana (Stockholm kn)@X=18059266@Y=59330945@U=80@L=740020749@",
       "stopExtId": "740020749",
-      "time": "15:09:00",
-      "date": "2019-04-16",
-      "origin": "Högdalen T-bana (Stockholm kn)",
-      "transportNumber": "19",
-      "transportCategory": "ULT"
+      "time": "16:37:00",
+      "date": "2021-09-23",
+      "reachable": true,
+      "origin": "Hagsätra T-bana (Stockholm kn)"
     },
     {
-      "Product": {
+      "JourneyDetailRef": {
+        "ref": "1|91102|25|80|23092021"
+      },
+      "JourneyStatus": "P",
+      "ProductAtStop": {
+        "icon": {
+          "foregroundColor": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "hex": "#FFFFFF"
+          },
+          "backgroundColor": {
+            "r": 231,
+            "g": 172,
+            "b": 0,
+            "hex": "#E7AC00"
+          },
+          "res": "prod_ic_bus"
+        },
         "name": "Flygtransfer - Buss .",
+        "internalName": "Flygtransfer - Buss .",
+        "displayNumber": ".",
         "num": ".",
+        "line": ".",
+        "lineId": "1277000200001",
+        "catOut": "BAX",
+        "catIn": "BAX",
         "catCode": "3",
+        "cls": "8",
         "catOutS": "BAX",
         "catOutL": "Flygtransfer - Buss",
         "operatorCode": "277",
         "operator": "Flygbussarna",
-        "operatorUrl": "http://www.flygbussarna.se"
+        "admin": "277___",
+        "matchId": "Flygb Cst-Arn;2;1345"
       },
       "name": "Flygtransfer - Buss .",
+      "type": "ST",
       "stop": "Stockholm Cityterminalen",
-      "stopid": "740000622",
+      "stopid": "A=1@O=Stockholm Cityterminalen@X=18056371@Y=59330846@U=80@L=740000622@",
       "stopExtId": "740000622",
-      "time": "15:09:00",
-      "date": "2019-04-16",
-      "origin": "Arlanda terminal 5 buss (Sigtuna kn)",
-      "transportNumber": ".",
-      "transportCategory": "BAX"
+      "time": "16:37:00",
+      "date": "2021-09-23",
+      "reachable": true,
+      "origin": "Arlanda terminal 4 buss (Sigtuna kn)"
     },
     {
-      "Product": {
-        "name": "Länstrafik - Buss 65",
-        "num": "65",
-        "catCode": "7",
-        "catOutS": "BLT",
-        "catOutL": "Länstrafik - Buss",
-        "operatorCode": "275",
-        "operator": "SL",
-        "operatorUrl": "http://www.sl.se"
+      "JourneyDetailRef": {
+        "ref": "1|6717|6|80|23092021"
       },
-      "name": "Länstrafik - Buss 65",
-      "stop": "Stockholm C Klarabergsviadukte",
-      "stopid": "740004383",
-      "stopExtId": "740004383",
-      "time": "15:10:00",
-      "date": "2019-04-16",
-      "origin": "Fredhäll (Stockholm kn)",
-      "transportNumber": "65",
-      "transportCategory": "BLT"
-    },
-    {
-      "Product": {
-        "name": "Länstrafik -Tunnelbana 14",
-        "num": "14",
+      "JourneyStatus": "P",
+      "ProductAtStop": {
+        "icon": {
+          "foregroundColor": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "hex": "#FFFFFF"
+          },
+          "backgroundColor": {
+            "r": 46,
+            "g": 132,
+            "b": 211,
+            "hex": "#2E84D3"
+          },
+          "res": "prod_sub"
+        },
+        "name": "Länstrafik -Tunnelbana 13",
+        "internalName": "Länstrafik -Tunnelbana 13",
+        "displayNumber": "13",
+        "num": "13",
+        "line": "13",
+        "lineId": "1275001300001",
+        "catOut": "ULT",
+        "catIn": "ULT",
         "catCode": "5",
+        "cls": "32",
         "catOutS": "ULT",
         "catOutL": "Länstrafik -Tunnelbana",
         "operatorCode": "275",
         "operator": "SL",
-        "operatorUrl": "http://www.sl.se"
+        "admin": "275___",
+        "matchId": "13;13;22237"
       },
-      "name": "Länstrafik -Tunnelbana 14",
+      "name": "Länstrafik -Tunnelbana 13",
+      "type": "ST",
       "stop": "T-Centralen T-bana (Stockholm kn)",
-      "stopid": "740020749",
+      "stopid": "A=1@O=T-Centralen T-bana (Stockholm kn)@X=18059266@Y=59330945@U=80@L=740020749@",
       "stopExtId": "740020749",
-      "time": "15:10:00",
-      "date": "2019-04-16",
-      "origin": "Mörby centrum T-bana (Danderyd kn)",
-      "transportNumber": "14",
-      "transportCategory": "ULT"
+      "time": "16:38:00",
+      "date": "2021-09-23",
+      "reachable": true,
+      "origin": "Ropsten T-bana (Stockholm kn)"
     },
     {
-      "Product": {
-        "name": "Länstrafik - Tåg 2244",
-        "num": "2244",
-        "catCode": "4",
-        "catOutS": "JLT",
-        "catOutL": "Länstrafik - Tåg",
-        "operatorCode": "275",
-        "operator": "SL",
-        "operatorUrl": "http://www.sl.se"
+      "JourneyDetailRef": {
+        "ref": "1|12938|3|80|23092021"
       },
-      "name": "Länstrafik - Tåg 2244",
-      "stop": "Stockholm City station",
-      "stopid": "740001617",
-      "stopExtId": "740001617",
-      "time": "15:10:00",
-      "date": "2019-04-16",
-      "origin": "Södertälje centrum station",
-      "transportNumber": "2244",
-      "transportCategory": "JLT"
-    },
-    {
-      "Product": {
-        "name": "Länstrafik -Tunnelbana 18",
-        "num": "18",
+      "JourneyStatus": "P",
+      "ProductAtStop": {
+        "icon": {
+          "foregroundColor": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "hex": "#FFFFFF"
+          },
+          "backgroundColor": {
+            "r": 46,
+            "g": 132,
+            "b": 211,
+            "hex": "#2E84D3"
+          },
+          "res": "prod_sub"
+        },
+        "name": "Länstrafik -Tunnelbana 17",
+        "internalName": "Länstrafik -Tunnelbana 17",
+        "displayNumber": "17",
+        "num": "17",
+        "line": "17",
+        "lineId": "1275001700001",
+        "catOut": "ULT",
+        "catIn": "ULT",
         "catCode": "5",
+        "cls": "32",
         "catOutS": "ULT",
         "catOutL": "Länstrafik -Tunnelbana",
         "operatorCode": "275",
         "operator": "SL",
-        "operatorUrl": "http://www.sl.se"
+        "admin": "275___",
+        "matchId": "17;17;12409"
       },
-      "name": "Länstrafik -Tunnelbana 18",
+      "name": "Länstrafik -Tunnelbana 17",
+      "type": "ST",
       "stop": "T-Centralen T-bana (Stockholm kn)",
-      "stopid": "740020749",
+      "stopid": "A=1@O=T-Centralen T-bana (Stockholm kn)@X=18059266@Y=59330945@U=80@L=740020749@",
       "stopExtId": "740020749",
-      "time": "15:10:00",
-      "date": "2019-04-16",
-      "origin": "Vällingby T-bana (Stockholm kn)",
-      "transportNumber": "18",
-      "transportCategory": "ULT"
+      "time": "16:38:00",
+      "date": "2021-09-23",
+      "reachable": true,
+      "origin": "Åkeshov T-bana (Stockholm kn)"
     },
     {
-      "Product": {
-        "name": "Expressbuss 607",
-        "num": "607",
-        "catCode": "3",
-        "catOutS": "BXB",
-        "catOutL": "Expressbuss",
-        "operatorCode": "838",
-        "operator": "Flixbus",
-        "operatorUrl": "https://www.flixbus.se/"
+      "JourneyDetailRef": {
+        "ref": "1|70617|2|80|23092021"
       },
-      "name": "Expressbuss 607",
-      "stop": "Stockholm Cityterminalen",
-      "stopid": "740000622",
-      "stopExtId": "740000622",
-      "time": "15:10:00",
-      "date": "2019-04-16",
-      "origin": "Jönköping Centralstation",
-      "transportNumber": "607",
-      "transportCategory": "BXB"
-    },
-    {
-      "Product": {
+      "JourneyStatus": "P",
+      "ProductAtStop": {
+        "icon": {
+          "foregroundColor": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "hex": "#FFFFFF"
+          },
+          "backgroundColor": {
+            "r": 231,
+            "g": 172,
+            "b": 0,
+            "hex": "#E7AC00"
+          },
+          "res": "prod_bus"
+        },
         "name": "Länstrafik - Buss 54",
+        "internalName": "Länstrafik - Buss 54",
+        "displayNumber": "54",
         "num": "54",
+        "line": "54",
+        "lineId": "1275005400001",
+        "catOut": "BLT",
+        "catIn": "BLT",
         "catCode": "7",
+        "cls": "128",
         "catOutS": "BLT",
         "catOutL": "Länstrafik - Buss",
         "operatorCode": "275",
         "operator": "SL",
-        "operatorUrl": "http://www.sl.se"
+        "admin": "275___",
+        "matchId": "54;54;115246"
       },
       "name": "Länstrafik - Buss 54",
+      "type": "ST",
       "stop": "Stockholm C Klarabergsviadukte",
-      "stopid": "740004383",
+      "stopid": "A=1@O=Stockholm C Klarabergsviadukte@X=18058376@Y=59331107@U=80@L=740004383@",
       "stopExtId": "740004383",
-      "time": "15:10:00",
-      "date": "2019-04-16",
-      "origin": "Rindögatan (Stockholm kn)",
-      "transportNumber": "54",
-      "transportCategory": "BLT"
+      "time": "16:38:00",
+      "date": "2021-09-23",
+      "reachable": true,
+      "origin": "Motalavägen (Stockholm kn)"
     },
     {
-      "Product": {
-        "name": "Länstrafik - Buss 1",
-        "num": "1",
-        "catCode": "7",
-        "catOutS": "BLT",
-        "catOutL": "Länstrafik - Buss",
-        "operatorCode": "275",
-        "operator": "SL",
-        "operatorUrl": "http://www.sl.se"
+      "JourneyDetailRef": {
+        "ref": "1|77288|9|80|23092021"
       },
-      "name": "Länstrafik - Buss 1",
-      "stop": "Stockholm Citytermin Kungsbron",
-      "stopid": "740001541",
-      "stopExtId": "740001541",
-      "time": "15:10:00",
-      "date": "2019-04-16",
-      "origin": "Essingetorget (Stockholm kn)",
-      "transportNumber": "1",
-      "transportCategory": "BLT"
-    },
-    {
-      "Product": {
-        "name": "Flygtransfer - tåg 7943",
-        "num": "7943",
-        "catCode": "1",
-        "catOutS": "JAX",
-        "catOutL": "Flygtransfer - tåg",
-        "operatorCode": "287",
-        "operator": "Arlanda Express",
-        "operatorUrl": "http://www.arlandaexpress.com"
-      },
-      "name": "Flygtransfer - tåg 7943",
-      "stop": "Stockholm Centralstation",
-      "stopid": "740000001",
-      "stopExtId": "740000001",
-      "time": "15:10:00",
-      "date": "2019-04-16",
-      "origin": "Arlanda Norra station (Sigtuna kn)",
-      "transportNumber": "7943",
-      "transportCategory": "JAX"
-    },
-    {
-      "Product": {
-        "name": "Länstrafik - Buss 69",
-        "num": "69",
-        "catCode": "7",
-        "catOutS": "BLT",
-        "catOutL": "Länstrafik - Buss",
-        "operatorCode": "275",
-        "operator": "SL",
-        "operatorUrl": "http://www.sl.se"
-      },
-      "name": "Länstrafik - Buss 69",
-      "stop": "Stockholm C Klarabergsviadukte",
-      "stopid": "740004383",
-      "stopExtId": "740004383",
-      "time": "15:11:00",
-      "date": "2019-04-16",
-      "origin": "Stockholm Blockhusudden",
-      "transportNumber": "69",
-      "transportCategory": "BLT"
-    },
-    {
-      "Product": {
-        "name": "Länstrafik -Tunnelbana 13",
-        "num": "13",
-        "catCode": "5",
-        "catOutS": "ULT",
-        "catOutL": "Länstrafik -Tunnelbana",
-        "operatorCode": "275",
-        "operator": "SL",
-        "operatorUrl": "http://www.sl.se"
-      },
-      "name": "Länstrafik -Tunnelbana 13",
-      "stop": "T-Centralen T-bana (Stockholm kn)",
-      "stopid": "740020749",
-      "stopExtId": "740020749",
-      "time": "15:11:00",
-      "date": "2019-04-16",
-      "origin": "Liljeholmen T-bana (Stockholm kn)",
-      "transportNumber": "13",
-      "transportCategory": "ULT"
-    },
-    {
-      "Product": {
-        "name": "Länstrafik - Buss 65",
-        "num": "65",
-        "catCode": "7",
-        "catOutS": "BLT",
-        "catOutL": "Länstrafik - Buss",
-        "operatorCode": "275",
-        "operator": "SL",
-        "operatorUrl": "http://www.sl.se"
-      },
-      "name": "Länstrafik - Buss 65",
-      "stop": "T-Centralen Spårv (Stockholm kn)",
-      "stopid": "740035997",
-      "stopExtId": "740035997",
-      "time": "15:11:00",
-      "date": "2019-04-16",
-      "origin": "Fredhäll (Stockholm kn)",
-      "transportNumber": "65",
-      "transportCategory": "BLT"
-    },
-    {
-      "Product": {
-        "name": "Länstrafik - Tåg 2745",
-        "num": "2745",
-        "catCode": "4",
-        "catOutS": "JLT",
-        "catOutL": "Länstrafik - Tåg",
-        "operatorCode": "275",
-        "operator": "SL",
-        "operatorUrl": "http://www.sl.se"
-      },
-      "name": "Länstrafik - Tåg 2745",
-      "stop": "Stockholm City station",
-      "stopid": "740001617",
-      "stopExtId": "740001617",
-      "time": "15:11:00",
-      "date": "2019-04-16",
-      "origin": "Märsta station (Sigtuna kn)",
-      "transportNumber": "2745",
-      "transportCategory": "JLT"
-    },
-    {
-      "Product": {
-        "name": "Länstrafik - Buss 50",
-        "num": "50",
-        "catCode": "7",
-        "catOutS": "BLT",
-        "catOutL": "Länstrafik - Buss",
-        "operatorCode": "275",
-        "operator": "SL",
-        "operatorUrl": "http://www.sl.se"
-      },
-      "name": "Länstrafik - Buss 50",
-      "stop": "Stockholm Citytermin Kungsbron",
-      "stopid": "740001541",
-      "stopExtId": "740001541",
-      "time": "15:11:00",
-      "date": "2019-04-16",
-      "origin": "Moa Martinsons torg (Stockholm kn)",
-      "transportNumber": "50",
-      "transportCategory": "BLT"
-    },
-    {
-      "Product": {
-        "name": "Länstrafik -Tunnelbana 18",
-        "num": "18",
-        "catCode": "5",
-        "catOutS": "ULT",
-        "catOutL": "Länstrafik -Tunnelbana",
-        "operatorCode": "275",
-        "operator": "SL",
-        "operatorUrl": "http://www.sl.se"
-      },
-      "name": "Länstrafik -Tunnelbana 18",
-      "stop": "T-Centralen T-bana (Stockholm kn)",
-      "stopid": "740020749",
-      "stopExtId": "740020749",
-      "time": "15:12:00",
-      "date": "2019-04-16",
-      "origin": "Farsta Strand T-bana (Stockholm kn)",
-      "transportNumber": "18",
-      "transportCategory": "ULT"
-    },
-    {
-      "Product": {
-        "name": "Länstrafik -Tunnelbana 10",
-        "num": "10",
-        "catCode": "5",
-        "catOutS": "ULT",
-        "catOutL": "Länstrafik -Tunnelbana",
-        "operatorCode": "275",
-        "operator": "SL",
-        "operatorUrl": "http://www.sl.se"
-      },
-      "name": "Länstrafik -Tunnelbana 10",
-      "stop": "T-Centralen T-bana (Stockholm kn)",
-      "stopid": "740020749",
-      "stopExtId": "740020749",
-      "time": "15:12:00",
-      "date": "2019-04-16",
-      "origin": "Kungsträdgården T-bana (Stockholm kn)",
-      "transportNumber": "10",
-      "transportCategory": "ULT"
-    },
-    {
-      "Product": {
-        "name": "Länstrafik -Tunnelbana 19",
-        "num": "19",
-        "catCode": "5",
-        "catOutS": "ULT",
-        "catOutL": "Länstrafik -Tunnelbana",
-        "operatorCode": "275",
-        "operator": "SL",
-        "operatorUrl": "http://www.sl.se"
-      },
-      "name": "Länstrafik -Tunnelbana 19",
-      "stop": "T-Centralen T-bana (Stockholm kn)",
-      "stopid": "740020749",
-      "stopExtId": "740020749",
-      "time": "15:12:00",
-      "date": "2019-04-16",
-      "origin": "Hässelby Strand T-bana (Stockholm kn)",
-      "transportNumber": "19",
-      "transportCategory": "ULT"
-    },
-    {
-      "Product": {
+      "JourneyStatus": "P",
+      "ProductAtStop": {
+        "icon": {
+          "foregroundColor": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "hex": "#FFFFFF"
+          },
+          "backgroundColor": {
+            "r": 46,
+            "g": 132,
+            "b": 211,
+            "hex": "#2E84D3"
+          },
+          "res": "prod_sub"
+        },
         "name": "Länstrafik -Tunnelbana 11",
+        "internalName": "Länstrafik -Tunnelbana 11",
+        "displayNumber": "11",
         "num": "11",
+        "line": "11",
+        "lineId": "1275001100001",
+        "catOut": "ULT",
+        "catIn": "ULT",
         "catCode": "5",
+        "cls": "32",
         "catOutS": "ULT",
         "catOutL": "Länstrafik -Tunnelbana",
         "operatorCode": "275",
         "operator": "SL",
-        "operatorUrl": "http://www.sl.se"
+        "admin": "275___",
+        "matchId": "11;11;126201"
       },
       "name": "Länstrafik -Tunnelbana 11",
+      "type": "ST",
       "stop": "T-Centralen T-bana (Stockholm kn)",
-      "stopid": "740020749",
+      "stopid": "A=1@O=T-Centralen T-bana (Stockholm kn)@X=18059266@Y=59330945@U=80@L=740020749@",
       "stopExtId": "740020749",
-      "time": "15:12:00",
-      "date": "2019-04-16",
-      "origin": "Akalla T-bana (Stockholm kn)",
-      "transportNumber": "11",
-      "transportCategory": "ULT"
+      "time": "16:38:00",
+      "date": "2021-09-23",
+      "reachable": true,
+      "origin": "Akalla T-bana (Stockholm kn)"
     },
     {
-      "Product": {
-        "name": "Länstrafik - Buss 69",
-        "num": "69",
-        "catCode": "7",
-        "catOutS": "BLT",
-        "catOutL": "Länstrafik - Buss",
-        "operatorCode": "275",
-        "operator": "SL",
-        "operatorUrl": "http://www.sl.se"
+      "JourneyDetailRef": {
+        "ref": "1|35259|6|80|23092021"
       },
-      "name": "Länstrafik - Buss 69",
-      "stop": "T-Centralen Spårv (Stockholm kn)",
-      "stopid": "740035997",
-      "stopExtId": "740035997",
-      "time": "15:13:00",
-      "date": "2019-04-16",
-      "origin": "Stockholm C Klarabergsviadukte",
-      "transportNumber": "69",
-      "transportCategory": "BLT"
-    },
-    {
-      "Product": {
-        "name": "Länstrafik -Tunnelbana 13",
-        "num": "13",
-        "catCode": "5",
-        "catOutS": "ULT",
-        "catOutL": "Länstrafik -Tunnelbana",
-        "operatorCode": "275",
-        "operator": "SL",
-        "operatorUrl": "http://www.sl.se"
-      },
-      "name": "Länstrafik -Tunnelbana 13",
-      "stop": "T-Centralen T-bana (Stockholm kn)",
-      "stopid": "740020749",
-      "stopExtId": "740020749",
-      "time": "15:13:00",
-      "date": "2019-04-16",
-      "origin": "Ropsten T-bana (Stockholm kn)",
-      "transportNumber": "13",
-      "transportCategory": "ULT"
-    },
-    {
-      "Product": {
+      "JourneyStatus": "P",
+      "ProductAtStop": {
+        "icon": {
+          "foregroundColor": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "hex": "#FFFFFF"
+          },
+          "backgroundColor": {
+            "r": 46,
+            "g": 132,
+            "b": 211,
+            "hex": "#2E84D3"
+          },
+          "res": "prod_sub"
+        },
         "name": "Länstrafik -Tunnelbana 14",
+        "internalName": "Länstrafik -Tunnelbana 14",
+        "displayNumber": "14",
         "num": "14",
+        "line": "14",
+        "lineId": "1275001400001",
+        "catOut": "ULT",
+        "catIn": "ULT",
         "catCode": "5",
+        "cls": "32",
         "catOutS": "ULT",
         "catOutL": "Länstrafik -Tunnelbana",
         "operatorCode": "275",
         "operator": "SL",
-        "operatorUrl": "http://www.sl.se"
+        "admin": "275___",
+        "matchId": "14;14;22232"
       },
       "name": "Länstrafik -Tunnelbana 14",
+      "type": "ST",
       "stop": "T-Centralen T-bana (Stockholm kn)",
-      "stopid": "740020749",
+      "stopid": "A=1@O=T-Centralen T-bana (Stockholm kn)@X=18059266@Y=59330945@U=80@L=740020749@",
       "stopExtId": "740020749",
-      "time": "15:13:00",
-      "date": "2019-04-16",
-      "origin": "Telefonplan T-bana (Stockholm kn)",
-      "transportNumber": "14",
-      "transportCategory": "ULT"
+      "time": "16:39:00",
+      "date": "2021-09-23",
+      "reachable": true,
+      "origin": "Fruängen T-bana (Stockholm kn)"
     },
     {
-      "Product": {
-        "name": "Länstrafik - Tåg 2545",
-        "num": "2545",
+      "JourneyDetailRef": {
+        "ref": "1|50393|14|80|23092021"
+      },
+      "JourneyStatus": "P",
+      "ProductAtStop": {
+        "icon": {
+          "foregroundColor": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "hex": "#FFFFFF"
+          },
+          "backgroundColor": {
+            "r": 183,
+            "g": 23,
+            "b": 102,
+            "hex": "#B71766"
+          },
+          "res": "prod_comm"
+        },
+        "name": "Länstrafik - Tåg 43",
+        "internalName": "Länstrafik - Tåg 43",
+        "displayNumber": "43",
+        "num": "43",
+        "line": "43",
+        "lineId": "1275000000002",
+        "catOut": "JLT",
+        "catIn": "JLT",
         "catCode": "4",
+        "cls": "16",
         "catOutS": "JLT",
         "catOutL": "Länstrafik - Tåg",
         "operatorCode": "275",
         "operator": "SL",
-        "operatorUrl": "http://www.sl.se"
+        "admin": "275___"
       },
-      "name": "Länstrafik - Tåg 2545",
+      "Notes": {
+        "Note": [
+          {
+            "value": "Endast 2 klass",
+            "key": "AA",
+            "type": "A",
+            "routeIdxFrom": 0,
+            "routeIdxTo": 10,
+            "txtN": "Endast 2 klass"
+          }
+        ]
+      },
+      "name": "Länstrafik - Tåg 43",
+      "type": "ST",
       "stop": "Stockholm City station",
-      "stopid": "740001617",
+      "stopid": "A=1@O=Stockholm City station@X=18059437@Y=59331143@U=80@L=740001617@",
       "stopExtId": "740001617",
-      "time": "15:14:00",
-      "date": "2019-04-16",
-      "origin": "Sundbyberg station",
-      "transportNumber": "2545",
-      "transportCategory": "JLT"
+      "time": "16:39:00",
+      "date": "2021-09-23",
+      "reachable": true,
+      "origin": "Västerhaninge station (Haninge kn)"
     },
     {
-      "Product": {
-        "name": "Länstrafik - Tåg 2844",
-        "num": "2844",
-        "catCode": "4",
-        "catOutS": "JLT",
-        "catOutL": "Länstrafik - Tåg",
+      "JourneyDetailRef": {
+        "ref": "1|54284|9|80|23092021"
+      },
+      "JourneyStatus": "P",
+      "ProductAtStop": {
+        "icon": {
+          "foregroundColor": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "hex": "#FFFFFF"
+          },
+          "backgroundColor": {
+            "r": 46,
+            "g": 132,
+            "b": 211,
+            "hex": "#2E84D3"
+          },
+          "res": "prod_sub"
+        },
+        "name": "Länstrafik -Tunnelbana 10",
+        "internalName": "Länstrafik -Tunnelbana 10",
+        "displayNumber": "10",
+        "num": "10",
+        "line": "10",
+        "lineId": "1275001000001",
+        "catOut": "ULT",
+        "catIn": "ULT",
+        "catCode": "5",
+        "cls": "32",
+        "catOutS": "ULT",
+        "catOutL": "Länstrafik -Tunnelbana",
         "operatorCode": "275",
         "operator": "SL",
-        "operatorUrl": "http://www.sl.se"
+        "admin": "275___",
+        "matchId": "10;10;117381"
       },
-      "name": "Länstrafik - Tåg 2844",
-      "stop": "Stockholm City station",
-      "stopid": "740001617",
-      "stopExtId": "740001617",
-      "time": "15:14:00",
-      "date": "2019-04-16",
-      "origin": "Västerhaninge station (Haninge kn)",
-      "transportNumber": "2844",
-      "transportCategory": "JLT"
-    },
-    {
-      "Product": {
-        "name": "Länstrafik - Buss 50",
-        "num": "50",
-        "catCode": "7",
-        "catOutS": "BLT",
-        "catOutL": "Länstrafik - Buss",
-        "operatorCode": "275",
-        "operator": "SL",
-        "operatorUrl": "http://www.sl.se"
-      },
-      "name": "Länstrafik - Buss 50",
-      "stop": "Stockholm Citytermin Kungsbron",
-      "stopid": "740001541",
-      "stopExtId": "740001541",
-      "time": "15:14:00",
-      "date": "2019-04-16",
-      "origin": "Lektorsstigen (Stockholm kn)",
-      "transportNumber": "50",
-      "transportCategory": "BLT"
+      "Product": [
+        {
+          "icon": {
+            "foregroundColor": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "hex": "#FFFFFF"
+            },
+            "backgroundColor": {
+              "r": 46,
+              "g": 132,
+              "b": 211,
+              "hex": "#2E84D3"
+            },
+            "res": "prod_sub"
+          },
+          "name": "Länstrafik -Tunnelbana 10",
+          "internalName": "Länstrafik -Tunnelbana 10",
+          "displayNumber": "10",
+          "num": "10",
+          "line": "10",
+          "lineId": "1275001000001",
+          "catOut": "ULT",
+          "catIn": "ULT",
+          "catCode": "5",
+          "cls": "32",
+          "catOutS": "ULT",
+          "catOutL": "Länstrafik -Tunnelbana",
+          "operatorCode": "275",
+          "operator": "SL",
+          "admin": "275___",
+          "routeIdxFrom": 0,
+          "routeIdxTo": 1,
+          "matchId": "10;10;117381"
+        }
+      ],
+      "name": "Länstrafik -Tunnelbana 10",
+      "type": "ST",
+      "stop": "T-Centralen T-bana (Stockholm kn)",
+      "stopid": "A=1@O=T-Centralen T-bana (Stockholm kn)@X=18059266@Y=59330945@U=80@L=740020749@",
+      "stopExtId": "740020749",
+      "time": "16:39:00",
+      "date": "2021-09-23",
+      "reachable": true,
+      "origin": "Kungsträdgården T-bana (Stockholm kn)"
     }
-  ]
+  ],
+  "TechnicalMessages": {
+    "TechnicalMessage": [
+      {
+        "value": "2021-09-23 16:37:39",
+        "key": "requestTime"
+      },
+      {
+        "value": "ttp=15235#15321 plancode0=9z1w1 planid=1632109347 planid0=1632109347 planid_adr=1479298166 plancode_adr=q0r10 srvv=5.45.SAMTRAFIKEN.10.0.0 (ef2245e) [Mar 11 2021] tlibv=TRFVER: (n/a) TRIVIAL_NO-OP_TARIFF jno=1",
+        "key": "backendInfo"
+      }
+    ]
+  },
+  "serverVersion": "2.16.1",
+  "dialectVersion": "2.16",
+  "planRtTs": "1970-01-01T01:00:00.000+01:00",
+  "requestId": "rii6sgmi6akyxiwx"
 }

@@ -1,10 +1,34 @@
 {
-  "name": "Regional Tåg 11154",
-  "num": "11154",
-  "catCode": "2",
-  "catOutS": "JRE",
-  "catOutL": "Regional Tåg",
-  "operatorCode": "300",
-  "operator": "Öresundståg",
-  "operatorUrl": "http://www.oresundstag.se/"
+  "icon": {
+    "foregroundColor": {
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "hex": "#FFFFFF"
+    },
+    "backgroundColor": {
+      "r": 183,
+      "g": 23,
+      "b": 102,
+      "hex": "#B71766"
+    },
+    "res": "prod_comm"
+  },
+  "name": "Länstrafik - Tåg 41",
+  "internalName": "Länstrafik - Tåg 41",
+  "displayNumber": "41",
+  "num": "41",
+  "line": "41",
+  "lineId": "1275000000037",
+  "catOut": "JLT",
+  "catIn": "JLT",
+  "catCode": "4",
+  "cls": "16",
+  "catOutS": "JLT",
+  "catOutL": "Länstrafik - Tåg",
+  "operatorCode": "275",
+  "operator": "SL",
+  "admin": "275___",
+  "routeIdxFrom": 9,
+  "routeIdxTo": 11
 }
