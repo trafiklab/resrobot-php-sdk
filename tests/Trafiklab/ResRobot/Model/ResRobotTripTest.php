@@ -9,14 +9,14 @@
 
 namespace Trafiklab\ResRobot\Model;
 
-use PHPUnit\Framework\TestCase;
+use Trafiklab\ResRobot\TestCase;
 
 class ResRobotTripTest extends TestCase
 {
     function testConstructor_validTripJson_shouldReturnCorrectObjectRepresentation()
     {
         $jsonArray = json_decode(
-            file_get_contents("./tests/Resources/ResRobot/validRoutePlanningTrip.json"), true);
+            $this->readTestResource("ResRobot/validRoutePlanningTrip.json"), true);
         $trip = new ResRobotTrip($jsonArray);
         self::assertNotNull($trip->getLegs());
         self::assertEquals(3, count($trip->getLegs()));

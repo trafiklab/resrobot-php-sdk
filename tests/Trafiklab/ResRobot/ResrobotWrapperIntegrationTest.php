@@ -17,36 +17,27 @@ use Trafiklab\Common\Model\Exceptions\InvalidStopLocationException;
 use Trafiklab\Common\Model\Exceptions\KeyRequiredException;
 use Trafiklab\ResRobot\Model\Enum\ResRobotTransportType;
 
-class ResRobotWrapperIntegrationTest extends TestCase
+class ResrobotWrapperIntegrationTest extends TestCase
 {
-    private $_TIMETABLES_API_KEY = "";
-    private $_ROUTEPLANNING_API_KEY = "";
+    private string $_API_KEY = "";
 
     public function __construct()
     {
         parent::__construct();
         $testKeysFromFile = $this->getTestKeysFromFile();
 
-        if ($testKeysFromFile != null && key_exists('TIMETABLES_API_KEY', $testKeysFromFile)) {
-            $this->_TIMETABLES_API_KEY = $testKeysFromFile['TIMETABLES_API_KEY'];
+        if ($testKeysFromFile != null && key_exists('API_KEY', $testKeysFromFile)) {
+            $this->_API_KEY = $testKeysFromFile['API_KEY'];
         }
 
-        if ($testKeysFromFile != null && key_exists('ROUTEPLANNING_API_KEY', $testKeysFromFile)) {
-            $this->_ROUTEPLANNING_API_KEY = $testKeysFromFile['ROUTEPLANNING_API_KEY'];
-        }
-
-        if (empty($this->_TIMETABLES_API_KEY)) {
-            $this->_TIMETABLES_API_KEY = getenv('TIMETABLES_API_KEY');
-        }
-
-        if (empty($this->_ROUTEPLANNING_API_KEY)) {
-            $this->_ROUTEPLANNING_API_KEY = getenv('ROUTEPLANNING_API_KEY');
+        if (empty($this->_API_KEY)) {
+            $this->_API_KEY = getenv('API_KEY');
         }
     }
 
     public function testGetDepartures_validParameters_shouldReturnResponse()
     {
-        if (empty($this->_TIMETABLES_API_KEY)) {
+        if (empty($this->_API_KEY)) {
             $this->markTestIncomplete();
         }
         sleep(1);
@@ -56,11 +47,12 @@ class ResRobotWrapperIntegrationTest extends TestCase
         $departuresRequest->setTimeTableType(TimeTableType::DEPARTURES);
 
         $resRobotWrapper->setUserAgent("SDK Integration tests");
-        $resRobotWrapper->setTimeTablesApiKey($this->_TIMETABLES_API_KEY);
+        $resRobotWrapper->setTimeTablesApiKey($this->_API_KEY);
         $response = $resRobotWrapper->getTimeTable($departuresRequest);
 
         self::assertEquals(TimeTableType::DEPARTURES, $response->getType());
         self::assertFalse(empty($response->getTimetable()[0]->getOperator()));
+        self::assertTrue(count($response->getTimetable()) > 1, "There should be more than one result in the response");
 
         $departuresRequest = $resRobotWrapper->createTimeTableRequestObject();
         $departuresRequest->setStopId("740020671"); // Arlanda buss
@@ -69,7 +61,7 @@ class ResRobotWrapperIntegrationTest extends TestCase
 
         $resRobotWrapper = new ResRobotWrapper();
         $resRobotWrapper->setUserAgent("SDK Integration tests");
-        $resRobotWrapper->setTimeTablesApiKey($this->_TIMETABLES_API_KEY);
+        $resRobotWrapper->setTimeTablesApiKey($this->_API_KEY);
         $response = $resRobotWrapper->getTimeTable($departuresRequest);
 
         // Expect no results, as we asked trains from a bus stop.
@@ -78,7 +70,7 @@ class ResRobotWrapperIntegrationTest extends TestCase
 
     public function testGetDepartures_invalidStationId_shouldThrowException()
     {
-        if (empty($this->_TIMETABLES_API_KEY)) {
+        if (empty($this->_API_KEY)) {
             $this->markTestIncomplete();
         }
         sleep(1);
@@ -90,7 +82,7 @@ class ResRobotWrapperIntegrationTest extends TestCase
         $departuresRequest->setTimeTableType(TimeTableType::DEPARTURES);
 
         $resRobotWrapper->setUserAgent("SDK Integration tests");
-        $resRobotWrapper->setTimeTablesApiKey($this->_TIMETABLES_API_KEY);
+        $resRobotWrapper->setTimeTablesApiKey($this->_API_KEY);
         $resRobotWrapper->getTimeTable($departuresRequest);
     }
 
@@ -128,7 +120,7 @@ class ResRobotWrapperIntegrationTest extends TestCase
     public function testGetArrivals_validParameters_shouldReturnResponse()
     {
         sleep(1);
-        if (empty($this->_TIMETABLES_API_KEY)) {
+        if (empty($this->_API_KEY)) {
             $this->markTestIncomplete();
         }
 
@@ -138,7 +130,7 @@ class ResRobotWrapperIntegrationTest extends TestCase
         $arrivalsRequest->setTimeTableType(TimeTableType::ARRIVALS);
 
         $resRobotWrapper->setUserAgent("SDK Integration tests");
-        $resRobotWrapper->setTimeTablesApiKey($this->_TIMETABLES_API_KEY);
+        $resRobotWrapper->setTimeTablesApiKey($this->_API_KEY);
         $response = $resRobotWrapper->getTimeTable($arrivalsRequest);
 
         self::assertEquals(TimeTableType::ARRIVALS, $response->getType());
@@ -151,7 +143,7 @@ class ResRobotWrapperIntegrationTest extends TestCase
 
         $resRobotWrapper = new ResRobotWrapper();
         $resRobotWrapper->setUserAgent("SDK Integration tests");
-        $resRobotWrapper->setTimeTablesApiKey($this->_TIMETABLES_API_KEY);
+        $resRobotWrapper->setTimeTablesApiKey($this->_API_KEY);
         $response = $resRobotWrapper->getTimeTable($arrivalsRequest);
 
         foreach ($response->getTimetable() as $timeTableEntry) {
@@ -165,7 +157,7 @@ class ResRobotWrapperIntegrationTest extends TestCase
      */
     public function testGetRoutePlanning_validParameters_shouldReturnResponse()
     {
-        if (empty($this->_ROUTEPLANNING_API_KEY)) {
+        if (empty($this->_API_KEY)) {
             $this->markTestIncomplete();
         }
 
@@ -179,7 +171,7 @@ class ResRobotWrapperIntegrationTest extends TestCase
         $routePlanningRequest->setDateTime($queryTime);
 
         $resRobotWrapper->setUserAgent("SDK Integration tests");
-        $resRobotWrapper->setRoutePlanningApiKey($this->_ROUTEPLANNING_API_KEY);
+        $resRobotWrapper->setRoutePlanningApiKey($this->_API_KEY);
         $response = $resRobotWrapper->getRoutePlanning($routePlanningRequest);
 
         self::assertTrue(count($response->getTrips()) > 0);
@@ -193,7 +185,7 @@ class ResRobotWrapperIntegrationTest extends TestCase
      */
     public function testGetRoutePlanning_WithVia_shouldReturnResponse()
     {
-        if (empty($this->_ROUTEPLANNING_API_KEY)) {
+        if (empty($this->_API_KEY)) {
             $this->markTestIncomplete();
         }
 
@@ -208,7 +200,7 @@ class ResRobotWrapperIntegrationTest extends TestCase
         $routePlanningRequest->setViaStopId("740000003");
 
         $resRobotWrapper->setUserAgent("SDK Integration tests");
-        $resRobotWrapper->setRoutePlanningApiKey($this->_ROUTEPLANNING_API_KEY);
+        $resRobotWrapper->setRoutePlanningApiKey($this->_API_KEY);
         $response = $resRobotWrapper->getRoutePlanning($routePlanningRequest);
 
         self::assertTrue(count($response->getTrips()) > 0);
@@ -227,7 +219,7 @@ class ResRobotWrapperIntegrationTest extends TestCase
 
     public function testGetRoutePlanning_invalidStationId_shouldThrowException()
     {
-        if (empty($this->_ROUTEPLANNING_API_KEY)) {
+        if (empty($this->_API_KEY)) {
             $this->markTestIncomplete();
         }
 
@@ -239,7 +231,7 @@ class ResRobotWrapperIntegrationTest extends TestCase
         $routePlanningRequest->setDestinationStopId("7400-02");
 
         $resRobotWrapper->setUserAgent("SDK Integration tests");
-        $resRobotWrapper->setRoutePlanningApiKey($this->_ROUTEPLANNING_API_KEY);
+        $resRobotWrapper->setRoutePlanningApiKey($this->_API_KEY);
         $resRobotWrapper->getRoutePlanning($routePlanningRequest);
     }
 
@@ -276,7 +268,7 @@ class ResRobotWrapperIntegrationTest extends TestCase
 
     public function testGetRoutePlanning_invalidDate_shouldThrowException()
     {
-        if (empty($this->_ROUTEPLANNING_API_KEY)) {
+        if (empty($this->_API_KEY)) {
             $this->markTestIncomplete();
         }
 
@@ -292,13 +284,13 @@ class ResRobotWrapperIntegrationTest extends TestCase
         $routePlanningRequest->setDateTime($queryTime);
 
         $resRobotWrapper->setUserAgent("SDK Integration tests");
-        $resRobotWrapper->setRoutePlanningApiKey($this->_ROUTEPLANNING_API_KEY);
+        $resRobotWrapper->setRoutePlanningApiKey($this->_API_KEY);
         $resRobotWrapper->getRoutePlanning($routePlanningRequest);
     }
 
     public function testLookupStopLocation_searchForTCentralen_shouldReturnMetroStation()
     {
-        if (empty($this->_ROUTEPLANNING_API_KEY)) {
+        if (empty($this->_API_KEY)) {
             $this->markTestIncomplete();
         }
 
@@ -307,7 +299,7 @@ class ResRobotWrapperIntegrationTest extends TestCase
         $lookupRequest->setSearchQuery("t-centralen");
 
         $resRobotWrapper->setUserAgent("SDK Integration tests");
-        $resRobotWrapper->setStopLocationLookupApiKey($this->_ROUTEPLANNING_API_KEY);
+        $resRobotWrapper->setStopLocationLookupApiKey($this->_API_KEY);
         $response = $resRobotWrapper->lookupStopLocation($lookupRequest);
 
         self::assertEquals("740020749", $response->getFoundStopLocations()[0]->getId());

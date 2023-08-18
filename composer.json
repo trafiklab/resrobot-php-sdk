@@ -19,7 +19,7 @@
   ],
   "homepage": "https://trafiklab.se",
   "require": {
-    "php": ">=7.3",
+    "php": ">=7.4",
     "ext-json": "*",
     "trafiklab/php-sdk-commons": "~1.2.0"
   },
@@ -35,6 +35,11 @@
   "autoload": {
     "psr-0": {
       "Trafiklab\\ResRobot": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-0": {
+      "Trafiklab\\ResRobot": "tests/"
     }
   }
 }

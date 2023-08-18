@@ -9,7 +9,7 @@
 
 namespace Trafiklab\ResRobot\Model;
 
-use PHPUnit\Framework\TestCase;
+use Trafiklab\ResRobot\TestCase;
 use Trafiklab\Common\Model\Contract\WebResponse;
 
 class ResRobotStopLocationLookupResponseTest extends TestCase
@@ -17,7 +17,7 @@ class ResRobotStopLocationLookupResponseTest extends TestCase
     function testConstructor_validStopLocationLookupJson_shouldReturnCorrectObjectRepresentation()
     {
         $jsonArray = json_decode(
-            file_get_contents("./tests/Resources/ResRobot/validStopLocationLookupReply.json"), true);
+            $this->readTestResource("ResRobot/validStopLocationLookupReply.json"), true);
         $webResponse = self::createMock(WebResponse::class);
         $response = new ResRobotStopLocationLookupResponse($webResponse, $jsonArray);
 

@@ -7,7 +7,7 @@
 
 namespace Trafiklab\ResRobot\Model;
 
-use PHPUnit\Framework\TestCase;
+use Trafiklab\ResRobot\TestCase;
 
 class ResRobotStopLocationLookupRequestTest extends TestCase
 {

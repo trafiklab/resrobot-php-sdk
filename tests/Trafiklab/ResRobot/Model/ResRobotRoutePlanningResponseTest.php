@@ -9,7 +9,7 @@
 
 namespace Trafiklab\ResRobot\Model;
 
-use PHPUnit\Framework\TestCase;
+use Trafiklab\ResRobot\TestCase;
 use Trafiklab\Common\Model\Contract\WebResponse;
 
 class RoutePlanningReplyTest extends TestCase
@@ -17,7 +17,7 @@ class RoutePlanningReplyTest extends TestCase
     function testConstructor_validRoutePlanningReplyJson_shouldReturnCorrectObjectRepresentation()
     {
         $validRoutePlanning = json_decode(
-            file_get_contents("./tests/Resources/ResRobot/validRoutePlanningReply.json"), true);
+            $this->readTestResource("ResRobot/validRoutePlanningReply.json"), true);
         $dummyResponse = $this->createMock(WebResponse::class);
         $routePlanningResponse = new ResRobotRoutePlanningResponse($dummyResponse, $validRoutePlanning);
 

@@ -10,14 +10,14 @@
 namespace Trafiklab\ResRobot\Model;
 
 use DateTime;
-use PHPUnit\Framework\TestCase;
+use Trafiklab\ResRobot\TestCase;
 use Trafiklab\Common\Model\Enum\RoutePlanningLegType;
 
 class ResRobotLegTest extends TestCase
 {
     function testConstructor_validRoutePlanningLegJson_shouldReturnCorrectObjectRepresentation()
     {
-        $jsonArray = json_decode(file_get_contents("./tests/Resources/ResRobot/validRoutePlanningLeg.json"), true);
+        $jsonArray = json_decode($this->readTestResource("ResRobot/validRoutePlanningLeg.json"), true);
         $leg = new ResRobotLeg($jsonArray);
 
         self::assertEquals("Solna station", $leg->getDeparture()->getStopName());

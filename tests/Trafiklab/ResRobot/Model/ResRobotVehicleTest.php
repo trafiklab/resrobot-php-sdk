@@ -9,7 +9,7 @@
 
 namespace Trafiklab\ResRobot\Model;
 
-use PHPUnit\Framework\TestCase;
+use Trafiklab\ResRobot\TestCase;
 use Trafiklab\Common\Model\Enum\TransportType;
 
 class ResRobotVehicleTest extends TestCase
@@ -17,7 +17,7 @@ class ResRobotVehicleTest extends TestCase
     function testConstructor_validVehicleJson_shouldReturnCorrectObjectRepresentation()
     {
         $jsonArray = json_decode(
-            file_get_contents("./tests/Resources/ResRobot/validRoutePlanningVehicle.json"), true);
+            $this->readTestResource("ResRobot/validRoutePlanningVehicle.json"), true);
         $vehicle = new ResRobotVehicle($jsonArray);
 
         self::assertEquals("Länstrafik - Tåg 41", $vehicle->getName());

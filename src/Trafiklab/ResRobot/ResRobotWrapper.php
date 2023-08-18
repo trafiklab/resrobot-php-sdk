@@ -30,9 +30,8 @@ use Trafiklab\ResRobot\Model\ResRobotTimeTableRequest;
 class ResRobotWrapper implements PublicTransportApiWrapper
 {
 
-    private $_key_reseplanerare;
-    private $_key_stolptidstabeller;
-    private $_resrobotClient;
+    private ?string $_key;
+    private ResRobotClient $_resrobotClient;
 
     public function __construct()
     {
@@ -40,34 +39,36 @@ class ResRobotWrapper implements PublicTransportApiWrapper
     }
 
     /**
-     * Set the API key used for route-planning.
+     * Set the API key used for route-planning. Note: For ResRobot 2.1 this key is identical for all types
+     * of requests. These methods are only separated for compatibility with other API wrappers.
      *
-     * @param string $apiKey The API key to use.
+     * @param string|null $apiKey The API key to use.
      */
     public function setRoutePlanningApiKey(?string $apiKey): void
     {
-        $this->_key_reseplanerare = $apiKey;
+        $this->_key = $apiKey;
     }
 
     /**
-     * Set the API key used for looking up timetables.
+     * Set the API key used for looking up timetables. Note: For ResRobot 2.1 this key is identical for all types
+     * of requests. These methods are only separated for compatibility with other API wrappers.
      *
-     * @param string $apiKey The API key to use.
+     * @param string|null $apiKey The API key to use.
      */
     public function setTimeTablesApiKey(?string $apiKey): void
     {
-        $this->_key_stolptidstabeller = $apiKey;
+        $this->_key = $apiKey;
     }
 
     /**
-     * Set the API key used for looking up stop locations. For ResRobot this key is the same as the key used for
-     * route-planning.
+     * Set the API key used for looking up stop locations. Note: For ResRobot 2.1 this key is identical for all types
+     * of requests. These methods are only separated for compatibility with other API wrappers.
      *
-     * @param string $apiKey The API key to use.
+     * @param string|null $apiKey The API key to use.
      */
     public function setStopLocationLookupApiKey(?string $apiKey): void
     {
-        $this->_key_reseplanerare = $apiKey;
+        $this->_key = $apiKey;
     }
 
     public function setUserAgent(?string $userAgent): void
@@ -87,13 +88,13 @@ class ResRobotWrapper implements PublicTransportApiWrapper
      */
     public function getTimeTable(TimeTableRequest $request): TimeTableResponse
     {
-        $this->requireValidTimeTablesKey();
+        $this->requireValidApiKey();
 
         if (!$request instanceof ResRobotTimeTableRequest) {
             throw new InvalidArgumentException("ResRobot requires a ResRobotTimeTableRequest object");
         }
 
-        return $this->_resrobotClient->getTimeTable($this->_key_stolptidstabeller, $request);
+        return $this->_resrobotClient->getTimeTable($this->_key, $request);
     }
 
     /**
@@ -108,13 +109,13 @@ class ResRobotWrapper implements PublicTransportApiWrapper
      */
     public function getRoutePlanning(RoutePlanningRequest $request): RoutePlanningResponse
     {
-        $this->requireValidRouteplannerKey();
+        $this->requireValidApiKey();
 
         if (!$request instanceof ResRobotRoutePlanningRequest) {
             throw new InvalidArgumentException("ResRobot requires a ResRobotRoutePlanningRequest object");
         }
 
-        return $this->_resrobotClient->getRoutePlanning($this->_key_reseplanerare, $request);
+        return $this->_resrobotClient->getRoutePlanning($this->_key, $request);
     }
 
     /**
@@ -133,13 +134,13 @@ class ResRobotWrapper implements PublicTransportApiWrapper
      */
     public function lookupStopLocation(StopLocationLookupRequest $request): StopLocationLookupResponse
     {
-        $this->requireValidRouteplannerKey();
+        $this->requireValidApiKey();
 
         if (!$request instanceof ResRobotStopLocationLookupRequest) {
             throw new InvalidArgumentException("ResRobot requires a ResRobotStopLocationLookupRequest object");
         }
 
-        return $this->_resrobotClient->lookupStopLocation($this->_key_reseplanerare, $request);
+        return $this->_resrobotClient->lookupStopLocation($this->_key, $request);
     }
 
     public function createTimeTableRequestObject(): TimeTableRequest
@@ -160,19 +161,9 @@ class ResRobotWrapper implements PublicTransportApiWrapper
     /**
      * @throws KeyRequiredException
      */
-    private function requireValidTimeTablesKey()
+    private function requireValidApiKey()
     {
-        if ($this->_key_stolptidstabeller == null || empty($this->_key_stolptidstabeller)) {
-            throw new KeyRequiredException("");
-        }
-    }
-
-    /**
-     * @throws KeyRequiredException
-     */
-    private function requireValidRouteplannerKey()
-    {
-        if ($this->_key_reseplanerare == null || empty($this->_key_reseplanerare)) {
+        if (empty($this->_key)) {
             throw new KeyRequiredException("");
         }
     }

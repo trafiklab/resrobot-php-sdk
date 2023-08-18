@@ -9,7 +9,7 @@ namespace Trafiklab\ResRobot\Model;
 
 
 use DateTime;
-use PHPUnit\Framework\TestCase;
+use Trafiklab\ResRobot\TestCase;
 use Trafiklab\Common\Model\Enum\TimeTableType;
 use Trafiklab\ResRobot\Model\Enum\ResRobotTransportType;
 

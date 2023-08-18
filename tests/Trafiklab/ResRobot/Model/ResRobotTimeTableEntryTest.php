@@ -7,7 +7,7 @@
 
 namespace Trafiklab\ResRobot\Model;
 
-use PHPUnit\Framework\TestCase;
+use Trafiklab\ResRobot\TestCase;
 use Trafiklab\Common\Model\Enum\TimeTableType;
 use Trafiklab\Common\Model\Enum\TransportType;
 
@@ -19,7 +19,7 @@ class ResRobotTimeTableEntryTest extends TestCase
     function testConstructor_validDepartureBoardEntryJson_shouldReturnCorrectObjectRepresentation()
     {
         $validDepartures = json_decode(
-            file_get_contents("./tests/Resources/ResRobot/validDeparturesReplyEntry.json"), true);
+            $this->readTestResource("ResRobot/validDeparturesReplyEntry.json"), true);
         $departureBoardEntry = new ResRobotTimeTableEntry($validDepartures, TimeTableType::DEPARTURES);
 
         self::assertEquals("SL", $departureBoardEntry->getOperator());
@@ -43,7 +43,7 @@ class ResRobotTimeTableEntryTest extends TestCase
     function testConstructor_validArrivalBoardEntryJson_shouldReturnCorrectObjectRepresentation()
     {
         $validDepartures = json_decode(
-            file_get_contents("./tests/Resources/ResRobot/validArrivalsReplyEntry.json"), true);
+            $this->readTestResource("ResRobot/validArrivalsReplyEntry.json"), true);
         $arrivalBoardEntry = new ResRobotTimeTableEntry($validDepartures, TimeTableType::ARRIVALS);
 
         self::assertEquals("SL", $arrivalBoardEntry->getOperator());

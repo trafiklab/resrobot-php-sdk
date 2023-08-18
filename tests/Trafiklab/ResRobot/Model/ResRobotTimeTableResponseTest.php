@@ -9,7 +9,7 @@
 
 namespace Trafiklab\ResRobot\Model;
 
-use PHPUnit\Framework\TestCase;
+use Trafiklab\ResRobot\TestCase;
 use Trafiklab\Common\Model\Contract\WebResponse;
 use Trafiklab\Common\Model\Enum\TimeTableType;
 
@@ -17,7 +17,7 @@ class ResRobotTimeTableResponseTest extends TestCase
 {
     function testConstructor_validDepartureBoardJson_shouldReturnCorrectObjectRepresentation()
     {
-        $validDepartures = json_decode(file_get_contents("./tests/Resources/ResRobot/validDeparturesReply.json"), true);
+        $validDepartures = json_decode($this->readTestResource("ResRobot/validDeparturesReply.json"), true);
         $dummyResponse = $this->createMock(WebResponse::class);
         $departureBoard = new ResRobotTimeTableResponse($dummyResponse, $validDepartures);
 
@@ -30,7 +30,7 @@ class ResRobotTimeTableResponseTest extends TestCase
 
     function testConstructor_validArrivalBoardJson_shouldReturnCorrectObjectRepresentation()
     {
-        $validDepartures = json_decode(file_get_contents("./tests/Resources/ResRobot/validArrivalsReply.json"), true);
+        $validDepartures = json_decode($this->readTestResource("ResRobot/validArrivalsReply.json"), true);
         $dummyResponse = $this->createMock(WebResponse::class);
         $arrivalBoard = new ResRobotTimeTableResponse($dummyResponse, $validDepartures);
 

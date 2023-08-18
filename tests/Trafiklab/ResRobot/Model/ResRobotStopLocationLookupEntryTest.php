@@ -7,7 +7,7 @@
 
 namespace Trafiklab\ResRobot\Model;
 
-use PHPUnit\Framework\TestCase;
+use Trafiklab\ResRobot\TestCase;
 use Trafiklab\Common\Model\Enum\TransportType;
 
 class ResRobotStopLocationLookupEntryTest extends TestCase
@@ -15,7 +15,7 @@ class ResRobotStopLocationLookupEntryTest extends TestCase
     function testConstructor_validStopLocationLookupEntryJson_shouldReturnCorrectObjectRepresentation()
     {
         $validEntry = json_decode(
-            file_get_contents("./tests/Resources/ResRobot/validStopLocationLookupEntry.json"), true);
+            $this->readTestResource("ResRobot/validStopLocationLookupEntry.json"), true);
         $entry = new ResRobotStopLocationLookupEntry($validEntry);
 
         self::assertEquals("740000759", $entry->getId());
