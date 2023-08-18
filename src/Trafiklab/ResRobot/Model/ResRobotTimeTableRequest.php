@@ -14,6 +14,7 @@ class ResRobotTimeTableRequest extends ResRobotBaseRequest implements TimeTableR
 {
     private $_timeTableType = TimeTableType::DEPARTURES;
     private $_stopId = "";
+    private $_lang = "sv";
 
     /**
      * @return mixed
@@ -47,5 +48,20 @@ class ResRobotTimeTableRequest extends ResRobotBaseRequest implements TimeTableR
         $this->_timeTableType = $timeTableType;
     }
 
+    /**
+     * @return string
+     */
+    public function getLanguage(): string
+    {
+        return $this->_lang;
+    }
 
+    /**
+     * @param string $lang
+     * @return void
+     */
+    public function setLanguage(string $lang): void
+    {
+        $this->_lang = $lang;
+    }
 }

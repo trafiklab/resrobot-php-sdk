@@ -86,6 +86,7 @@ class ResRobotClient
             "id"       => $request->getStopId(),
             "date"     => $request->getDateTime()->format("Y-m-d"),
             "time"     => $request->getDateTime()->format("H:i"),
+            "lang"     => $request->getLanguage(),
             "format"   => "json",
             "passlist" => "0",
         ];

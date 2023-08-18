@@ -56,6 +56,9 @@ class ResRobotStopLocationLookupResponse implements StopLocationLookupResponse
     {
         $this->_stopLocations = [];
         foreach ($json['stopLocationOrCoordLocation'] as $result) {
+            if( ! isset($result['StopLocation'])) {
+                continue;
+            }
             $stopLocationJson = $result['StopLocation'];
             $this->_stopLocations[] = new ResRobotStopLocationLookupEntry($stopLocationJson);
         }
